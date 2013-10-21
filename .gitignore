@@ -19,3 +19,6 @@ DerivedData
 
 #CocoaPods
 Pods
+
+Savr/SAVR_Secrets.h
+Savr/SAVR_Secrets.m
