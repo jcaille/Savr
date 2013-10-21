@@ -16,7 +16,6 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     NSLog(@"Hello !");
-    // Insert code here to initialize your application
 }
 
 - (IBAction)buttonWasClicked:(id)sender {

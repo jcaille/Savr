@@ -21,6 +21,8 @@
 		0F1C2BD91813296F009AB0C1 /* SAVR_FluxLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C2BD81813296F009AB0C1 /* SAVR_FluxLoader.m */; };
 		0F1C2BDC18132B08009AB0C1 /* SAVR_URLFluxLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C2BDB18132B08009AB0C1 /* SAVR_URLFluxLoader.m */; };
 		0F1C2BDF18132F5F009AB0C1 /* SAVR_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C2BDE18132F5F009AB0C1 /* SAVR_Utils.m */; };
+		0FCF365618152C6400DF7A92 /* SAVR_Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF365518152C6400DF7A92 /* SAVR_Secrets.m */; };
+		0FCF365918152ED400DF7A92 /* SAVR_ImgurFluxLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF365818152ED400DF7A92 /* SAVR_ImgurFluxLoader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,10 @@
 		0F1C2BDB18132B08009AB0C1 /* SAVR_URLFluxLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_URLFluxLoader.m; sourceTree = "<group>"; };
 		0F1C2BDD18132F5F009AB0C1 /* SAVR_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAVR_Utils.h; sourceTree = "<group>"; };
 		0F1C2BDE18132F5F009AB0C1 /* SAVR_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_Utils.m; sourceTree = "<group>"; };
+		0FCF365418152C6400DF7A92 /* SAVR_Secrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAVR_Secrets.h; sourceTree = "<group>"; };
+		0FCF365518152C6400DF7A92 /* SAVR_Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_Secrets.m; sourceTree = "<group>"; };
+		0FCF365718152ED400DF7A92 /* SAVR_ImgurFluxLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAVR_ImgurFluxLoader.h; sourceTree = "<group>"; };
+		0FCF365818152ED400DF7A92 /* SAVR_ImgurFluxLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_ImgurFluxLoader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +134,8 @@
 				0F1C2BB51813243F009AB0C1 /* SAVR_AppDelegate.m */,
 				0F1C2BDD18132F5F009AB0C1 /* SAVR_Utils.h */,
 				0F1C2BDE18132F5F009AB0C1 /* SAVR_Utils.m */,
+				0FCF365418152C6400DF7A92 /* SAVR_Secrets.h */,
+				0FCF365518152C6400DF7A92 /* SAVR_Secrets.m */,
 				0F1C2BD61813291D009AB0C1 /* Flux */,
 				0F1C2BB71813243F009AB0C1 /* MainMenu.xib */,
 				0F1C2BBA1813243F009AB0C1 /* Images.xcassets */,
@@ -173,6 +181,8 @@
 				0F1C2BD81813296F009AB0C1 /* SAVR_FluxLoader.m */,
 				0F1C2BDA18132B08009AB0C1 /* SAVR_URLFluxLoader.h */,
 				0F1C2BDB18132B08009AB0C1 /* SAVR_URLFluxLoader.m */,
+				0FCF365718152ED400DF7A92 /* SAVR_ImgurFluxLoader.h */,
+				0FCF365818152ED400DF7A92 /* SAVR_ImgurFluxLoader.m */,
 			);
 			name = Flux;
 			sourceTree = "<group>";
@@ -277,10 +287,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F1C2BD91813296F009AB0C1 /* SAVR_FluxLoader.m in Sources */,
+				0FCF365618152C6400DF7A92 /* SAVR_Secrets.m in Sources */,
 				0F1C2BB61813243F009AB0C1 /* SAVR_AppDelegate.m in Sources */,
 				0F1C2BDF18132F5F009AB0C1 /* SAVR_Utils.m in Sources */,
 				0F1C2BAF1813243F009AB0C1 /* main.m in Sources */,
 				0F1C2BDC18132B08009AB0C1 /* SAVR_URLFluxLoader.m in Sources */,
+				0FCF365918152ED400DF7A92 /* SAVR_ImgurFluxLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +503,7 @@
 				0F1C2BD21813243F009AB0C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0F1C2BD31813243F009AB0C1 /* Build configuration list for PBXNativeTarget "SavrTests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +512,7 @@
 				0F1C2BD51813243F009AB0C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

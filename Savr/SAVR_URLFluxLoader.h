@@ -10,5 +10,6 @@
 
 @interface SAVR_URLFluxLoader : SAVR_FluxLoader
 {
-    NSString* myUrl;}
+    NSString* myUrl;
+}
 @end
