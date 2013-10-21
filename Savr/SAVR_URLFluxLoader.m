@@ -1,0 +1,25 @@
+//
+//  SAVR_URLFluxLoader.m
+//  Savr
+//
+//  Created by Jean Caillé on 19/10/13.
+//  Copyright (c) 2013 Jean Caillé. All rights reserved.
+//
+
+#import "SAVR_URLFluxLoader.h"
+
+@implementation SAVR_URLFluxLoader
+-(void) setup
+{
+    fluxName = @"URL";
+    myUrl = @"http://placekitten.com/1024/768";
+}
+
+-(BOOL) fetch
+{
+    NSData* imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: myUrl]];
+    NSString* imagePath = [[[self getOrCreateFluxDirectory] stringByAppendingPathComponent:@"image"] stringByAppendingPathExtension:@"jpg"];
+    [imageData writeToFile:imagePath atomically:YES];
+    return YES;
+}
+@end
