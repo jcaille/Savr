@@ -10,7 +10,7 @@
 
 @interface SAVR_FluxLoader : NSObject
 {
-    NSString* fluxName;
+    @public NSString* fluxName;
 }
 // Setup the object (keys, permissions, directory, ...)
 -(void) setup;
@@ -19,8 +19,17 @@
 // Returns success status
 -(BOOL) fetch;
 
-// Remove old elements from directory
--(void) cleanDirectory;
+// Remove everything elements from directory
+-(BOOL) cleanDirectory;
+
+// Check if flux is active by looking for a symlink in document directory
+-(BOOL) isActive;
+
+//Creates a symlink between flux directory and appSupport directory.
+-(BOOL) setFluxAsActive;
+
+//Removes symlink between flux directory and appSupport directory
+-(BOOL) setFluxAsInactive;
 
 // Access the directory
 -(NSString*) getOrCreateFluxDirectory;
