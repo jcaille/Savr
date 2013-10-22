@@ -700,11 +700,23 @@
                             <action selector="setFluxAsInactive:" target="494" id="OxQ-bj-Ag6"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aLG-yG-F0g">
+                        <rect key="frame" x="149" y="213" width="182" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Open Preference Panel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OYs-fJ-H6H">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="openPreferencePane:" target="494" id="gTT-q3-I2W"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
         </window>
         <customObject id="494" customClass="SAVR_AppDelegate">
             <connections>
+                <outlet property="openPreferencePane" destination="aLG-yG-F0g" id="VUr-uW-HhM"/>
                 <outlet property="window" destination="371" id="532"/>
             </connections>
         </customObject>

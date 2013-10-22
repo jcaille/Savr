@@ -34,6 +34,11 @@
     SAVR_FluxLoader* fluxLoader = [[SAVR_URLFluxLoader alloc] init];
     [fluxLoader setup];
     [fluxLoader setFluxAsInactive];
-
 }
+
+- (IBAction)openPreferencePane:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:
+     [NSURL fileURLWithPath:@"/System/Library/PreferencePanes/DesktopScreenEffectsPref.prefPane"]];
+}
+
 @end

@@ -13,5 +13,6 @@
 @property (assign) IBOutlet NSWindow *window;
 - (IBAction)setFluxAsActive:(id)sender;
 - (IBAction)setFluxAsInactive:(id)sender;
+- (IBAction)openPreferencePane:(id)sender;
 
 @end
