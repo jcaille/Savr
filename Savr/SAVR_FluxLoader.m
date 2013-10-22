@@ -11,15 +11,10 @@
 
 @implementation SAVR_FluxLoader
 
--(void) setup
-{
-}
-
 -(BOOL) fetch
 {
     return NO;
 }
-
 
 #pragma mark - FILE MANAGEMENT
 

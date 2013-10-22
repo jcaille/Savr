@@ -9,9 +9,11 @@
 #import "SAVR_ImgurFluxLoader.h"
 
 @implementation SAVR_ImgurFluxLoader
--(void) setup
-{
-    fluxName = @"Imgur" ;
-    
+- (id)init {
+    self = [super init];
+    if (self) {
+        fluxName = @"Imgur";
+    }
+    return self;
 }
 @end

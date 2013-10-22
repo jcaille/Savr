@@ -23,7 +23,6 @@
     // Put setup code here. This method is called before the invocation of each test method in the class.
     [super setUp];
     fluxLoader = [[SAVR_URLFluxLoader alloc] init];
-    [fluxLoader setup];
 }
 
 - (void)tearDown

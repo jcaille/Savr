@@ -12,8 +12,6 @@
 {
     @public NSString* fluxName;
 }
-// Setup the object (keys, permissions, directory, ...)
--(void) setup;
 
 // Fetch the data from the source, save it to flux directory
 // Returns success status

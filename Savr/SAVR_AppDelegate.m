@@ -20,19 +20,16 @@
 
 - (IBAction)buttonWasClicked:(id)sender {
     SAVR_URLFluxLoader* fluxLoader = [[SAVR_URLFluxLoader alloc] init];
-    [fluxLoader setup];
     [fluxLoader fetch];
 }
 
 - (IBAction)setFluxAsActive:(id)sender {
     SAVR_FluxLoader* fluxLoader = [[SAVR_URLFluxLoader alloc] init];
-    [fluxLoader setup];
     [fluxLoader setFluxAsActive];
 }
 
 - (IBAction)setFluxAsInactive:(id)sender {
     SAVR_FluxLoader* fluxLoader = [[SAVR_URLFluxLoader alloc] init];
-    [fluxLoader setup];
     [fluxLoader setFluxAsInactive];
 }
 

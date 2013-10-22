@@ -9,10 +9,14 @@
 #import "SAVR_URLFluxLoader.h"
 
 @implementation SAVR_URLFluxLoader
--(void) setup
-{
-    fluxName = @"URL";
-    myUrl = @"http://placekitten.com/1024/768";
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        fluxName = @"URL";
+        myUrl = @"http://placekitten.com/1024/768";
+    }
+    return self;
 }
 
 -(BOOL) fetch
