@@ -11,5 +11,7 @@
 @interface SAVR_AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
+- (IBAction)setFluxAsActive:(id)sender;
+- (IBAction)setFluxAsInactive:(id)sender;
 
 @end

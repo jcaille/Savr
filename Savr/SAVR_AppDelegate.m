@@ -21,9 +21,19 @@
 - (IBAction)buttonWasClicked:(id)sender {
     SAVR_URLFluxLoader* fluxLoader = [[SAVR_URLFluxLoader alloc] init];
     [fluxLoader setup];
-    NSLog(@"Fetching");
     [fluxLoader fetch];
-    NSLog(@"Done fectching");
 }
 
+- (IBAction)setFluxAsActive:(id)sender {
+    SAVR_FluxLoader* fluxLoader = [[SAVR_URLFluxLoader alloc] init];
+    [fluxLoader setup];
+    [fluxLoader setFluxAsActive];
+}
+
+- (IBAction)setFluxAsInactive:(id)sender {
+    SAVR_FluxLoader* fluxLoader = [[SAVR_URLFluxLoader alloc] init];
+    [fluxLoader setup];
+    [fluxLoader setFluxAsInactive];
+
+}
 @end

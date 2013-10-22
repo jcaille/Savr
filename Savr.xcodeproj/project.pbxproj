@@ -21,6 +21,7 @@
 		0F1C2BD91813296F009AB0C1 /* SAVR_FluxLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C2BD81813296F009AB0C1 /* SAVR_FluxLoader.m */; };
 		0F1C2BDC18132B08009AB0C1 /* SAVR_URLFluxLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C2BDB18132B08009AB0C1 /* SAVR_URLFluxLoader.m */; };
 		0F1C2BDF18132F5F009AB0C1 /* SAVR_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C2BDE18132F5F009AB0C1 /* SAVR_Utils.m */; };
+		0F9DD394181711FA00A2CD06 /* SAVR_FluxLoaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9DD393181711FA00A2CD06 /* SAVR_FluxLoaderTest.m */; };
 		0FCF365618152C6400DF7A92 /* SAVR_Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF365518152C6400DF7A92 /* SAVR_Secrets.m */; };
 		0FCF365918152ED400DF7A92 /* SAVR_ImgurFluxLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF365818152ED400DF7A92 /* SAVR_ImgurFluxLoader.m */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,7 @@
 		0F1C2BDB18132B08009AB0C1 /* SAVR_URLFluxLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_URLFluxLoader.m; sourceTree = "<group>"; };
 		0F1C2BDD18132F5F009AB0C1 /* SAVR_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAVR_Utils.h; sourceTree = "<group>"; };
 		0F1C2BDE18132F5F009AB0C1 /* SAVR_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_Utils.m; sourceTree = "<group>"; };
+		0F9DD393181711FA00A2CD06 /* SAVR_FluxLoaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_FluxLoaderTest.m; sourceTree = "<group>"; };
 		0FCF365418152C6400DF7A92 /* SAVR_Secrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAVR_Secrets.h; sourceTree = "<group>"; };
 		0FCF365518152C6400DF7A92 /* SAVR_Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_Secrets.m; sourceTree = "<group>"; };
 		0FCF365718152ED400DF7A92 /* SAVR_ImgurFluxLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAVR_ImgurFluxLoader.h; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				0F1C2BCC1813243F009AB0C1 /* SavrTests.m */,
+				0F9DD393181711FA00A2CD06 /* SAVR_FluxLoaderTest.m */,
 				0F1C2BC71813243F009AB0C1 /* Supporting Files */,
 			);
 			path = SavrTests;
@@ -301,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F1C2BCD1813243F009AB0C1 /* SavrTests.m in Sources */,
+				0F9DD394181711FA00A2CD06 /* SAVR_FluxLoaderTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
