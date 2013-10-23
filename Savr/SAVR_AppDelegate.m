@@ -9,7 +9,7 @@
 #import "SAVR_AppDelegate.h"
 #import "SAVR_Utils.h"
 #import "SAVR_URLFluxLoader.h"
-#import "SAVR_URLFluxLoader.h"
+#import "SAVR_ImgurFluxLoader.h"
 
 @implementation SAVR_AppDelegate
 
@@ -19,7 +19,7 @@
 }
 
 - (IBAction)buttonWasClicked:(id)sender {
-    SAVR_URLFluxLoader* fluxLoader = [[SAVR_URLFluxLoader alloc] init];
+    SAVR_FluxLoader *fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
     [fluxLoader fetch];
 }
 

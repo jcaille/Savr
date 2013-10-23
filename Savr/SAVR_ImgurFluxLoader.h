@@ -13,4 +13,6 @@
     NSString* mySubreddit;
     int numberOfImages;
 }
+
+- (id)initWithSubreddit:(NSString*)subredditName;
 @end
