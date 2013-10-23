@@ -15,7 +15,6 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    NSLog(@"Hello !");
 }
 
 - (IBAction)buttonWasClicked:(id)sender {
@@ -24,12 +23,12 @@
 }
 
 - (IBAction)setFluxAsActive:(id)sender {
-    SAVR_FluxLoader* fluxLoader = [[SAVR_URLFluxLoader alloc] init];
+    SAVR_FluxLoader* fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
     [fluxLoader setFluxAsActive];
 }
 
 - (IBAction)setFluxAsInactive:(id)sender {
-    SAVR_FluxLoader* fluxLoader = [[SAVR_URLFluxLoader alloc] init];
+    SAVR_FluxLoader* fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
     [fluxLoader setFluxAsInactive];
 }
 

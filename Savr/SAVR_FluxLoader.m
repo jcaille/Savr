@@ -29,7 +29,7 @@
     return folder;
 }
 
--(void) cleanDirectory
+-(BOOL) cleanDirectory
 {
     NSString* fluxDirectory = [self getOrCreateFluxDirectory];
     NSArray* content = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:fluxDirectory error:nil];
@@ -38,6 +38,7 @@
         NSString* itemFullPath = [fluxDirectory stringByAppendingPathComponent:item];
         [[NSFileManager defaultManager] removeItemAtPath:itemFullPath error:nil];
     }
+    return YES;
 }
 
 #pragma mark - STATE MANAEGEMENT
@@ -78,7 +79,7 @@
     return YES;
 }
 
--(BOOL)setFluxasInactive
+-(BOOL)setFluxAsInactive
 {
     NSString* applicationSupportDirectory = [SAVR_Utils getOrCreateDocumentDirectory];
     NSArray* content = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:applicationSupportDirectory error:nil];

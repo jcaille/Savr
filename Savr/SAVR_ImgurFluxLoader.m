@@ -31,7 +31,7 @@
     return self;
 }
 
--(void) fetchSubredditImageList
+-(NSDictionary*) fetchSubredditImageList
 {
     // Construct URL https://api.imgur.com/3/r/subreddit_name/top/week/.jsson
     NSString* completeUrl = [[[[@"https://api.imgur.com/3/gallery"
@@ -49,19 +49,14 @@
         [request setHeaders:headers];
     }] asJson];
     
-    NSLog(@"%@", response.body.object);
-    
-}
+    if(response.code == 200){
+        return response.body.object;
+    } else {
+        NSLog(@"Erreur %i", response.code);
+        return @{};
+    }
 
--(BOOL) fetchImageWithUrl:(NSString*)url andName:(NSString*)name andExtension:(NSString*) extension
-{
-    NSData* imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: url]];
-    NSString* imagePath = [[[self getOrCreateFluxDirectory] stringByAppendingPathComponent:name]
-        stringByAppendingPathExtension:extension];
-    [imageData writeToFile:imagePath atomically:YES];
-    return YES;
 }
-
 
 -(BOOL) fetch
 {

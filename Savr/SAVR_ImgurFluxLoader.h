@@ -11,7 +11,6 @@
 @interface SAVR_ImgurFluxLoader : SAVR_FluxLoader
 {
     NSString* mySubreddit;
-    int numberOfImages;
 }
 
 - (id)initWithSubreddit:(NSString*)subredditName;

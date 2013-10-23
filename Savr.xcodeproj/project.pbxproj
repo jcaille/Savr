@@ -21,7 +21,6 @@
 		0F1C2BD91813296F009AB0C1 /* SAVR_FluxLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C2BD81813296F009AB0C1 /* SAVR_FluxLoader.m */; };
 		0F1C2BDC18132B08009AB0C1 /* SAVR_URLFluxLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C2BDB18132B08009AB0C1 /* SAVR_URLFluxLoader.m */; };
 		0F1C2BDF18132F5F009AB0C1 /* SAVR_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C2BDE18132F5F009AB0C1 /* SAVR_Utils.m */; };
-		0F9DD394181711FA00A2CD06 /* SAVR_FluxLoaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9DD393181711FA00A2CD06 /* SAVR_FluxLoaderTest.m */; };
 		0F9DD3B91817BE5A00A2CD06 /* UNIBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9DD3981817BE5A00A2CD06 /* UNIBaseRequest.m */; };
 		0F9DD3BA1817BE5A00A2CD06 /* UNIBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9DD3981817BE5A00A2CD06 /* UNIBaseRequest.m */; };
 		0F9DD3BB1817BE5A00A2CD06 /* UNIBodyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9DD39A1817BE5A00A2CD06 /* UNIBodyRequest.m */; };
@@ -50,6 +49,8 @@
 		0F9DD3D21817BE5A00A2CD06 /* UNIRest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9DD3B21817BE5A00A2CD06 /* UNIRest.m */; };
 		0FCF365618152C6400DF7A92 /* SAVR_Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF365518152C6400DF7A92 /* SAVR_Secrets.m */; };
 		0FCF365918152ED400DF7A92 /* SAVR_ImgurFluxLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF365818152ED400DF7A92 /* SAVR_ImgurFluxLoader.m */; };
+		0FD942171817E81000BF9D6A /* SAVR_URLFluxLoaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD942161817E81000BF9D6A /* SAVR_URLFluxLoaderTest.m */; };
+		0FD942191817E87300BF9D6A /* SAVR_ImgurFluxLoaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD942181817E87300BF9D6A /* SAVR_ImgurFluxLoaderTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,7 +89,6 @@
 		0F1C2BDB18132B08009AB0C1 /* SAVR_URLFluxLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_URLFluxLoader.m; sourceTree = "<group>"; };
 		0F1C2BDD18132F5F009AB0C1 /* SAVR_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAVR_Utils.h; sourceTree = "<group>"; };
 		0F1C2BDE18132F5F009AB0C1 /* SAVR_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_Utils.m; sourceTree = "<group>"; };
-		0F9DD393181711FA00A2CD06 /* SAVR_FluxLoaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_FluxLoaderTest.m; sourceTree = "<group>"; };
 		0F9DD3971817BE5A00A2CD06 /* UNIBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIBaseRequest.h; sourceTree = "<group>"; };
 		0F9DD3981817BE5A00A2CD06 /* UNIBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNIBaseRequest.m; sourceTree = "<group>"; };
 		0F9DD3991817BE5A00A2CD06 /* UNIBodyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIBodyRequest.h; sourceTree = "<group>"; };
@@ -120,6 +120,8 @@
 		0FCF365518152C6400DF7A92 /* SAVR_Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_Secrets.m; sourceTree = "<group>"; };
 		0FCF365718152ED400DF7A92 /* SAVR_ImgurFluxLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAVR_ImgurFluxLoader.h; sourceTree = "<group>"; };
 		0FCF365818152ED400DF7A92 /* SAVR_ImgurFluxLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_ImgurFluxLoader.m; sourceTree = "<group>"; };
+		0FD942161817E81000BF9D6A /* SAVR_URLFluxLoaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_URLFluxLoaderTest.m; sourceTree = "<group>"; };
+		0FD942181817E87300BF9D6A /* SAVR_ImgurFluxLoaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_ImgurFluxLoaderTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,8 +217,9 @@
 		0F1C2BC61813243F009AB0C1 /* SavrTests */ = {
 			isa = PBXGroup;
 			children = (
+				0FD942181817E87300BF9D6A /* SAVR_ImgurFluxLoaderTest.m */,
+				0FD942161817E81000BF9D6A /* SAVR_URLFluxLoaderTest.m */,
 				0F1C2BCC1813243F009AB0C1 /* SavrTests.m */,
-				0F9DD393181711FA00A2CD06 /* SAVR_FluxLoaderTest.m */,
 				0F1C2BC71813243F009AB0C1 /* Supporting Files */,
 			);
 			path = SavrTests;
@@ -426,7 +429,8 @@
 				0F1C2BCD1813243F009AB0C1 /* SavrTests.m in Sources */,
 				0F9DD3CE1817BE5A00A2CD06 /* UNIHTTPRequest.m in Sources */,
 				0F9DD3C61817BE5A00A2CD06 /* UNIHTTPResponse.m in Sources */,
-				0F9DD394181711FA00A2CD06 /* SAVR_FluxLoaderTest.m in Sources */,
+				0FD942191817E87300BF9D6A /* SAVR_ImgurFluxLoaderTest.m in Sources */,
+				0FD942171817E81000BF9D6A /* SAVR_URLFluxLoaderTest.m in Sources */,
 				0F9DD3BC1817BE5A00A2CD06 /* UNIBodyRequest.m in Sources */,
 				0F9DD3BA1817BE5A00A2CD06 /* UNIBaseRequest.m in Sources */,
 				0F9DD3D01817BE5A00A2CD06 /* UNIHTTPRequestWithBody.m in Sources */,

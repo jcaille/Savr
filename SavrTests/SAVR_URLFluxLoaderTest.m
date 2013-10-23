@@ -1,22 +1,21 @@
 //
-//  SAVR_FluxLoaderTest.m
+//  SAVR_URLFluxLoaderTest.m
 //  Savr
 //
-//  Created by Jean Caillé on 22/10/13.
+//  Created by Jean Caillé on 23/10/13.
 //  Copyright (c) 2013 Jean Caillé. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
-//#import "SAVR_FluxLoader.h"
 #import "SAVR_URLFluxLoader.h"
 
-@interface SAVR_FluxLoaderTest : XCTestCase
+@interface SAVR_URLFluxLoaderTest : XCTestCase
 {
-    SAVR_FluxLoader* fluxLoader;
+    SAVR_URLFluxLoader* fluxLoader;
 }
 @end
 
-@implementation SAVR_FluxLoaderTest
+@implementation SAVR_URLFluxLoaderTest
 
 - (void)setUp
 {
@@ -33,19 +32,19 @@
     [super tearDown];
 }
 
--(void) fluxHasName
+-(void) test_fluxHasName
 {
-    XCTAssertTrue(![fluxLoader->fluxName isEqualToString:@""]);
+    XCTAssertFalse([fluxLoader->fluxName isEqualToString:@""], "Flux has no name");
 }
 
 #pragma mark - FETCHING
 
--(void) fetchingReturns
+-(void) test_fetchingReturns
 {
     XCTAssertTrue([fluxLoader fetch]);
 }
 
--(void) fetchingReturnsAtLeastOneFile
+-(void) test_fetchingReturnsAtLeastOneFile
 {
     [fluxLoader fetch];
     NSString* dir = [fluxLoader getOrCreateFluxDirectory];
@@ -59,7 +58,7 @@
 
 #pragma mark - FILE MANAGEMENT
 
--(void) cleanedDirectoryIsEmpty
+-(void) test_cleanedDirectoryIsEmpty
 {
     [fluxLoader fetch];
     NSString* dir = [fluxLoader getOrCreateFluxDirectory];
@@ -70,34 +69,34 @@
         XCTFail(@"Error : %@", [error localizedDescription]);
     }
     XCTAssertFalse([content count] > 0, @"Still some files in folder");
-
+    
 }
 
 #pragma mark - STATE
 
--(void) defaultStateIsInactive
+-(void) test_defaultStateIsInactive
 {
     XCTAssertFalse([fluxLoader isActive]);
 }
 
--(void) settingActiveReturns
+-(void) test_settingActiveReturns
 {
     XCTAssertTrue([fluxLoader setFluxAsActive]);
 }
 
--(void) settingActiveChangesState
+-(void) test_settingActiveChangesState
 {
     [fluxLoader setFluxAsActive];
     XCTAssertTrue([fluxLoader isActive]);
 }
 
--(void) settingInactiveReturns
+-(void) test_settingInactiveReturns
 {
     [fluxLoader setFluxAsActive];
     XCTAssertTrue([fluxLoader setFluxAsInactive]);
 }
 
--(void) settingInactiveChangesState
+-(void) test_settingInactiveChangesState
 {
     [fluxLoader setFluxAsActive];
     [fluxLoader setFluxAsInactive];
