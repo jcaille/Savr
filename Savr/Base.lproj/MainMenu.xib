@@ -12,6 +12,22 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
+        <menu title="Savr" id="KQg-rX-JxS">
+            <items>
+                <menuItem title="Reload" id="gUW-B0-Dne">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="reloadFlux:" target="494" id="291-0R-3Hr"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Set as Active" id="Xb5-1h-0RD">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="setFluxAsActive:" target="494" id="IMN-F6-HVc"/>
+                    </connections>
+                </menuItem>
+            </items>
+        </menu>
         <menu title="AMainMenu" systemMenu="main" id="29">
             <items>
                 <menuItem title="Savr" id="56">
@@ -647,77 +663,9 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Savr" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
-            <view key="contentView" id="372">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pUk-t8-NrG">
-                        <rect key="frame" x="189" y="312" width="102" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Load Flux" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g20-67-L5X">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="buttonWasClicked:" target="494" id="a98-D8-ptN"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sQ8-HC-HIN">
-                        <rect key="frame" x="174" y="279" width="133" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Set Flux Active" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AsQ-qF-j2q">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="setFluxAsActive:" target="494" id="ijX-Ho-feP"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dIa-Fo-IeE">
-                        <rect key="frame" x="184" y="246" width="112" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Set Inactive" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HEN-2B-kTw">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="setFluxAsInactive:" target="494" id="H0w-MW-UhX"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RGx-fV-f4P">
-                        <rect key="frame" x="184" y="246" width="112" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Set Inactive" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zQc-7l-EeD">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="setFluxAsInactive:" target="494" id="OxQ-bj-Ag6"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aLG-yG-F0g">
-                        <rect key="frame" x="149" y="213" width="182" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Open Preference Panel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OYs-fJ-H6H">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="openPreferencePane:" target="494" id="gTT-q3-I2W"/>
-                        </connections>
-                    </button>
-                </subviews>
-            </view>
-        </window>
         <customObject id="494" customClass="SAVR_AppDelegate">
             <connections>
-                <outlet property="openPreferencePane" destination="aLG-yG-F0g" id="VUr-uW-HhM"/>
-                <outlet property="window" destination="371" id="532"/>
+                <outlet property="statusMenu" destination="KQg-rX-JxS" id="Uzb-vM-1iw"/>
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>

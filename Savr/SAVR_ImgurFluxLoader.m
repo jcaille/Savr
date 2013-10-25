@@ -42,6 +42,7 @@
                             stringByAppendingPathComponent:@"top/week/"]
                             stringByAppendingPathExtension:@"json"];
     
+    NSLog(@"%@", completeUrl);
     //Set appropriate headers
     NSDictionary* headers = @{@"accept": @"application/json",
                               @"Authorization": imgurAuthHeader};

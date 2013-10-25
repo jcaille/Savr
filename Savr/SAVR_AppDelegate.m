@@ -13,11 +13,20 @@
 
 @implementation SAVR_AppDelegate
 
+- (void)awakeFromNib
+{
+    statusItem = statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    [statusItem setMenu:statusMenu];
+    [statusItem setTitle:@"Savr"];
+    [statusItem setHighlightMode:YES];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 }
 
-- (IBAction)buttonWasClicked:(id)sender {
+- (IBAction)reloadFlux:(id)sender
+{
     SAVR_FluxLoader *fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
     [fluxLoader fetch];
 }
