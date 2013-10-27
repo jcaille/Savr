@@ -45,23 +45,34 @@
 
 -(BOOL) isActive
 {
-    NSString* applicationSupportDirectory = [SAVR_Utils getOrCreateDocumentDirectory];
-    NSArray* content = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:applicationSupportDirectory error:nil];
-    for(NSString* item in content){
-        if([item isEqualToString:fluxName]){
-            //Check if folder is symlink
-            NSString* itemFullPath = [applicationSupportDirectory stringByAppendingPathComponent:item];
-            NSString* itemType = [[[NSFileManager defaultManager]
-                                   attributesOfItemAtPath:itemFullPath error:nil]
-                                  fileType];
-            if([itemType isEqualToString:NSFileTypeSymbolicLink])
-            {
-                return YES;
+    NSString* userDefaultKey = [fluxName stringByAppendingString:@"fluxIsActive"];
+    NSUserDefaults* savrDefaults = [NSUserDefaults standardUserDefaults];
+    
+    // If key does not exist, we check manually if the symlink exists, and set the appropriate key
+    if([savrDefaults objectForKey:userDefaultKey] == nil){
+        NSString* applicationSupportDirectory = [SAVR_Utils getOrCreateDocumentDirectory];
+        NSArray* content = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:applicationSupportDirectory error:nil];
+        for(NSString* item in content){
+            if([item isEqualToString:fluxName]){
+                //Check if folder is symlink
+                NSString* itemFullPath = [applicationSupportDirectory stringByAppendingPathComponent:item];
+                NSString* itemType = [[[NSFileManager defaultManager]
+                                       attributesOfItemAtPath:itemFullPath error:nil]
+                                      fileType];
+                if([itemType isEqualToString:NSFileTypeSymbolicLink])
+                {
+                    [savrDefaults setBool:YES forKey:userDefaultKey];
+                    [savrDefaults synchronize];
+                    return YES;
+                }
             }
         }
+        [savrDefaults setBool:NO forKey:userDefaultKey];
+        [savrDefaults synchronize];
+        return NO;
     }
-    return NO;
-
+    
+    return [savrDefaults boolForKey:userDefaultKey];
 }
 
 -(BOOL)setFluxAsActive
@@ -76,6 +87,12 @@
     {
         return NO;
     }
+    
+    // Modify NSUSerDefault to save state
+    NSString* userDefaultKey = [fluxName stringByAppendingString:@"fluxIsActive"];
+    NSUserDefaults* savrDefaults = [NSUserDefaults standardUserDefaults];
+    [savrDefaults setBool:YES forKey:userDefaultKey];
+    [savrDefaults synchronize];
     return YES;
 }
 
@@ -97,6 +114,12 @@
             }
         }
     }
+    // Modify NSUSerDefault to save state
+    NSString* userDefaultKey = [fluxName stringByAppendingString:@"fluxIsActive"];
+    NSUserDefaults* savrDefaults = [NSUserDefaults standardUserDefaults];
+    [savrDefaults setBool:NO forKey:userDefaultKey];
+    [savrDefaults synchronize];
+
     //Returns yes even if flux was not initially active
     return YES;
 }

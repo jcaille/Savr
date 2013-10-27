@@ -24,18 +24,29 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    // Create NSUserDefaults object
+//    savrDefaults = [[NSUserDefaults alloc] init];
+    
     // Make sure that folders exist
     [SAVR_Utils getOrCreateApplicationSupportDirectory];
     [SAVR_Utils getOrCreateDocumentDirectory];
     
-    // Init state of window / Might want to use NSUserPreferences
+    // Init state of window
     SAVR_FluxLoader *fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
+    if([fluxLoader isActive]){
+        [_earthpornCheckbox setState:NSOnState];
+    } else {
+        [_earthpornCheckbox setState:NSOffState];
+    }
     
-//    if([fluxLoader isActive]){
-//        [_earthpornCheckbox setState:NSOnState];
-//    } else {
-//        [_earthpornCheckbox setState:NSOffState];
-//    }
+    //
+    _reloadTimer = [NSTimer timerWithTimeInterval:10 target:self selector:@selector(mockReloadFlux) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_reloadTimer forMode:NSRunLoopCommonModes];
+}
+
+-(void) mockReloadFlux
+{
+    NSLog(@"Mocking reload flux");
 }
 
 - (IBAction)reloadFlux:(id)sender
@@ -48,7 +59,7 @@
     [_preferenceWindow makeKeyAndOrderFront:nil];
 }
 
-- (IBAction)earthPornCheckboxWasToggled:(id)sender {
+- (IBAction)earthpornCheckboxWasToggled:(id)sender {
     SAVR_FluxLoader *fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
     if(self.earthpornCheckbox.state == NSOnState)
     {
@@ -58,16 +69,6 @@
         NSLog(@"Deactivating Flux");
         [fluxLoader setFluxAsInactive];
     }
-}
-
-- (IBAction)setFluxAsActive:(id)sender {
-    SAVR_FluxLoader* fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
-    [fluxLoader setFluxAsActive];
-}
-
-- (IBAction)setFluxAsInactive:(id)sender {
-    SAVR_FluxLoader* fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
-    [fluxLoader setFluxAsInactive];
 }
 
 - (IBAction)openPreferencePane:(id)sender {

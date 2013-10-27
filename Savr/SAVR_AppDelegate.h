@@ -17,8 +17,11 @@
     // PREFERENCE PANE
     __unsafe_unretained NSWindow *_preferenceWindow;
     __weak NSButton *_earthpornCheckbox;
+
 }
+
 @property (assign) IBOutlet NSWindow *window;
+@property (strong) NSTimer *reloadTimer;
 
 // STATUS MENU INTERACTION
 - (IBAction)reloadFlux:(id)sender;
@@ -29,6 +32,8 @@
 - (IBAction)earthpornCheckboxWasToggled:(id)sender;
 - (IBAction)openPreferencePane:(id)sender;
 
+// TEST FOR NSTIMER
+-(void) mockReloadFlux;
 
 @property (unsafe_unretained) IBOutlet NSWindow *preferenceWindow;
 @property (weak) IBOutlet NSButton *earthpornCheckbox;
