@@ -39,20 +39,62 @@
         [_earthpornCheckbox setState:NSOffState];
     }
     
-    //
-    _reloadTimer = [NSTimer timerWithTimeInterval:10 target:self selector:@selector(mockReloadFlux) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:_reloadTimer forMode:NSRunLoopCommonModes];
-}
-
--(void) mockReloadFlux
-{
-    NSLog(@"Mocking reload flux");
+    //Reload active flux
+    [self reloadActiveFlux];
 }
 
 - (IBAction)reloadFlux:(id)sender
 {
-    SAVR_FluxLoader *fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
-    [fluxLoader fetch];
+    [reloadTimer invalidate];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lastReloadDate"];
+    [self reloadActiveFlux];
+}
+
+-(void) reloadActiveFlux
+{
+    // Relods the flux if it has been more than 24 hours since last successfull load
+    NSLog(@"Trying to reload active flux");
+
+    int minimumTimeBetweenReload = 3600;
+    int nextReload = 3600; // tommorow
+    NSDate *lastReloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastReloadDate"];
+    
+    if(lastReloadDate == nil || [lastReloadDate timeIntervalSinceNow] < - minimumTimeBetweenReload){
+        // TODO : CHECK FOR CONNECTIVITY
+        
+        NSLog(@"Data is too old");
+        
+        SAVR_FluxLoader *fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
+        if([fluxLoader isActive]){
+            NSLog(@"Flux is active - Fetching data");
+            BOOL success = [fluxLoader fetch];
+            if (success) {
+                NSLog(@"Success");
+                [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastReloadDate"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                // NOTIFY USER VIA NOTIFICATION
+                NSUserNotification *notification = [[NSUserNotification alloc] init];
+                notification.title = @"Savr just got new images !!";
+                notification.informativeText = @"Savr just downloaded a bunch of image from the internet for your Screensaver !";
+                notification.soundName = NSUserNotificationDefaultSoundName;
+                
+                [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+
+            } else {
+                NSLog(@"Failure");
+                nextReload = 3600 ; // in one hour
+            }
+        } else {
+            NSLog(@"Flux is not active");
+        }
+    } else {
+        NSLog(@"Data is still fresh - not fetching anything");
+        nextReload = minimumTimeBetweenReload - [lastReloadDate timeIntervalSinceNow] + 1 ;
+    }
+    
+    reloadTimer = [NSTimer timerWithTimeInterval:nextReload target:self selector:@selector(reloadActiveFlux) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:reloadTimer forMode:NSRunLoopCommonModes];
 }
 
 - (IBAction)openSavrPreference:(id)sender {

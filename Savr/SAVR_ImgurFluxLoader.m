@@ -77,6 +77,20 @@
     return  [self isImageHighRes:image];
 }
 
+-(BOOL) isImageAlreadyDownloaded:(NSDictionary*) image
+{
+    NSString* imageURL = [image objectForKey:@"link"];
+    NSString* imageName = [imageURL lastPathComponent];
+    NSString* imagePath = [[self getOrCreateFluxDirectory] stringByAppendingPathComponent:imageName];
+    if([[NSFileManager defaultManager] fileExistsAtPath:imagePath])
+    {
+        NSLog(@"%@ is already present on disk", imageName);
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 #pragma mark - FETCH SINGLE IMAGE
 -(BOOL) fetchSingleImage:(NSDictionary*) image
 {
@@ -95,7 +109,7 @@
     NSArray* images = [self fetchSubredditImageList];
     NSLog(@"got iamage lists");
     for(NSDictionary* image in images){
-        if([self isImageAcceptable:image]){
+        if([self isImageAcceptable:image] && ![self isImageAlreadyDownloaded:image]){
             [self fetchSingleImage:image];
         }
     }
