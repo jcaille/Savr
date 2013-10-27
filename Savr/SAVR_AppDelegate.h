@@ -10,14 +10,26 @@
 
 @interface SAVR_AppDelegate : NSObject <NSApplicationDelegate>
 {
+    // STATUS MENU
     IBOutlet NSMenu *statusMenu;
     NSStatusItem * statusItem;
-
+    
+    // PREFERENCE PANE
+    __unsafe_unretained NSWindow *_preferenceWindow;
+    __weak NSButton *_earthpornCheckbox;
 }
 @property (assign) IBOutlet NSWindow *window;
 
-- (IBAction)setFluxAsActive:(id)sender;
-- (IBAction)setFluxAsInactive:(id)sender;
-- (IBAction)openPreferencePane:(id)sender;
+// STATUS MENU INTERACTION
 - (IBAction)reloadFlux:(id)sender;
+- (IBAction)openSavrPreference:(id)sender;
+
+
+// PREFERENCE PANE INTERACTION
+- (IBAction)earthpornCheckboxWasToggled:(id)sender;
+- (IBAction)openPreferencePane:(id)sender;
+
+
+@property (unsafe_unretained) IBOutlet NSWindow *preferenceWindow;
+@property (weak) IBOutlet NSButton *earthpornCheckbox;
 @end

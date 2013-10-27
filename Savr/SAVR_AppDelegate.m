@@ -15,6 +15,7 @@
 
 - (void)awakeFromNib
 {
+    // Initialize status bar
     statusItem = statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [statusItem setMenu:statusMenu];
     [statusItem setTitle:@"Savr"];
@@ -23,12 +24,40 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    // Make sure that folders exist
+    [SAVR_Utils getOrCreateApplicationSupportDirectory];
+    [SAVR_Utils getOrCreateDocumentDirectory];
+    
+    // Init state of window / Might want to use NSUserPreferences
+    SAVR_FluxLoader *fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
+    
+//    if([fluxLoader isActive]){
+//        [_earthpornCheckbox setState:NSOnState];
+//    } else {
+//        [_earthpornCheckbox setState:NSOffState];
+//    }
 }
 
 - (IBAction)reloadFlux:(id)sender
 {
     SAVR_FluxLoader *fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
     [fluxLoader fetch];
+}
+
+- (IBAction)openSavrPreference:(id)sender {
+    [_preferenceWindow makeKeyAndOrderFront:nil];
+}
+
+- (IBAction)earthPornCheckboxWasToggled:(id)sender {
+    SAVR_FluxLoader *fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
+    if(self.earthpornCheckbox.state == NSOnState)
+    {
+        NSLog(@"Activating flux");
+        [fluxLoader setFluxAsActive];
+    } else {
+        NSLog(@"Deactivating Flux");
+        [fluxLoader setFluxAsInactive];
+    }
 }
 
 - (IBAction)setFluxAsActive:(id)sender {
