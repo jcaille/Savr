@@ -20,6 +20,7 @@
 
     // RELOAD
     NSTimer* reloadTimer;
+    BOOL isLoading;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -34,8 +35,8 @@
 - (IBAction)openPreferencePane:(id)sender;
 
 // TEST FOR NSTIMER
--(void) reloadActiveFlux;
-
+-(void) reloadActiveFlux:(BOOL)force;
+-(void) reloadActiveFluxNoForce;
 @property (unsafe_unretained) IBOutlet NSWindow *preferenceWindow;
 @property (weak) IBOutlet NSButton *earthpornCheckbox;
 @end

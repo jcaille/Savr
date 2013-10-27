@@ -40,61 +40,73 @@
     }
     
     //Reload active flux
-    [self reloadActiveFlux];
+    isLoading = NO;
+    [self reloadActiveFlux:NO];
 }
 
 - (IBAction)reloadFlux:(id)sender
 {
-    [reloadTimer invalidate];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lastReloadDate"];
-    [self reloadActiveFlux];
+        [self reloadActiveFlux:YES];
 }
 
--(void) reloadActiveFlux
+-(void) reloadActiveFluxNoForce
 {
-    // Relods the flux if it has been more than 24 hours since last successfull load
-    NSLog(@"Trying to reload active flux");
+    [self reloadActiveFlux:NO];
+}
 
-    int minimumTimeBetweenReload = 3600;
-    int nextReload = 3600; // tommorow
-    NSDate *lastReloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastReloadDate"];
-    
-    if(lastReloadDate == nil || [lastReloadDate timeIntervalSinceNow] < - minimumTimeBetweenReload){
-        // TODO : CHECK FOR CONNECTIVITY
-        
-        NSLog(@"Data is too old");
-        
-        SAVR_FluxLoader *fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
-        if([fluxLoader isActive]){
-            NSLog(@"Flux is active - Fetching data");
-            BOOL success = [fluxLoader fetch];
-            if (success) {
-                NSLog(@"Success");
-                [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastReloadDate"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
+-(void) reloadActiveFlux:(BOOL)force
+{
+    if(!isLoading){
+        isLoading = YES;
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // Relods the flux if it has been more than 24 hours since last successfull load
+            NSLog(@"Trying to reload active flux");
+            
+            int minimumTimeBetweenReload = 3600;
+            int nextReload = 3600; // tommorow
+            NSDate *lastReloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastReloadDate"];
+            
+            if(lastReloadDate == nil || [lastReloadDate timeIntervalSinceNow] < - minimumTimeBetweenReload || force){
+                // TODO : CHECK FOR CONNECTIVITY
+                [reloadTimer invalidate];
+                NSLog(@"Data is too old");
                 
-                // NOTIFY USER VIA NOTIFICATION
-                NSUserNotification *notification = [[NSUserNotification alloc] init];
-                notification.title = @"Savr just got new images !!";
-                notification.informativeText = @"Savr just downloaded a bunch of image from the internet for your Screensaver !";
-                notification.soundName = NSUserNotificationDefaultSoundName;
-                
-                [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-
+                SAVR_FluxLoader *fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
+                if([fluxLoader isActive]){
+                    NSLog(@"Flux is active - Fetching data");
+                    BOOL success = [fluxLoader fetch];
+                    if (success) {
+                        NSLog(@"Success");
+                        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastReloadDate"];
+                        [[NSUserDefaults standardUserDefaults] synchronize];
+                        
+                        // NOTIFY USER VIA NOTIFICATION
+                        NSUserNotification *notification = [[NSUserNotification alloc] init];
+                        notification.title = @"Savr just got new images !!";
+                        notification.informativeText = @"Savr just downloaded a bunch of image from the internet for your Screensaver !";
+                        notification.soundName = NSUserNotificationDefaultSoundName;
+                        
+                        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+                        
+                    } else {
+                        NSLog(@"Failure");
+                        nextReload = 3600 ; // in one hour
+                    }
+                } else {
+                    NSLog(@"Flux is not active");
+                }
             } else {
-                NSLog(@"Failure");
-                nextReload = 3600 ; // in one hour
+                NSLog(@"Data is still fresh - not fetching anything");
+                nextReload = minimumTimeBetweenReload - [lastReloadDate timeIntervalSinceNow] + 1 ;
             }
-        } else {
-            NSLog(@"Flux is not active");
-        }
+            
+            reloadTimer = [NSTimer timerWithTimeInterval:nextReload target:self selector:@selector(reloadActiveFluxNoForce) userInfo:nil repeats:NO];
+            [[NSRunLoop currentRunLoop] addTimer:reloadTimer forMode:NSRunLoopCommonModes];
+            isLoading = NO;
+        });
     } else {
-        NSLog(@"Data is still fresh - not fetching anything");
-        nextReload = minimumTimeBetweenReload - [lastReloadDate timeIntervalSinceNow] + 1 ;
+        NSLog(@"Can't load, loading is already taking place ");
     }
-    
-    reloadTimer = [NSTimer timerWithTimeInterval:nextReload target:self selector:@selector(reloadActiveFlux) userInfo:nil repeats:NO];
-    [[NSRunLoop currentRunLoop] addTimer:reloadTimer forMode:NSRunLoopCommonModes];
 }
 
 - (IBAction)openSavrPreference:(id)sender {
