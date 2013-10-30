@@ -10,6 +10,7 @@
 #import "SAVR_Utils.h"
 #import "SAVR_URLFluxLoader.h"
 #import "SAVR_ImgurFluxLoader.h"
+#import "LaunchAtLoginController.h"
 
 @implementation SAVR_AppDelegate
 
@@ -39,6 +40,13 @@
         [_earthpornCheckbox setState:NSOnState];
     } else {
         [_earthpornCheckbox setState:NSOffState];
+    }
+    
+    LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
+    if ([lc launchAtLogin]) {
+        [_applicationShouldStartAtLoginCheckbox setState:NSOnState];
+    } else {
+        [_applicationShouldStartAtLoginCheckbox setState:NSOffState];
     }
     
     //Reload active flux
@@ -91,8 +99,8 @@
             // Relods the flux if it has been more than 24 hours since last successfull load
             NSLog(@"Trying to reload active flux");
             
-            int minimumTimeBetweenReload = 9;
-            int nextReload = 10; // tommorow
+            int minimumTimeBetweenReload = 3600;
+            int nextReload = 3601; // tommorow
             NSDate *lastReloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastReloadDate"];
             
             if(lastReloadDate == nil || [lastReloadDate timeIntervalSinceNow] < - minimumTimeBetweenReload || force){
@@ -111,7 +119,7 @@
                         [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastReloadDate"];
                         [[NSUserDefaults standardUserDefaults] synchronize];
                         
-#if 0
+#if 1
                         // NOTIFY USER VIA NOTIFICATION
                         NSUserNotification *notification = [[NSUserNotification alloc] init];
                         notification.title = @"Savr just got new images !!";
@@ -122,13 +130,14 @@
 #endif
                     } else {
                         NSLog(@"Failure");
+                        nextReload = 600;
                     }
                 } else {
                     NSLog(@"Flux is not active");
                 }
             } else {
                 NSLog(@"Data is still fresh - not fetching anything");
-                nextReload = minimumTimeBetweenReload - [lastReloadDate timeIntervalSinceNow] + 1 ;
+                nextReload = minimumTimeBetweenReload + [lastReloadDate timeIntervalSinceNow] + 1 ;
             }
             
             dispatch_sync(dispatch_get_main_queue(), ^{
@@ -159,6 +168,17 @@
     } else {
         NSLog(@"Deactivating Flux");
         [fluxLoader setFluxAsInactive];
+    }
+}
+
+- (IBAction)applicationShouldStartAtLoginWasToggled:(id)sender {
+    LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
+    if(_applicationShouldStartAtLoginCheckbox.state == NSOnState){
+        NSLog(@"Adding application to login list");
+        [lc setLaunchAtLogin:YES];
+    } else {
+        NSLog(@"Removing application from login list");
+        [lc setLaunchAtLogin:NO];
     }
 }
 

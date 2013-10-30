@@ -17,7 +17,8 @@
     // PREFERENCE PANE
     __unsafe_unretained NSWindow *_preferenceWindow;
     __weak NSButton *_earthpornCheckbox;
-
+    __weak NSButton *_applicationShouldStartAtLoginCheckbox;
+    
     // RELOAD
     BOOL isLoading;
 }
@@ -39,4 +40,5 @@
 
 @property (unsafe_unretained) IBOutlet NSWindow *preferenceWindow;
 @property (weak) IBOutlet NSButton *earthpornCheckbox;
+@property (weak) IBOutlet NSButton *applicationShouldStartAtLoginCheckbox;
 @end

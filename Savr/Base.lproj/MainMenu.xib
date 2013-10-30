@@ -30,6 +30,7 @@
         </menu>
         <customObject id="494" customClass="SAVR_AppDelegate">
             <connections>
+                <outlet property="applicationShouldStartAtLoginCheckbox" destination="pnB-a8-Mt4" id="LF5-D1-ukb"/>
                 <outlet property="earthpornCheckbox" destination="fON-Ek-kCH" id="HyT-7v-sak"/>
                 <outlet property="preferenceWindow" destination="rwJ-pH-2dN" id="iJE-Gn-IU2"/>
                 <outlet property="statusMenu" destination="KQg-rX-JxS" id="Uzb-vM-1iw"/>
@@ -68,6 +69,17 @@
                             <action selector="openPreferencePane:" target="494" id="4oJ-wH-9J8"/>
                         </connections>
                     </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pnB-a8-Mt4">
+                        <rect key="frame" x="233" y="234" width="229" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Application should start at Login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5Ec-vy-PKP">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="applicationShouldStartAtLoginWasToggled:" target="494" id="EPk-1y-wMc"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
         </window>
@@ -78,5 +90,6 @@
                 <outlet property="parentWindow" destination="rwJ-pH-2dN" id="caP-p8-fGq"/>
             </connections>
         </drawer>
+        <customObject id="XGx-Tr-eD7" customClass="LaunchAtLoginController"/>
     </objects>
 </document>

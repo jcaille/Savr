@@ -21,6 +21,7 @@
 		0F1C2BD91813296F009AB0C1 /* SAVR_FluxLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C2BD81813296F009AB0C1 /* SAVR_FluxLoader.m */; };
 		0F1C2BDC18132B08009AB0C1 /* SAVR_URLFluxLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C2BDB18132B08009AB0C1 /* SAVR_URLFluxLoader.m */; };
 		0F1C2BDF18132F5F009AB0C1 /* SAVR_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C2BDE18132F5F009AB0C1 /* SAVR_Utils.m */; };
+		0F38B4321821B2B7004B41A1 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F38B4311821B2B7004B41A1 /* LaunchAtLoginController.m */; };
 		0F9DD3B91817BE5A00A2CD06 /* UNIBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9DD3981817BE5A00A2CD06 /* UNIBaseRequest.m */; };
 		0F9DD3BA1817BE5A00A2CD06 /* UNIBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9DD3981817BE5A00A2CD06 /* UNIBaseRequest.m */; };
 		0F9DD3BB1817BE5A00A2CD06 /* UNIBodyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9DD39A1817BE5A00A2CD06 /* UNIBodyRequest.m */; };
@@ -89,6 +90,8 @@
 		0F1C2BDB18132B08009AB0C1 /* SAVR_URLFluxLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_URLFluxLoader.m; sourceTree = "<group>"; };
 		0F1C2BDD18132F5F009AB0C1 /* SAVR_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAVR_Utils.h; sourceTree = "<group>"; };
 		0F1C2BDE18132F5F009AB0C1 /* SAVR_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_Utils.m; sourceTree = "<group>"; };
+		0F38B4301821B2B7004B41A1 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
+		0F38B4311821B2B7004B41A1 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
 		0F9DD3971817BE5A00A2CD06 /* UNIBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIBaseRequest.h; sourceTree = "<group>"; };
 		0F9DD3981817BE5A00A2CD06 /* UNIBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNIBaseRequest.m; sourceTree = "<group>"; };
 		0F9DD3991817BE5A00A2CD06 /* UNIBodyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIBodyRequest.h; sourceTree = "<group>"; };
@@ -190,11 +193,8 @@
 			children = (
 				0F1C2BB41813243F009AB0C1 /* SAVR_AppDelegate.h */,
 				0F1C2BB51813243F009AB0C1 /* SAVR_AppDelegate.m */,
-				0F1C2BDD18132F5F009AB0C1 /* SAVR_Utils.h */,
-				0F1C2BDE18132F5F009AB0C1 /* SAVR_Utils.m */,
-				0FCF365418152C6400DF7A92 /* SAVR_Secrets.h */,
-				0FCF365518152C6400DF7A92 /* SAVR_Secrets.m */,
 				0F1C2BD61813291D009AB0C1 /* Flux */,
+				0F38B42F1821B28E004B41A1 /* Utils */,
 				0F1C2BB71813243F009AB0C1 /* MainMenu.xib */,
 				0F1C2BBA1813243F009AB0C1 /* Images.xcassets */,
 				0F1C2BA91813243F009AB0C1 /* Supporting Files */,
@@ -245,6 +245,19 @@
 				0FCF365818152ED400DF7A92 /* SAVR_ImgurFluxLoader.m */,
 			);
 			name = Flux;
+			sourceTree = "<group>";
+		};
+		0F38B42F1821B28E004B41A1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0F1C2BDD18132F5F009AB0C1 /* SAVR_Utils.h */,
+				0F1C2BDE18132F5F009AB0C1 /* SAVR_Utils.m */,
+				0FCF365418152C6400DF7A92 /* SAVR_Secrets.h */,
+				0FCF365518152C6400DF7A92 /* SAVR_Secrets.m */,
+				0F38B4301821B2B7004B41A1 /* LaunchAtLoginController.h */,
+				0F38B4311821B2B7004B41A1 /* LaunchAtLoginController.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		0F9DD3951817BE5A00A2CD06 /* Unirest */ = {
@@ -408,6 +421,7 @@
 				0F9DD3B91817BE5A00A2CD06 /* UNIBaseRequest.m in Sources */,
 				0F1C2BDF18132F5F009AB0C1 /* SAVR_Utils.m in Sources */,
 				0F9DD3BB1817BE5A00A2CD06 /* UNIBodyRequest.m in Sources */,
+				0F38B4321821B2B7004B41A1 /* LaunchAtLoginController.m in Sources */,
 				0F9DD3C51817BE5A00A2CD06 /* UNIHTTPResponse.m in Sources */,
 				0F1C2BAF1813243F009AB0C1 /* main.m in Sources */,
 				0F1C2BDC18132B08009AB0C1 /* SAVR_URLFluxLoader.m in Sources */,
