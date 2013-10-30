@@ -19,7 +19,6 @@
     __weak NSButton *_earthpornCheckbox;
 
     // RELOAD
-    NSTimer* reloadTimer;
     BOOL isLoading;
 }
 
@@ -34,9 +33,10 @@
 - (IBAction)earthpornCheckboxWasToggled:(id)sender;
 - (IBAction)openPreferencePane:(id)sender;
 
-// TEST FOR NSTIMER
+// RELOAD
 -(void) reloadActiveFlux:(BOOL)force;
 -(void) reloadActiveFluxNoForce;
+
 @property (unsafe_unretained) IBOutlet NSWindow *preferenceWindow;
 @property (weak) IBOutlet NSButton *earthpornCheckbox;
 @end

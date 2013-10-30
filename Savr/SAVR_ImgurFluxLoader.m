@@ -35,22 +35,29 @@
 
 -(NSArray*) fetchSubredditImageList
 {
-    // Construct URL https://api.imgur.com/3/r/subreddit_name/top/week/.jsson
+    // Construct URL https://api.imgur.com/3/r/subreddit_name/top/week/.json
     NSString* completeUrl = [[[[@"https://api.imgur.com/3/gallery"
                             stringByAppendingPathComponent:@"r"]
                             stringByAppendingPathComponent:mySubreddit]
                             stringByAppendingPathComponent:@"top/week/"]
                             stringByAppendingPathExtension:@"json"];
     
-    NSLog(@"%@", completeUrl);
     //Set appropriate headers
     NSDictionary* headers = @{@"accept": @"application/json",
                               @"Authorization": imgurAuthHeader};
     
-    UNIHTTPJsonResponse* response = [[UNIRest get:^(UNISimpleRequest * request) {
-        [request setUrl:completeUrl];
-        [request setHeaders:headers];
-    }] asJson];
+    UNIHTTPJsonResponse* response;
+    @try {
+        response = [[UNIRest get:^(UNISimpleRequest * request) {
+            [request setUrl:completeUrl];
+            [request setHeaders:headers];
+        }] asJson];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception during request : %@", [exception description]);
+        return @[];
+    }
+
     
     if(response.code == 200){
         NSDictionary* object = response.body.object;
@@ -84,7 +91,7 @@
     NSString* imagePath = [[self getOrCreateFluxDirectory] stringByAppendingPathComponent:imageName];
     if([[NSFileManager defaultManager] fileExistsAtPath:imagePath])
     {
-        NSLog(@"%@ is already present on disk", imageName);
+//        NSLog(@"%@ is already present on disk", imageName);
         return YES;
     } else {
         return NO;
@@ -97,7 +104,13 @@
     NSString* imageURL = [image objectForKey:@"link"];
     NSString* imageName = [imageURL lastPathComponent];
     NSLog(@"Fetching %@", imageName);
-    NSData* imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageURL]];
+    NSError *error;
+    NSData* imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:imageURL] options:NSDataReadingMappedIfSafe error:&error];
+    if(error){
+        NSLog(@"Error fetching %@", imageName);
+        NSLog(@"Error : %@", [error localizedDescription]);
+        return NO;
+    }
     NSString* imagePath = [[self getOrCreateFluxDirectory] stringByAppendingPathComponent:imageName];
     [imageData writeToFile:imagePath atomically:YES];
     return YES;
@@ -107,10 +120,15 @@
 {
     NSLog(@"Getting image list");
     NSArray* images = [self fetchSubredditImageList];
-    NSLog(@"got iamage lists");
+    if([images count] == 0){
+        return NO;
+    }
+    NSLog(@"Got image list");
     for(NSDictionary* image in images){
         if([self isImageAcceptable:image] && ![self isImageAlreadyDownloaded:image]){
-            [self fetchSingleImage:image];
+            if(![self fetchSingleImage:image]){
+                return NO;
+            }
         }
     }
     return YES;

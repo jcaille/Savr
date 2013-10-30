@@ -30,9 +30,10 @@
         </menu>
         <customObject id="494" customClass="SAVR_AppDelegate">
             <connections>
-                <outlet property="earthpornCheckbox" destination="KfB-D9-Jlm" id="0uy-AV-4T1"/>
+                <outlet property="earthpornCheckbox" destination="fON-Ek-kCH" id="HyT-7v-sak"/>
                 <outlet property="preferenceWindow" destination="rwJ-pH-2dN" id="iJE-Gn-IU2"/>
                 <outlet property="statusMenu" destination="KQg-rX-JxS" id="Uzb-vM-1iw"/>
+                <outlet property="window" destination="rwJ-pH-2dN" id="7CQ-yW-3ZK"/>
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
@@ -56,14 +57,6 @@
                             <action selector="earthpornCheckboxWasToggled:" target="494" id="tPp-mH-N1Z"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bnq-QS-a01">
-                        <rect key="frame" x="112" y="13" width="257" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Open Screensaver Preference Pane" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IjE-Kb-Gok">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YtQ-Md-b1X">
                         <rect key="frame" x="112" y="13" width="257" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -75,21 +68,7 @@
                             <action selector="openPreferencePane:" target="494" id="4oJ-wH-9J8"/>
                         </connections>
                     </button>
-                    <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KfB-D9-Jlm">
-                        <rect key="frame" x="18" y="234" width="84" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Earthporn" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="L6H-aa-5Xw">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="earthpornCheckboxWasToggled:" target="494" id="0dm-xM-MF4"/>
-                        </connections>
-                    </button>
                 </subviews>
-                <constraints>
-                    <constraint firstAttribute="trailing" secondItem="KfB-D9-Jlm" secondAttribute="trailing" constant="380" id="VOQ-e8-Ojg"/>
-                </constraints>
             </view>
         </window>
         <drawer trailingOffset="15" id="yox-rx-SzX">
