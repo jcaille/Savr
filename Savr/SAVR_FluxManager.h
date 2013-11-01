@@ -8,8 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SAVR_FluxManager : NSObject <NSTableViewDataSource>
+@protocol SAVR_FluxManagerDelegate;
 
+@interface SAVR_FluxManager : NSObject <NSTableViewDataSource>
+@property (nonatomic, weak) id<SAVR_FluxManagerDelegate> delegate;
 -(id) initWithArray:(NSArray*)possibleFlux;
+-(void) reloadActiveFlux:(BOOL)force;
+
+@end
+
+@protocol SAVR_FluxManagerDelegate <NSObject>
+
+-(void)fluxManagerDidStartReloading:(SAVR_FluxManager*)fluxManager;
+-(void)fluxManagerDidFinishReloading:(SAVR_FluxManager*)fluxManager;
+-(void)fluxManager:(SAVR_FluxManager*)fluxManager didFailReloadingWithError:(NSError*)error;
 
 @end

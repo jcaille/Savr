@@ -11,7 +11,8 @@
 #import "SAVR_URLFluxLoader.h"
 #import "SAVR_ImgurFluxLoader.h"
 #import "LaunchAtLoginController.h"
-#import "SAVR_FluxManager.h"
+
+#define TIME_BETWEEN_RELOAD = 300
 
 @implementation SAVR_AppDelegate
 {
@@ -53,13 +54,15 @@
         [_applicationShouldStartAtLoginCheckbox setState:NSOffState];
     }
     
+    //Create flux manager
+    fluxManager = [[SAVR_FluxManager alloc] initWithArray:@[@"earthporn", @"fractalporn", @"animalporn", @"spaceporn", @"winterporn", @"cityporn"]];
+    [_fluxList setDataSource:fluxManager];
+    
     //Reload active flux
     isLoading = NO;
-    [self reloadActiveFlux:NO];
+    [self tryReloadingActiveFlux:NO];
     
-    //Create flux manager
-    fluxManager = [[SAVR_FluxManager alloc] initWithArray:@[@"earthporn", @"fractalporn", @"animalporn"]];
-    [_fluxList setDataSource:fluxManager];
+
 }
 
 - (void) fileNotifications
@@ -77,7 +80,7 @@
 - (void) receiveWakeNote: (NSNotification*) note
 {
     NSLog(@"Waking up - Reloading flux, no force");
-    [self reloadActiveFlux:NO];
+    [self tryReloadingActiveFlux:NO];
 }
 
 - (void) receiveSleepNote: (NSNotification*) note
@@ -86,80 +89,46 @@
     [_reloadTimer invalidate];
 }
 
-#pragma mark - FLUX MANAGEMENT
+#pragma mark - FLUX MANAGER DELEGATE
 
-- (IBAction)reloadFlux:(id)sender
-{
-    [self reloadActiveFlux:YES];
+-(void)resetReloadTimer{
+    _reloadTimer = [NSTimer timerWithTimeInterval:500 target:self selector:@selector(tryReloadingActiveFlux) userInfo:nil repeats:NO];
+    [[NSRunLoop mainRunLoop] addTimer:_reloadTimer forMode:NSRunLoopCommonModes];
 }
 
--(void) reloadActiveFluxNoForce
-{
-    [self reloadActiveFlux:NO];
+-(void)tryReloadingActiveFlux{
+    [fluxManager reloadActiveFlux:NO];
 }
 
-
--(void) reloadActiveFlux:(BOOL)force
-{
+-(void)tryReloadingActiveFlux:(BOOL) force{
     if(!isLoading){
-        isLoading = YES;
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            // Relods the flux if it has been more than 24 hours since last successfull load
-            NSLog(@"Trying to reload active flux");
-            
-            int minimumTimeBetweenReload = 3600;
-            int nextReload = 3601; // tommorow
-            NSDate *lastReloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastReloadDate"];
-            
-            if(lastReloadDate == nil || [lastReloadDate timeIntervalSinceNow] < - minimumTimeBetweenReload || force){
-                // TODO : CHECK FOR CONNECTIVITY
-                if(force){
-                    [_reloadTimer invalidate];
-                }
-                NSLog(@"Data is too old");
-                
-                SAVR_FluxLoader *fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
-                if([fluxLoader isActive]){
-                    NSLog(@"Flux is active - Fetching data");
-                    BOOL success = [fluxLoader fetch];
-                    if (success) {
-                        NSLog(@"Success");
-                        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastReloadDate"];
-                        [[NSUserDefaults standardUserDefaults] synchronize];
-                        
-#if 1
-                        // NOTIFY USER VIA NOTIFICATION
-                        NSUserNotification *notification = [[NSUserNotification alloc] init];
-                        notification.title = @"Savr just got new images !!";
-                        notification.informativeText = @"Savr just downloaded a bunch of image from the internet for your Screensaver !";
-                        notification.soundName = NSUserNotificationDefaultSoundName;
-
-                        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-#endif
-                    } else {
-                        NSLog(@"Failure");
-                        nextReload = 600;
-                    }
-                } else {
-                    NSLog(@"Flux is not active");
-                }
-            } else {
-                NSLog(@"Data is still fresh - not fetching anything");
-                nextReload = minimumTimeBetweenReload + [lastReloadDate timeIntervalSinceNow] + 1 ;
-            }
-            
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                NSLog(@"Next reload in %d", nextReload);
-                _reloadTimer = [NSTimer timerWithTimeInterval:nextReload target:self selector:@selector(reloadActiveFluxNoForce) userInfo:nil repeats:NO];
-                [[NSRunLoop mainRunLoop] addTimer:_reloadTimer forMode:NSRunLoopCommonModes];
-                isLoading = NO;
-            });
-
-        });
-    } else {
-        NSLog(@"Can't load, loading is already taking place ");
+        [fluxManager reloadActiveFlux:force];
     }
 }
+
+-(void)fluxManagerDidStartReloading:(SAVR_FluxManager *)fluxManager{
+    //Invalidate timer
+    dispatch_async(dispatch_get_main_queue(), ^{
+        isLoading = YES;
+        [_reloadTimer invalidate];
+    });
+}
+
+-(void)fluxManagerDidFinishReloading:(SAVR_FluxManager *)fluxManager{
+    //Set new timer
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self resetReloadTimer];
+        isLoading = NO;
+    });
+}
+
+-(void)fluxManager:(SAVR_FluxManager *)fluxManager didFailReloadingWithError:(NSError *)error{
+    //Set new timer
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"%@", error.localizedDescription);
+        [self resetReloadTimer];
+        isLoading = NO;
+    });}
 
 #pragma mark - PREFERENCE MANAGEMENT
 
@@ -193,6 +162,12 @@
 - (IBAction)openPreferencePane:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:
      [NSURL fileURLWithPath:@"/System/Library/PreferencePanes/DesktopScreenEffectsPref.prefPane"]];
+}
+
+- (IBAction)reloadFlux:(id)sender
+{
+    // CLICK ON ITEM IN MENU
+    [self tryReloadingActiveFlux:YES];
 }
 
 @end

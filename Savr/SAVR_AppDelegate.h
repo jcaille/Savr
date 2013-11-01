@@ -7,8 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "SAVR_FluxManager.h"
 
-@interface SAVR_AppDelegate : NSObject <NSApplicationDelegate>
+@interface SAVR_AppDelegate : NSObject <NSApplicationDelegate, SAVR_FluxManagerDelegate>
 {
     // STATUS MENU
     IBOutlet NSMenu *statusMenu;
@@ -39,8 +40,6 @@
 - (IBAction)openPreferencePane:(id)sender;
 
 // RELOAD
--(void) reloadActiveFlux:(BOOL)force;
--(void) reloadActiveFluxNoForce;
 
 @property (unsafe_unretained) IBOutlet NSWindow *preferenceWindow;
 @property (weak) IBOutlet NSButton *earthpornCheckbox;
