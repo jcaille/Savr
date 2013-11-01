@@ -11,8 +11,12 @@
 #import "SAVR_URLFluxLoader.h"
 #import "SAVR_ImgurFluxLoader.h"
 #import "LaunchAtLoginController.h"
+#import "SAVR_FluxManager.h"
 
 @implementation SAVR_AppDelegate
+{
+    SAVR_FluxManager* fluxManager;
+}
 
 - (void)awakeFromNib
 {
@@ -52,6 +56,10 @@
     //Reload active flux
     isLoading = NO;
     [self reloadActiveFlux:NO];
+    
+    //Create flux manager
+    fluxManager = [[SAVR_FluxManager alloc] initWithArray:@[@"earthporn", @"fractalporn", @"animalporn"]];
+    [_fluxList setDataSource:fluxManager];
 }
 
 - (void) fileNotifications

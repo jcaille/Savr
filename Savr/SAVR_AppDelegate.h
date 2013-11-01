@@ -18,9 +18,13 @@
     __unsafe_unretained NSWindow *_preferenceWindow;
     __weak NSButton *_earthpornCheckbox;
     __weak NSButton *_applicationShouldStartAtLoginCheckbox;
+    __weak NSTableView *_fluxList;
     
     // RELOAD
     BOOL isLoading;
+    
+    // FLUX MANAGER
+    
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -41,4 +45,5 @@
 @property (unsafe_unretained) IBOutlet NSWindow *preferenceWindow;
 @property (weak) IBOutlet NSButton *earthpornCheckbox;
 @property (weak) IBOutlet NSButton *applicationShouldStartAtLoginCheckbox;
+@property (weak) IBOutlet NSTableView *fluxList;
 @end

@@ -32,6 +32,7 @@
             <connections>
                 <outlet property="applicationShouldStartAtLoginCheckbox" destination="pnB-a8-Mt4" id="LF5-D1-ukb"/>
                 <outlet property="earthpornCheckbox" destination="fON-Ek-kCH" id="HyT-7v-sak"/>
+                <outlet property="fluxList" destination="svh-5x-mbM" id="0Pe-n0-0sQ"/>
                 <outlet property="preferenceWindow" destination="rwJ-pH-2dN" id="iJE-Gn-IU2"/>
                 <outlet property="statusMenu" destination="KQg-rX-JxS" id="Uzb-vM-1iw"/>
                 <outlet property="window" destination="rwJ-pH-2dN" id="7CQ-yW-3ZK"/>
@@ -80,6 +81,53 @@
                             <action selector="applicationShouldStartAtLoginWasToggled:" target="494" id="EPk-1y-wMc"/>
                         </connections>
                     </button>
+                    <scrollView fixedFrame="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aw5-Rf-KpF">
+                        <rect key="frame" x="20" y="82" width="240" height="135"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <clipView key="contentView" ambiguous="YES" misplaced="YES" id="L7t-Mm-jA9">
+                            <rect key="frame" x="1" y="17" width="238" height="117"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="aQ9-NN-gg7" id="svh-5x-mbM">
+                                    <rect key="frame" x="0.0" y="0.0" width="241" height="117"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <size key="intercellSpacing" width="3" height="2"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                    <tableColumns>
+                                        <tableColumn width="238" minWidth="40" maxWidth="1000" id="BP4-JH-63Y">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
+                                            </tableHeaderCell>
+                                            <buttonCell key="dataCell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="pQM-Wa-d8h">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                        </tableColumn>
+                                    </tableColumns>
+                                    <connections>
+                                        <outlet property="dataSource" destination="rwJ-pH-2dN" id="5xC-Hd-bLi"/>
+                                    </connections>
+                                </tableView>
+                            </subviews>
+                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="mfO-B7-j5e">
+                            <rect key="frame" x="-100" y="-100" width="238" height="16"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="37" id="H80-Rf-LEl">
+                            <rect key="frame" x="-100" y="-100" width="15" height="102"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <tableHeaderView key="headerView" hidden="YES" id="aQ9-NN-gg7">
+                            <rect key="frame" x="0.0" y="0.0" width="241" height="17"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </tableHeaderView>
+                    </scrollView>
                 </subviews>
             </view>
         </window>
