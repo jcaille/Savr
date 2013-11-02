@@ -17,8 +17,8 @@
     
     // PREFERENCE PANE
     __unsafe_unretained NSWindow *_preferenceWindow;
-    __weak NSButton *_earthpornCheckbox;
     __weak NSButton *_applicationShouldStartAtLoginCheckbox;
+    __weak NSButton *_notificationCheckbox;
     __weak NSTableView *_fluxList;
     
     // RELOAD
@@ -36,13 +36,13 @@
 - (IBAction)openSavrPreference:(id)sender;
 
 // PREFERENCE PANE INTERACTION
-- (IBAction)earthpornCheckboxWasToggled:(id)sender;
 - (IBAction)openPreferencePane:(id)sender;
+- (IBAction)notificationCheckboxWasToggled:(id)sender;
 
 // RELOAD
 
 @property (unsafe_unretained) IBOutlet NSWindow *preferenceWindow;
-@property (weak) IBOutlet NSButton *earthpornCheckbox;
+@property (weak) IBOutlet NSButton *notificationCheckbox;
 @property (weak) IBOutlet NSButton *applicationShouldStartAtLoginCheckbox;
 @property (weak) IBOutlet NSTableView *fluxList;
 @end

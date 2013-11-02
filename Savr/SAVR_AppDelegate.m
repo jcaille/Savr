@@ -37,19 +37,22 @@
     [SAVR_Utils getOrCreateApplicationSupportDirectory];
     [SAVR_Utils getOrCreateDocumentDirectory];
     
-    // Init state of window
-    SAVR_FluxLoader *fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
-    if([fluxLoader isActive]){
-        [_earthpornCheckbox setState:NSOnState];
-    } else {
-        [_earthpornCheckbox setState:NSOffState];
-    }
-    
+    // Init preference pane state
     LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
     if ([lc launchAtLogin]) {
         [_applicationShouldStartAtLoginCheckbox setState:NSOnState];
     } else {
         [_applicationShouldStartAtLoginCheckbox setState:NSOffState];
+    }
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    if([defaults valueForKey:@"notification"] == nil){
+        [defaults setBool:YES forKey:@"notification"];
+    }
+    if([defaults boolForKey:@"notification"]){
+        [_notificationCheckbox setState:NSOnState];
+    } else {
+        [_notificationCheckbox setState:NSOffState];
     }
     
     //Create flux manager
@@ -118,6 +121,14 @@
         NSLog(@"Finished reloading");
         [self resetReloadTimer];
         isLoading = NO;
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"notification"]){
+            NSUserNotification *notification = [[NSUserNotification alloc] init];
+            notification.title = @"Savr just got new images!";
+            notification.informativeText = @"Savr just downloaded a bunch of fresh images for your screensaver.";
+            notification.soundName = NSUserNotificationDefaultSoundName;
+            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+
+        }
     });
 }
 
@@ -135,18 +146,6 @@
     [_preferenceWindow makeKeyAndOrderFront:nil];
 }
 
-- (IBAction)earthpornCheckboxWasToggled:(id)sender {
-    SAVR_FluxLoader *fluxLoader = [[SAVR_ImgurFluxLoader alloc] init];
-    if(self.earthpornCheckbox.state == NSOnState)
-    {
-        NSLog(@"Activating flux");
-        [fluxLoader setFluxAsActive];
-    } else {
-        NSLog(@"Deactivating Flux");
-        [fluxLoader setFluxAsInactive];
-    }
-}
-
 - (IBAction)applicationShouldStartAtLoginWasToggled:(id)sender {
     LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
     if(_applicationShouldStartAtLoginCheckbox.state == NSOnState){
@@ -155,6 +154,14 @@
     } else {
         NSLog(@"Removing application from login list");
         [lc setLaunchAtLogin:NO];
+    }
+}
+
+- (IBAction)notificationCheckboxWasToggled:(id)sender {
+    if(_notificationCheckbox.state == NSOnState){
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"notification"];
+    } else {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"notification"];
     }
 }
 

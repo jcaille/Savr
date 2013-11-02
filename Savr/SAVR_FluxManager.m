@@ -52,7 +52,7 @@
         } else {
             nextReload = minimumTimeBetweenReload + [lastReloadDate timeIntervalSinceNow];
             NSMutableDictionary* details = [NSMutableDictionary dictionary];
-            [details setValue:[NSString stringWithFormat:@"Data still fresh. Next reload will take place in %d.", nextReload] forKey:NSLocalizedDescriptionKey];
+            [details setValue:[NSString stringWithFormat:@"Data still fresh. Next reload needed in %d.", nextReload] forKey:NSLocalizedDescriptionKey];
             NSError* error = [[NSError alloc] initWithDomain:@"FluxManager" code:2 userInfo:details];
             [self.delegate fluxManager:self didFailReloadingWithError:error];
             return;
