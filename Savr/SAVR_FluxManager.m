@@ -30,15 +30,12 @@
     [self.delegate fluxManagerDidStartReloading:self];
     // Loading is done outside of main thread to prevent UI block
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSLog(@"Trying to reload active flux");
-        
         int minimumTimeBetweenReload = 3600;
         int nextReload; // tommorow
         NSDate *lastReloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastReloadDate"];
 
         if(lastReloadDate == nil || [lastReloadDate timeIntervalSinceNow] < - minimumTimeBetweenReload || force){
             // TODO : CHECK FOR CONNECTIVITY
-            NSLog(@"Data is too old");
             for (NSString* flux in fluxArray) {
                 SAVR_FluxLoader *fluxLoader = [[SAVR_ImgurFluxLoader alloc] initWithSubreddit:flux];
                 if([fluxLoader isActive]){
@@ -48,22 +45,18 @@
                         [details setValue:[NSString stringWithFormat:@"Fetching of flux %@ failed.", flux] forKey:NSLocalizedDescriptionKey];
                         NSError* error = [[NSError alloc] initWithDomain:@"FluxManager" code:1 userInfo:details];
                         [self.delegate fluxManager:self didFailReloadingWithError:error];
+                        return;
                     }
-                } else {
-                    NSLog(@"Flux %@ is not active", flux);
                 }
             }
         } else {
-            NSLog(@"Data is still fresh - not fetching anything");
             nextReload = minimumTimeBetweenReload + [lastReloadDate timeIntervalSinceNow];
-            NSLog(@"Next reload needed in %d", nextReload);
             NSMutableDictionary* details = [NSMutableDictionary dictionary];
-            [details setValue:[NSString stringWithFormat:@"Next reload will take place in %d.", nextReload] forKey:NSLocalizedDescriptionKey];
+            [details setValue:[NSString stringWithFormat:@"Data still fresh. Next reload will take place in %d.", nextReload] forKey:NSLocalizedDescriptionKey];
             NSError* error = [[NSError alloc] initWithDomain:@"FluxManager" code:2 userInfo:details];
             [self.delegate fluxManager:self didFailReloadingWithError:error];
-
+            return;
         }
-        NSLog(@"Finished fetching");
         NSDate* now = [NSDate date];
         [[NSUserDefaults standardUserDefaults] setObject:now forKey:@"lastReloadDate"];
         [self.delegate fluxManagerDidFinishReloading:self];

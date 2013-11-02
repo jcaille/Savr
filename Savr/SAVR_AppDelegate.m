@@ -12,8 +12,6 @@
 #import "SAVR_ImgurFluxLoader.h"
 #import "LaunchAtLoginController.h"
 
-#define TIME_BETWEEN_RELOAD = 300
-
 @implementation SAVR_AppDelegate
 {
     SAVR_FluxManager* fluxManager;
@@ -56,13 +54,12 @@
     
     //Create flux manager
     fluxManager = [[SAVR_FluxManager alloc] initWithArray:@[@"earthporn", @"fractalporn", @"animalporn", @"spaceporn", @"winterporn", @"cityporn"]];
+    fluxManager.delegate = self;
     [_fluxList setDataSource:fluxManager];
     
     //Reload active flux
     isLoading = NO;
     [self tryReloadingActiveFlux:NO];
-    
-
 }
 
 - (void) fileNotifications
@@ -92,7 +89,7 @@
 #pragma mark - FLUX MANAGER DELEGATE
 
 -(void)resetReloadTimer{
-    _reloadTimer = [NSTimer timerWithTimeInterval:500 target:self selector:@selector(tryReloadingActiveFlux) userInfo:nil repeats:NO];
+    _reloadTimer = [NSTimer timerWithTimeInterval:300 target:self selector:@selector(tryReloadingActiveFlux) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:_reloadTimer forMode:NSRunLoopCommonModes];
 }
 
@@ -109,6 +106,7 @@
 -(void)fluxManagerDidStartReloading:(SAVR_FluxManager *)fluxManager{
     //Invalidate timer
     dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"Starting to reload");
         isLoading = YES;
         [_reloadTimer invalidate];
     });
@@ -117,6 +115,7 @@
 -(void)fluxManagerDidFinishReloading:(SAVR_FluxManager *)fluxManager{
     //Set new timer
     dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"Finished reloading");
         [self resetReloadTimer];
         isLoading = NO;
     });
@@ -125,7 +124,7 @@
 -(void)fluxManager:(SAVR_FluxManager *)fluxManager didFailReloadingWithError:(NSError *)error{
     //Set new timer
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"%@", error.localizedDescription);
+        NSLog(@"Reloading failed : %@", error.localizedDescription);
         [self resetReloadTimer];
         isLoading = NO;
     });}

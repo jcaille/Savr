@@ -54,17 +54,16 @@
         }] asJson];
     }
     @catch (NSException *exception) {
-        NSLog(@"Exception during request : %@", [exception description]);
+        NSLog(@"%@ : Exception during request : %@", fluxName,  [exception description]);
         return @[];
     }
 
-    
     if(response.code == 200){
         NSDictionary* object = response.body.object;
         NSArray* data = [object objectForKey:@"data"];
         return data;
     } else {
-        NSLog(@"Error code : %d", (int)response.code);
+        NSLog(@"%@ : Error code : %d", fluxName, (int)response.code);
         return @[];
     }
 }
@@ -91,7 +90,6 @@
     NSString* imagePath = [[self getOrCreateFluxDirectory] stringByAppendingPathComponent:imageName];
     if([[NSFileManager defaultManager] fileExistsAtPath:imagePath])
     {
-//        NSLog(@"%@ is already present on disk", imageName);
         return YES;
     } else {
         return NO;
@@ -103,12 +101,12 @@
 {
     NSString* imageURL = [image objectForKey:@"link"];
     NSString* imageName = [imageURL lastPathComponent];
-    NSLog(@"Fetching %@", imageName);
+    NSLog(@"%@ : Fetching %@", fluxName, imageName);
     NSError *error;
     NSData* imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:imageURL] options:NSDataReadingMappedIfSafe error:&error];
     if(error){
-        NSLog(@"Error fetching %@", imageName);
-        NSLog(@"Error : %@", [error localizedDescription]);
+        NSLog(@"%@ : Error fetching %@", fluxName, imageName);
+        NSLog(@"%@ : Error : %@", fluxName, [error localizedDescription]);
         return NO;
     }
     NSString* imagePath = [[self getOrCreateFluxDirectory] stringByAppendingPathComponent:imageName];
@@ -118,12 +116,10 @@
 
 -(BOOL) fetch
 {
-    NSLog(@"Getting image list");
     NSArray* images = [self fetchSubredditImageList];
-    if([images count] == 0){
+    if((int)[images count] == 0){
         return NO;
     }
-    NSLog(@"Got image list");
     for(NSDictionary* image in images){
         if([self isImageAcceptable:image] && ![self isImageAlreadyDownloaded:image]){
             if(![self fetchSingleImage:image]){
