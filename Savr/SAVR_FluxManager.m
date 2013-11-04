@@ -11,14 +11,18 @@
 
 @implementation SAVR_FluxManager
 {
-    NSArray *fluxArray;
+    NSArray *_fluxArray;
 }
 
 -(id) initWithArray:(NSArray *)array
 {
     self = [super init];
     if (self) {
-        fluxArray = array;
+        NSMutableArray* tmp = [[NSMutableArray alloc] initWithCapacity:array.count];
+        for(NSString* fluxName in array){
+            [tmp addObject:[[SAVR_ImgurFluxLoader alloc] initWithSubreddit:fluxName]];
+        }
+        _fluxArray = tmp;
     }
     return self;
 }
@@ -30,19 +34,18 @@
     [self.delegate fluxManagerDidStartReloading:self];
     // Loading is done outside of main thread to prevent UI block
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        int minimumTimeBetweenReload = 3600;
+        int minimumTimeBetweenReload = 100;
         int nextReload; // tommorow
         NSDate *lastReloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastReloadDate"];
 
         if(lastReloadDate == nil || [lastReloadDate timeIntervalSinceNow] < - minimumTimeBetweenReload || force){
             // TODO : CHECK FOR CONNECTIVITY
-            for (NSString* flux in fluxArray) {
-                SAVR_FluxLoader *fluxLoader = [[SAVR_ImgurFluxLoader alloc] initWithSubreddit:flux];
+            for (SAVR_FluxLoader* fluxLoader in _fluxArray) {
                 if([fluxLoader isActive]){
                     if(![fluxLoader fetch]){
                         // This flux fetched failed
                         NSMutableDictionary* details = [NSMutableDictionary dictionary];
-                        [details setValue:[NSString stringWithFormat:@"Fetching of flux %@ failed.", flux] forKey:NSLocalizedDescriptionKey];
+                        [details setValue:[NSString stringWithFormat:@"Fetching of flux %@ failed.", fluxLoader.fluxName] forKey:NSLocalizedDescriptionKey];
                         NSError* error = [[NSError alloc] initWithDomain:@"FluxManager" code:1 userInfo:details];
                         [self.delegate fluxManager:self didFailReloadingWithError:error];
                         return;
@@ -70,33 +73,31 @@
 
 -(NSInteger) numberOfRowsInTableView:(NSTableView *)tableView
 {
-    return [fluxArray count];
+    return [_fluxArray count];
 }
 
 -(id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
-    NSString* currentFlux = [fluxArray objectAtIndex:row];
+    SAVR_FluxLoader* currentFlux = [_fluxArray objectAtIndex:row];
     NSButtonCell* cell = [[NSButtonCell alloc] init];
     
     [cell setButtonType:NSSwitchButton];
     [tableColumn setDataCell:cell];
-    [[tableColumn dataCell] setTitle:currentFlux];
+    [[tableColumn dataCell] setTitle:currentFlux.fluxName];
     
-    SAVR_FluxLoader* f = [[SAVR_ImgurFluxLoader alloc] initWithSubreddit:currentFlux];
-    NSNumber *fState = [NSNumber numberWithBool:[f isActive]];
+    NSNumber *fState = [NSNumber numberWithBool:[currentFlux isActive]];
 
     return fState;
 }
 
 -(void) tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-    NSString* fluxClicked = [fluxArray objectAtIndex:row];
-    SAVR_ImgurFluxLoader *f = [[SAVR_ImgurFluxLoader alloc] initWithSubreddit:fluxClicked];
-    if([f isActive]){
-        NSLog(@"Switching flux %@ OFF", fluxClicked);
-        [f setFluxAsInactive];
+    SAVR_FluxLoader* fluxClicked = [_fluxArray objectAtIndex:row];
+    if([fluxClicked isActive]){
+        NSLog(@"Switching flux %@ OFF", fluxClicked.fluxName);
+        [fluxClicked setFluxAsInactive];
     } else {
-        NSLog(@"Switching flux %@ ON", fluxClicked);
-        [f setFluxAsActive];
+        NSLog(@"Switching flux %@ ON", fluxClicked.fluxName);
+        [fluxClicked setFluxAsActive];
     }
 }
 

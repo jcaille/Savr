@@ -35,7 +35,7 @@
     
     // Make sure that folders exist
     [SAVR_Utils getOrCreateApplicationSupportDirectory];
-    [SAVR_Utils getOrCreateDocumentDirectory];
+    [SAVR_Utils getOrCreateUserVisibleDirectory];
     
     // Init preference pane state
     LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];

@@ -10,11 +10,11 @@
 
 @implementation SAVR_Utils
 
-+(NSString*) getOrCreateDocumentDirectory
++(NSString*) getOrCreateUserVisibleDirectory
 {
     // Returns path to ~/Documents/Savr
     // Create the directory if necessary
-    NSString* path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString* path = [NSSearchPathForDirectoriesInDomains(NSPicturesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString* folder = [path stringByAppendingPathComponent:@"/Savr"];
     if (![[NSFileManager defaultManager] fileExistsAtPath:folder]){
         [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:NO attributes:nil error:nil];

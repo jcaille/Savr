@@ -21,7 +21,7 @@
 -(NSString*) getOrCreateFluxDirectory
 {
     NSString* path = [SAVR_Utils getOrCreateApplicationSupportDirectory];
-    NSString* folder = [path stringByAppendingPathComponent:fluxName];
+    NSString* folder = [path stringByAppendingPathComponent:_fluxName];
     if (![[NSFileManager defaultManager] fileExistsAtPath:folder]){
         [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:NO attributes:nil error:nil];
     }
@@ -45,15 +45,15 @@
 
 -(BOOL) isActive
 {
-    NSString* userDefaultKey = [fluxName stringByAppendingString:@"fluxIsActive"];
+    NSString* userDefaultKey = [_fluxName stringByAppendingString:@"fluxIsActive"];
     NSUserDefaults* savrDefaults = [NSUserDefaults standardUserDefaults];
     
     // If key does not exist, we check manually if the symlink exists, and set the appropriate key
     if([savrDefaults objectForKey:userDefaultKey] == nil){
-        NSString* applicationSupportDirectory = [SAVR_Utils getOrCreateDocumentDirectory];
+        NSString* applicationSupportDirectory = [SAVR_Utils getOrCreateUserVisibleDirectory];
         NSArray* content = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:applicationSupportDirectory error:nil];
         for(NSString* item in content){
-            if([item isEqualToString:fluxName]){
+            if([item isEqualToString:_fluxName]){
                 //Check if folder is symlink
                 NSString* itemFullPath = [applicationSupportDirectory stringByAppendingPathComponent:item];
                 NSString* itemType = [[[NSFileManager defaultManager]
@@ -81,15 +81,15 @@
         return YES;
     }
     NSString* fluxDirectory = [self getOrCreateFluxDirectory];
-    NSString* applicationSupportDirectory = [[SAVR_Utils getOrCreateDocumentDirectory] stringByAppendingPathComponent:fluxName];
+    NSString* userVisibleDirectory = [[SAVR_Utils getOrCreateUserVisibleDirectory] stringByAppendingPathComponent:_fluxName];
     NSError* error;
-    if(![[NSFileManager defaultManager] createSymbolicLinkAtPath:applicationSupportDirectory withDestinationPath:fluxDirectory error:&error])
+    if(![[NSFileManager defaultManager] createSymbolicLinkAtPath:userVisibleDirectory withDestinationPath:fluxDirectory error:&error])
     {
         return NO;
     }
     
     // Modify NSUSerDefault to save state
-    NSString* userDefaultKey = [fluxName stringByAppendingString:@"fluxIsActive"];
+    NSString* userDefaultKey = [_fluxName stringByAppendingString:@"fluxIsActive"];
     NSUserDefaults* savrDefaults = [NSUserDefaults standardUserDefaults];
     [savrDefaults setBool:YES forKey:userDefaultKey];
     [savrDefaults synchronize];
@@ -98,12 +98,12 @@
 
 -(BOOL)setFluxAsInactive
 {
-    NSString* applicationSupportDirectory = [SAVR_Utils getOrCreateDocumentDirectory];
-    NSArray* content = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:applicationSupportDirectory error:nil];
+    NSString* userVisibleDirectory = [SAVR_Utils getOrCreateUserVisibleDirectory];
+    NSArray* content = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:userVisibleDirectory error:nil];
     for(NSString* item in content){
-        if([item isEqualToString:fluxName]){
+        if([item isEqualToString:_fluxName]){
             //Check if folder is symlink
-            NSString* itemFullPath = [applicationSupportDirectory stringByAppendingPathComponent:item];
+            NSString* itemFullPath = [userVisibleDirectory stringByAppendingPathComponent:item];
             NSString* itemType = [[[NSFileManager defaultManager]
                                   attributesOfItemAtPath:itemFullPath error:nil]
                                   fileType];
@@ -115,7 +115,7 @@
         }
     }
     // Modify NSUSerDefault to save state
-    NSString* userDefaultKey = [fluxName stringByAppendingString:@"fluxIsActive"];
+    NSString* userDefaultKey = [_fluxName stringByAppendingString:@"fluxIsActive"];
     NSUserDefaults* savrDefaults = [NSUserDefaults standardUserDefaults];
     [savrDefaults setBool:NO forKey:userDefaultKey];
     [savrDefaults synchronize];

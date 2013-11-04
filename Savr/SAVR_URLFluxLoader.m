@@ -13,7 +13,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        fluxName = @"URL";
+        self.fluxName = @"URL";
         myUrl = @"http://placekitten.com/1024/768";
     }
     return self;

@@ -9,9 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface SAVR_FluxLoader : NSObject
-{
-    @public NSString* fluxName;
-}
+@property (strong, nonatomic) NSString *fluxName;
 
 // Fetch the data from the source, save it to flux directory
 // Returns success status

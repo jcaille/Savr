@@ -10,7 +10,7 @@
 
 @interface SAVR_Utils : NSObject
 
-+(NSString*) getOrCreateDocumentDirectory;
++(NSString*) getOrCreateUserVisibleDirectory;
 +(NSString*) getOrCreateApplicationSupportDirectory;
 
 @end

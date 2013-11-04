@@ -16,7 +16,7 @@
     self = [super init];
     if (self) {
         mySubreddit = @"earthporn";
-        fluxName = [[@"Imgur" stringByAppendingString:@"_"] stringByAppendingString:mySubreddit];
+        self.fluxName = [[@"Imgur" stringByAppendingString:@"_"] stringByAppendingString:mySubreddit];
     }
     return self;
 }
@@ -26,7 +26,7 @@
     self = [super init];
     if (self) {
         mySubreddit = subredditName;
-        fluxName = [[@"Imgur" stringByAppendingString:@"_"] stringByAppendingString:mySubreddit];
+        self.fluxName = [[@"Imgur" stringByAppendingString:@"_"] stringByAppendingString:mySubreddit];
     }
     return self;
 }
@@ -54,7 +54,7 @@
         }] asJson];
     }
     @catch (NSException *exception) {
-        NSLog(@"%@ : Exception during request : %@", fluxName,  [exception description]);
+        NSLog(@"%@ : Exception during request : %@", self.fluxName,  [exception description]);
         return @[];
     }
 
@@ -63,7 +63,7 @@
         NSArray* data = [object objectForKey:@"data"];
         return data;
     } else {
-        NSLog(@"%@ : Error code : %d", fluxName, (int)response.code);
+        NSLog(@"%@ : Error code : %d", self.fluxName, (int)response.code);
         return @[];
     }
 }
@@ -101,12 +101,12 @@
 {
     NSString* imageURL = [image objectForKey:@"link"];
     NSString* imageName = [imageURL lastPathComponent];
-    NSLog(@"%@ : Fetching %@", fluxName, imageName);
+    NSLog(@"%@ : Fetching %@", self.fluxName, imageName);
     NSError *error;
     NSData* imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:imageURL] options:NSDataReadingMappedIfSafe error:&error];
     if(error){
-        NSLog(@"%@ : Error fetching %@", fluxName, imageName);
-        NSLog(@"%@ : Error : %@", fluxName, [error localizedDescription]);
+        NSLog(@"%@ : Error fetching %@", self.fluxName, imageName);
+        NSLog(@"%@ : Error : %@", self.fluxName, [error localizedDescription]);
         return NO;
     }
     NSString* imagePath = [[self getOrCreateFluxDirectory] stringByAppendingPathComponent:imageName];
