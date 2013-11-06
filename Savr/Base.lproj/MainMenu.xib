@@ -17,13 +17,19 @@
                 <menuItem title="Reload" id="gUW-B0-Dne">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="reloadFlux:" target="494" id="291-0R-3Hr"/>
+                        <action selector="reloadButtonWasClicked:" target="494" id="FWi-U4-KpK"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Open Preferences" id="u6A-KE-ACE">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="openSavrPreference:" target="494" id="big-SY-Pe9"/>
+                        <action selector="openSavrPreferencesWasClicked:" target="494" id="0Hs-kN-ou8"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Quit" id="W3w-j4-cis">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="quitButtonWasClicked:" target="494" id="BDW-Ec-yyA"/>
                     </connections>
                 </menuItem>
             </items>
@@ -41,16 +47,16 @@
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
         <window title="Savr" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="rwJ-pH-2dN">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="109" y="132" width="480" height="270"/>
+            <rect key="contentRect" x="109" y="132" width="609" height="270"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <view key="contentView" id="piK-MP-3s7">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <rect key="frame" x="0.0" y="0.0" width="609" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YtQ-Md-b1X">
-                        <rect key="frame" x="112" y="13" width="257" height="32"/>
+                        <rect key="frame" x="176" y="13" width="257" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Open Screensaver Preference Pane" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oeL-wo-Amg">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -61,7 +67,7 @@
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pnB-a8-Mt4">
-                        <rect key="frame" x="233" y="111" width="229" height="18"/>
+                        <rect key="frame" x="362" y="192" width="229" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Application should start at Login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5Ec-vy-PKP">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -72,20 +78,20 @@
                         </connections>
                     </button>
                     <scrollView fixedFrame="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aw5-Rf-KpF">
-                        <rect key="frame" x="20" y="93" width="191" height="135"/>
+                        <rect key="frame" x="20" y="93" width="310" height="115"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" ambiguous="YES" misplaced="YES" id="L7t-Mm-jA9">
-                            <rect key="frame" x="1" y="1" width="189" height="133"/>
+                            <rect key="frame" x="1" y="1" width="308" height="113"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="svh-5x-mbM">
-                                    <rect key="frame" x="0.0" y="0.0" width="189" height="133"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="308" height="113"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn width="186" minWidth="40" maxWidth="1000" id="BP4-JH-63Y">
+                                        <tableColumn width="305" minWidth="40" maxWidth="1000" id="BP4-JH-63Y">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -115,16 +121,16 @@
                         </scroller>
                     </scrollView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kgb-GT-xVO">
-                        <rect key="frame" x="17" y="236" width="197" height="17"/>
+                        <rect key="frame" x="77" y="236" width="197" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="My flux" id="Myk-sy-bit">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Image sources" id="Myk-sy-bit">
                             <font key="font" size="15" name="LucidaGrande"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VU1-EB-7Xh">
-                        <rect key="frame" x="232" y="236" width="231" height="17"/>
+                        <rect key="frame" x="361" y="236" width="231" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Options" id="UKj-wY-TP4">
                             <font key="font" size="15" name="LucidaGrande"/>
@@ -133,7 +139,7 @@
                         </textFieldCell>
                     </textField>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xOd-R5-vJB">
-                        <rect key="frame" x="233" y="91" width="229" height="18"/>
+                        <rect key="frame" x="362" y="172" width="229" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Notify me when fetching images" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="2af-8c-l7G">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -143,26 +149,23 @@
                             <action selector="notificationCheckboxWasToggled:" target="494" id="BiS-mD-Sm8"/>
                         </connections>
                     </button>
-                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YC5-sr-ukO">
-                        <rect key="frame" x="233" y="189" width="229" height="21"/>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Ax-EG-TBN">
+                        <rect key="frame" x="228" y="46" width="153" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Oyn-20-iqT"/>
-                    </slider>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YlN-dQ-SKV">
-                        <rect key="frame" x="235" y="211" width="101" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Refresh images" id="IRP-3u-XzH">
+                        <buttonCell key="cell" type="push" title="Fetch new images" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lqJ-Wn-Tb3">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mcu-Od-05Z">
-                        <rect key="frame" x="345" y="211" width="115" height="17"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="reloadButtonWasClicked:" target="494" id="FwV-Un-ZUe"/>
+                        </connections>
+                    </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yJo-8B-Zc3">
+                        <rect key="frame" x="43" y="216" width="264" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="every day" id="ZNB-Pz-KKl">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="New images are added eveyday on reddit" id="ArE-yN-dLr">
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>

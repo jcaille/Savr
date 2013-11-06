@@ -12,17 +12,25 @@
 @implementation SAVR_FluxManager
 {
     NSArray *_fluxArray;
+    NSArray *_humanReadableDescription;
 }
 
--(id) initWithArray:(NSArray *)array
+-(id) initWithImgurFlux:(NSArray*)imgurFlux
 {
     self = [super init];
     if (self) {
-        NSMutableArray* tmp = [[NSMutableArray alloc] initWithCapacity:array.count];
-        for(NSString* fluxName in array){
-            [tmp addObject:[[SAVR_ImgurFluxLoader alloc] initWithSubreddit:fluxName]];
+        NSMutableArray* tmpFlux = [[NSMutableArray alloc] initWithCapacity:imgurFlux.count];
+        NSMutableArray* tmpHumanReadableDescription = [[NSMutableArray alloc] initWithCapacity:imgurFlux.count];
+
+        for(NSDictionary* flux in imgurFlux){
+            NSString* fluxSubreddit = [flux objectForKey:@"subreddit"];
+            [tmpFlux addObject:[[SAVR_ImgurFluxLoader alloc] initWithSubreddit:fluxSubreddit]];
+            
+            NSString* fluxHumanReadableDescription = [flux objectForKey:@"description"];
+            [tmpHumanReadableDescription addObject:fluxHumanReadableDescription];
         }
-        _fluxArray = tmp;
+        _fluxArray = tmpFlux;
+        _humanReadableDescription = tmpHumanReadableDescription;
     }
     return self;
 }
@@ -63,12 +71,20 @@
         NSDate* now = [NSDate date];
         [[NSUserDefaults standardUserDefaults] setObject:now forKey:@"lastReloadDate"];
         [self.delegate fluxManagerDidFinishReloading:self];
-    });
-
-    
+    });   
 }
 
-
+-(void) checkIntegrity
+{
+    for(SAVR_FluxLoader* flux in _fluxArray)
+    {
+        if([flux isActive]){
+            [flux setFluxAsActive];
+        } else {
+            [flux setFluxAsInactive];
+        }
+    }
+}
 #pragma mark - TABLE VIEW DATA SOURCE
 
 -(NSInteger) numberOfRowsInTableView:(NSTableView *)tableView
@@ -82,7 +98,7 @@
     
     [cell setButtonType:NSSwitchButton];
     [tableColumn setDataCell:cell];
-    [[tableColumn dataCell] setTitle:currentFlux.fluxName];
+    [[tableColumn dataCell] setTitle:[_humanReadableDescription objectAtIndex:row]];
     
     NSNumber *fState = [NSNumber numberWithBool:[currentFlux isActive]];
 

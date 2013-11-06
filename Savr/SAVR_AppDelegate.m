@@ -12,7 +12,7 @@
 #import "SAVR_ImgurFluxLoader.h"
 #import "LaunchAtLoginController.h"
 
-#define SAVR_FLUX @[@"earthporn", @"fractalporn", @"animalporn", @"spaceporn", @"winterporn", @"cityporn"]
+#define SAVR_FLUX @[@{@"subreddit" : @"earthporn", @"description" : @"r/Earthporn - Gorgeous images of nature"}, @{@"subreddit" : @"animalporn", @"description" : @"r/Animalporn - Beautiful photos of wildlife"}, @{@"subreddit" : @"skyporn", @"description" : @"r/Skyporn - Amazing pictures of the sky"}, @{@"subreddit" : @"macroporn", @"description" : @"r/Macroporn - Incredible close-up photos"}]
 
 @implementation SAVR_AppDelegate
 {
@@ -38,15 +38,7 @@
     // Make sure that folders exist and state is correct for each flux
     [SAVR_Utils getOrCreateApplicationSupportDirectory];
     [SAVR_Utils getOrCreateUserVisibleDirectory];
-    for(NSString* flux in SAVR_FLUX){
-        SAVR_FluxLoader *f = [[SAVR_ImgurFluxLoader alloc] initWithSubreddit:flux];
-        if([f isActive]){
-            [f setFluxAsActive];
-        } else {
-            [f setFluxAsInactive];
-        }
-    }
-    
+
     // Init preference pane state
     LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
     if ([lc launchAtLogin]) {
@@ -66,9 +58,11 @@
     }
     
     //Create flux manager
-    fluxManager = [[SAVR_FluxManager alloc] initWithArray:SAVR_FLUX];
+    fluxManager = [[SAVR_FluxManager alloc] initWithImgurFlux:SAVR_FLUX];
     fluxManager.delegate = self;
+    [fluxManager checkIntegrity];
     [_fluxList setDataSource:fluxManager];
+
     
     //Reload active flux
     isLoading = NO;
@@ -150,11 +144,24 @@
         isLoading = NO;
     });}
 
-#pragma mark - PREFERENCE MANAGEMENT
+#pragma mark - STATUS BAR BUTTONS
 
-- (IBAction)openSavrPreference:(id)sender {
+- (IBAction)openSavrPreferencesWasClicked:(id)sender
+{
     [_preferenceWindow makeKeyAndOrderFront:nil];
 }
+
+- (IBAction)reloadButtonWasClicked:(id)sender;
+{
+    [self tryReloadingActiveFlux:YES];
+}
+
+- (IBAction)quitButtonWasClicked:(id)sender
+{
+    [NSApp terminate: nil];
+}
+
+#pragma mark - PREFERENCE MANAGEMENT
 
 - (IBAction)applicationShouldStartAtLoginWasToggled:(id)sender {
     LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
@@ -178,12 +185,6 @@
 - (IBAction)openPreferencePane:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:
      [NSURL fileURLWithPath:@"/System/Library/PreferencePanes/DesktopScreenEffectsPref.prefPane"]];
-}
-
-- (IBAction)reloadFlux:(id)sender
-{
-    // CLICK ON ITEM IN MENU
-    [self tryReloadingActiveFlux:YES];
 }
 
 @end

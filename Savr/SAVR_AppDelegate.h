@@ -31,15 +31,15 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (strong) NSTimer *reloadTimer;
 
-// STATUS MENU INTERACTION
-- (IBAction)reloadFlux:(id)sender;
-- (IBAction)openSavrPreference:(id)sender;
+// STATUS MENU BUTTONS
+- (IBAction)reloadButtonWasClicked:(id)sender;
+- (IBAction)openSavrPreferencesWasClicked:(id)sender;
+- (IBAction)quitButtonWasClicked:(id)sender;
 
 // PREFERENCE PANE INTERACTION
 - (IBAction)openPreferencePane:(id)sender;
 - (IBAction)notificationCheckboxWasToggled:(id)sender;
-
-// RELOAD
+- (IBAction)applicationShouldStartAtLoginWasToggled:(id)sender;
 
 @property (unsafe_unretained) IBOutlet NSWindow *preferenceWindow;
 @property (weak) IBOutlet NSButton *notificationCheckbox;

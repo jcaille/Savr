@@ -12,9 +12,9 @@
 
 @interface SAVR_FluxManager : NSObject <NSTableViewDataSource>
 @property (nonatomic, weak) id<SAVR_FluxManagerDelegate> delegate;
--(id) initWithArray:(NSArray*)possibleFlux;
+-(id) initWithImgurFlux:(NSArray*)imgurFlux;
 -(void) reloadActiveFlux:(BOOL)force;
-
+-(void) checkIntegrity;
 @end
 
 @protocol SAVR_FluxManagerDelegate <NSObject>
