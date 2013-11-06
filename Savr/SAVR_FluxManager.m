@@ -34,7 +34,7 @@
     [self.delegate fluxManagerDidStartReloading:self];
     // Loading is done outside of main thread to prevent UI block
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        int minimumTimeBetweenReload = 100;
+        int minimumTimeBetweenReload = 3600;
         int nextReload; // tommorow
         NSDate *lastReloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastReloadDate"];
 

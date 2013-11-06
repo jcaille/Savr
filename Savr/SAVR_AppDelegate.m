@@ -12,6 +12,8 @@
 #import "SAVR_ImgurFluxLoader.h"
 #import "LaunchAtLoginController.h"
 
+#define SAVR_FLUX @[@"earthporn", @"fractalporn", @"animalporn", @"spaceporn", @"winterporn", @"cityporn"]
+
 @implementation SAVR_AppDelegate
 {
     SAVR_FluxManager* fluxManager;
@@ -33,9 +35,17 @@
     // File for notification
     [self fileNotifications];
     
-    // Make sure that folders exist
+    // Make sure that folders exist and state is correct for each flux
     [SAVR_Utils getOrCreateApplicationSupportDirectory];
     [SAVR_Utils getOrCreateUserVisibleDirectory];
+    for(NSString* flux in SAVR_FLUX){
+        SAVR_FluxLoader *f = [[SAVR_ImgurFluxLoader alloc] initWithSubreddit:flux];
+        if([f isActive]){
+            [f setFluxAsActive];
+        } else {
+            [f setFluxAsInactive];
+        }
+    }
     
     // Init preference pane state
     LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
@@ -56,7 +66,7 @@
     }
     
     //Create flux manager
-    fluxManager = [[SAVR_FluxManager alloc] initWithArray:@[@"earthporn", @"fractalporn", @"animalporn", @"spaceporn", @"winterporn", @"cityporn"]];
+    fluxManager = [[SAVR_FluxManager alloc] initWithArray:SAVR_FLUX];
     fluxManager.delegate = self;
     [_fluxList setDataSource:fluxManager];
     

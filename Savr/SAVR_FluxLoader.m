@@ -48,28 +48,11 @@
     NSString* userDefaultKey = [_fluxName stringByAppendingString:@"fluxIsActive"];
     NSUserDefaults* savrDefaults = [NSUserDefaults standardUserDefaults];
     
-    // If key does not exist, we check manually if the symlink exists, and set the appropriate key
+    // If key does not exist, we set the flux as active by default and set the key
     if([savrDefaults objectForKey:userDefaultKey] == nil){
-        NSString* applicationSupportDirectory = [SAVR_Utils getOrCreateUserVisibleDirectory];
-        NSArray* content = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:applicationSupportDirectory error:nil];
-        for(NSString* item in content){
-            if([item isEqualToString:_fluxName]){
-                //Check if folder is symlink
-                NSString* itemFullPath = [applicationSupportDirectory stringByAppendingPathComponent:item];
-                NSString* itemType = [[[NSFileManager defaultManager]
-                                       attributesOfItemAtPath:itemFullPath error:nil]
-                                      fileType];
-                if([itemType isEqualToString:NSFileTypeSymbolicLink])
-                {
-                    [savrDefaults setBool:YES forKey:userDefaultKey];
-                    [savrDefaults synchronize];
-                    return YES;
-                }
-            }
-        }
-        [savrDefaults setBool:NO forKey:userDefaultKey];
+        [self setFluxAsActive];
+        [savrDefaults setBool:YES forKey:userDefaultKey];
         [savrDefaults synchronize];
-        return NO;
     }
     
     return [savrDefaults boolForKey:userDefaultKey];
@@ -77,14 +60,13 @@
 
 -(BOOL)setFluxAsActive
 {
-    if ([self isActive]) {
-        return YES;
-    }
+    //Creates the file whatever happens
     NSString* fluxDirectory = [self getOrCreateFluxDirectory];
     NSString* userVisibleDirectory = [[SAVR_Utils getOrCreateUserVisibleDirectory] stringByAppendingPathComponent:_fluxName];
     NSError* error;
     if(![[NSFileManager defaultManager] createSymbolicLinkAtPath:userVisibleDirectory withDestinationPath:fluxDirectory error:&error])
     {
+        NSLog(@"Error during directory creation : %@", [error localizedDescription]);
         return NO;
     }
     
