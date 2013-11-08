@@ -94,10 +94,6 @@
 
 -(id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
     SAVR_FluxLoader* currentFlux = [_fluxArray objectAtIndex:row];
-    NSButtonCell* cell = [[NSButtonCell alloc] init];
-    
-    [cell setButtonType:NSSwitchButton];
-    [tableColumn setDataCell:cell];
     [[tableColumn dataCell] setTitle:[_humanReadableDescription objectAtIndex:row]];
     
     NSNumber *fState = [NSNumber numberWithBool:[currentFlux isActive]];
