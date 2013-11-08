@@ -41,6 +41,23 @@
     return YES;
 }
 
+-(BOOL) cleanFilesOlderThan:(NSTimeInterval)timeInterval{
+    NSString* fluxDirectory = [self getOrCreateFluxDirectory];
+    NSArray* content = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:fluxDirectory error:nil];
+    for(NSString* item in content)
+    {
+        NSString* itemFullPath = [fluxDirectory stringByAppendingPathComponent:item];
+        NSDate* itemType = [[[NSFileManager defaultManager]
+                               attributesOfItemAtPath:itemFullPath error:nil]
+                              fileCreationDate];
+        if(-[itemType timeIntervalSinceNow] > timeInterval){
+            NSLog(@"Deleting old file %@", item);
+            [[NSFileManager defaultManager] removeItemAtPath:itemFullPath error:nil];
+        }
+    }
+    return YES;
+}
+
 #pragma mark - STATE MANAEGEMENT
 
 -(BOOL) isActive

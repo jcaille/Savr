@@ -8,7 +8,7 @@
 
 #import "SAVR_FluxManager.h"
 #import "SAVR_ImgurFluxLoader.h"
-
+#import "SAVR_Utils.h"
 @implementation SAVR_FluxManager
 {
     NSArray *_fluxArray;
@@ -42,14 +42,14 @@
     [self.delegate fluxManagerDidStartReloading:self];
     // Loading is done outside of main thread to prevent UI block
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        int minimumTimeBetweenReload = 3600;
-        int nextReload; // tommorow
+        int nextReload;
         NSDate *lastReloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastReloadDate"];
 
-        if(lastReloadDate == nil || [lastReloadDate timeIntervalSinceNow] < - minimumTimeBetweenReload || force){
+        if(lastReloadDate == nil || [lastReloadDate timeIntervalSinceNow] < - TIME_BETWEEN_FETCHING || force){
             // TODO : CHECK FOR CONNECTIVITY
             for (SAVR_FluxLoader* fluxLoader in _fluxArray) {
                 if([fluxLoader isActive]){
+                    [fluxLoader cleanFilesOlderThan:TIME_BEFORE_DELETING_FILES];
                     if(![fluxLoader fetch]){
                         // This flux fetched failed
                         NSMutableDictionary* details = [NSMutableDictionary dictionary];
@@ -61,7 +61,7 @@
                 }
             }
         } else {
-            nextReload = minimumTimeBetweenReload + [lastReloadDate timeIntervalSinceNow];
+            nextReload = TIME_BETWEEN_FETCHING + [lastReloadDate timeIntervalSinceNow];
             NSMutableDictionary* details = [NSMutableDictionary dictionary];
             [details setValue:[NSString stringWithFormat:@"Data still fresh. Next reload needed in %d.", nextReload] forKey:NSLocalizedDescriptionKey];
             NSError* error = [[NSError alloc] initWithDomain:@"FluxManager" code:2 userInfo:details];
@@ -76,6 +76,18 @@
 
 -(void) checkIntegrity
 {
+    NSArray* content = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[SAVR_Utils getOrCreateUserVisibleDirectory] error:nil];
+    for(NSString* directory in content){
+        NSString* itemFullPath = [[SAVR_Utils getOrCreateUserVisibleDirectory] stringByAppendingPathComponent:directory];
+        NSString* itemType = [[[NSFileManager defaultManager]
+                               attributesOfItemAtPath:itemFullPath error:nil]
+                              fileType];
+        if([itemType isEqualToString:NSFileTypeSymbolicLink])
+        {
+            //Remove item
+            [[NSFileManager defaultManager] removeItemAtPath:itemFullPath error:nil];
+        }
+    }
     for(SAVR_FluxLoader* flux in _fluxArray)
     {
         if([flux isActive]){

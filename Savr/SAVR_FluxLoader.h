@@ -18,6 +18,9 @@
 // Remove everything elements from directory
 -(BOOL) cleanDirectory;
 
+// Remove old elements from directory
+-(BOOL) cleanFilesOlderThan:(NSTimeInterval)timeInterval;
+
 // Check if flux is active by first looking at user defaults, and then is symlink exists between Application Support and Documents
 -(BOOL) isActive;
 

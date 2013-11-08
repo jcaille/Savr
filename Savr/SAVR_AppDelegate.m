@@ -96,7 +96,7 @@
 #pragma mark - FLUX MANAGER DELEGATE
 
 -(void)resetReloadTimer{
-    _reloadTimer = [NSTimer timerWithTimeInterval:300 target:self selector:@selector(tryReloadingActiveFlux) userInfo:nil repeats:NO];
+    _reloadTimer = [NSTimer timerWithTimeInterval:TIME_BETWEEN_RELOAD_TRY target:self selector:@selector(tryReloadingActiveFlux) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:_reloadTimer forMode:NSRunLoopCommonModes];
 }
 
