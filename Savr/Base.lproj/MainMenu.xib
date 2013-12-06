@@ -79,21 +79,21 @@
                         </connections>
                     </button>
                     <scrollView fixedFrame="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aw5-Rf-KpF">
-                        <rect key="frame" x="20" y="93" width="310" height="115"/>
+                        <rect key="frame" x="20" y="93" width="319" height="115"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" ambiguous="YES" misplaced="YES" id="L7t-Mm-jA9">
-                            <rect key="frame" x="1" y="1" width="308" height="113"/>
+                            <rect key="frame" x="1" y="1" width="317" height="113"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="svh-5x-mbM">
-                                    <rect key="frame" x="0.0" y="0.0" width="308" height="113"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="324" height="113"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn width="305" minWidth="40" maxWidth="1000" id="BP4-JH-63Y">
-                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
+                                        <tableColumn identifier="Flux" editable="NO" width="321" minWidth="40" maxWidth="1000" id="BP4-JH-63Y">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Flux">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -102,7 +102,6 @@
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
-                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         </tableColumn>
                                     </tableColumns>
                                     <connections>
@@ -122,7 +121,7 @@
                         </scroller>
                     </scrollView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kgb-GT-xVO">
-                        <rect key="frame" x="77" y="236" width="197" height="19"/>
+                        <rect key="frame" x="81" y="234" width="197" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Image sources" id="Myk-sy-bit">
                             <font key="font" size="15" name="LucidaGrande"/>
@@ -162,7 +161,7 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yJo-8B-Zc3">
-                        <rect key="frame" x="43" y="216" width="264" height="17"/>
+                        <rect key="frame" x="47" y="216" width="264" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="New images are added eveyday on reddit" id="ArE-yN-dLr">
                             <font key="font" metaFont="system"/>
@@ -171,7 +170,7 @@
                         </textFieldCell>
                     </textField>
                     <box autoresizesSubviews="NO" horizontalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="aqg-bG-zDs">
-                        <rect key="frame" x="345" y="93" width="5" height="165"/>
+                        <rect key="frame" x="352" y="94" width="5" height="165"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

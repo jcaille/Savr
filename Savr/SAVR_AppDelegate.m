@@ -12,7 +12,7 @@
 #import "SAVR_ImgurFluxLoader.h"
 #import "LaunchAtLoginController.h"
 
-#define SAVR_FLUX @[@{@"subreddit" : @"earthporn", @"description" : @"r/Earthporn - Gorgeous images of nature"}, @{@"subreddit" : @"animalporn", @"description" : @"r/Animalporn - Beautiful photos of wildlife"}, @{@"subreddit" : @"skyporn", @"description" : @"r/Skyporn - Amazing pictures of the sky"}, @{@"subreddit" : @"macroporn", @"description" : @"r/Macroporn - Incredible close-up photos"}]
+#define SAVR_FLUX @[@{@"subreddit" : @"earthporn", @"description" : @"Earth - Gorgeous images of nature"}, @{@"subreddit" : @"animalporn", @"description" : @"Animal - Beautiful photos of wildlife"}, @{@"subreddit" : @"skyporn", @"description" : @"Sky - Amazing pictures of the sky"}, @{@"subreddit" : @"macroporn", @"description" : @"Macro - Incredible close-up photos"}, @{@"subreddit" : @"cityporn", @"description" : @"City - Breathtaking views of towns"}]
 
 @implementation SAVR_AppDelegate
 {
@@ -62,6 +62,7 @@
     fluxManager.delegate = self;
     [fluxManager checkIntegrity];
     [_fluxList setDataSource:fluxManager];
+    [_fluxList setSelectionHighlightStyle:NSTableViewSelectionHighlightStyleNone];
 
     
     //Reload active flux
