@@ -122,4 +122,33 @@
     //Returns yes even if flux was not initially active
     return YES;
 }
+
+#pragma mark - RELOADING
+
+//TODO: Should probably return a bool
+-(void) reload:(BOOL)force error:(NSError**)error{
+    //This is probably not called in the main thread
+    NSString *lastReloadDateKey = [_fluxName stringByAppendingString:@"lastReloadDate"];
+    NSDate *lastReloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:lastReloadDateKey];
+    if([self isActive] && (lastReloadDate == nil || [lastReloadDate timeIntervalSinceNow] < - TIME_BETWEEN_FETCHING || force)){
+        //Reload should actually take place
+        [self cleanFilesOlderThan:TIME_BEFORE_DELETING_FILES];
+        if(![self fetch]){
+            // This flux fetched failed
+            NSMutableDictionary* details = [NSMutableDictionary dictionary];
+            [details setValue:[NSString stringWithFormat:@"Fetching of flux %@ failed.", _fluxName] forKey:NSLocalizedDescriptionKey];
+            if (error) {
+                *error = [[NSError alloc] initWithDomain:@"FluxManager" code:1 userInfo:details];
+            }
+
+            //TODO: Notify someone of failure
+            return;
+        } else {
+            //TODO: Notify someone of success
+        }
+    } else {
+        //Reload should not take place
+        //???: Notify ?
+    }
+}
 @end

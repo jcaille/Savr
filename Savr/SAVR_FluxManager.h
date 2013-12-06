@@ -21,6 +21,7 @@
 
 -(void)fluxManagerDidStartReloading:(SAVR_FluxManager*)fluxManager;
 -(void)fluxManagerDidFinishReloading:(SAVR_FluxManager*)fluxManager;
+
 -(void)fluxManager:(SAVR_FluxManager*)fluxManager didFailReloadingWithError:(NSError*)error;
 
 @end

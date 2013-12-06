@@ -23,6 +23,7 @@
 		0F1C2BDF18132F5F009AB0C1 /* SAVR_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C2BDE18132F5F009AB0C1 /* SAVR_Utils.m */; };
 		0F38B4321821B2B7004B41A1 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F38B4311821B2B7004B41A1 /* LaunchAtLoginController.m */; };
 		0F38B43518244221004B41A1 /* SAVR_FluxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F38B43418244221004B41A1 /* SAVR_FluxManager.m */; };
+		0F3BF7C3183A35D100E236C6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0F3BF7C2183A35D100E236C6 /* README.md */; };
 		0F9DD3B91817BE5A00A2CD06 /* UNIBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9DD3981817BE5A00A2CD06 /* UNIBaseRequest.m */; };
 		0F9DD3BA1817BE5A00A2CD06 /* UNIBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9DD3981817BE5A00A2CD06 /* UNIBaseRequest.m */; };
 		0F9DD3BB1817BE5A00A2CD06 /* UNIBodyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9DD39A1817BE5A00A2CD06 /* UNIBodyRequest.m */; };
@@ -96,6 +97,7 @@
 		0F38B43318244221004B41A1 /* SAVR_FluxManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAVR_FluxManager.h; sourceTree = "<group>"; };
 		0F38B43418244221004B41A1 /* SAVR_FluxManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_FluxManager.m; sourceTree = "<group>"; };
 		0F38B4361827A3E7004B41A1 /* Savr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Savr.entitlements; sourceTree = "<group>"; };
+		0F3BF7C2183A35D100E236C6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		0F9DD3971817BE5A00A2CD06 /* UNIBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIBaseRequest.h; sourceTree = "<group>"; };
 		0F9DD3981817BE5A00A2CD06 /* UNIBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNIBaseRequest.m; sourceTree = "<group>"; };
 		0F9DD3991817BE5A00A2CD06 /* UNIBodyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIBodyRequest.h; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 		0F1C2B961813243F009AB0C1 = {
 			isa = PBXGroup;
 			children = (
+				0F3BF7C2183A35D100E236C6 /* README.md */,
 				0F9DD3951817BE5A00A2CD06 /* Unirest */,
 				0F1C2BA81813243F009AB0C1 /* Savr */,
 				0F1C2BC61813243F009AB0C1 /* SavrTests */,
@@ -403,6 +406,7 @@
 			files = (
 				0F1C2BAD1813243F009AB0C1 /* InfoPlist.strings in Resources */,
 				0F1C2BBB1813243F009AB0C1 /* Images.xcassets in Resources */,
+				0F3BF7C3183A35D100E236C6 /* README.md in Resources */,
 				0F1C2BB31813243F009AB0C1 /* Credits.rtf in Resources */,
 				0F1C2BB91813243F009AB0C1 /* MainMenu.xib in Resources */,
 			);

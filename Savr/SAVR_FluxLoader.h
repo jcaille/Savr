@@ -15,6 +15,9 @@
 // Returns success status
 -(BOOL) fetch;
 
+// Wrapper for reloading, that will fetch only if necessary, and wrap the error if something happens
+-(void) reload:(BOOL)force error:(NSError**)error;
+
 // Remove everything elements from directory
 -(BOOL) cleanDirectory;
 

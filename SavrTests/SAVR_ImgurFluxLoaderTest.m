@@ -35,7 +35,7 @@
 
 -(void) test_fluxHasName
 {
-    XCTAssertFalse([fluxLoader->fluxName isEqualToString:@""], "Flux has no name");
+    XCTAssertFalse([fluxLoader.fluxName isEqualToString:@""], "Flux has no name");
 }
 
 #pragma mark - FETCHING

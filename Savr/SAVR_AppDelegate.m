@@ -183,6 +183,7 @@
 }
 
 - (IBAction)openPreferencePane:(id)sender {
+//    [_helpWindow makeKeyAndOrderFront:nil];
     [[NSWorkspace sharedWorkspace] openURL:
      [NSURL fileURLWithPath:@"/System/Library/PreferencePanes/DesktopScreenEffectsPref.prefPane"]];
 }
