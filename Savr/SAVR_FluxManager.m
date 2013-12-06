@@ -101,6 +101,7 @@
     } else {
         NSLog(@"Switching flux %@ ON", fluxClicked.fluxName);
         [fluxClicked setFluxAsActive];
+        [self reloadActiveFlux:NO];
     }
 }
 
