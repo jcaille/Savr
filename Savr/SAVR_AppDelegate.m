@@ -183,7 +183,9 @@
 }
 
 - (IBAction)openPreferencePane:(id)sender {
-//    [_helpWindow makeKeyAndOrderFront:nil];
+    NSPoint ref = {.x = 25, .y = (_helpWindow.screen.frame.size.height - _helpWindow.frame.size.height) / 2};
+    [_helpWindow setFrameOrigin:ref];
+    [_helpWindow makeKeyAndOrderFront:nil];
     [[NSWorkspace sharedWorkspace] openURL:
      [NSURL fileURLWithPath:@"/System/Library/PreferencePanes/DesktopScreenEffectsPref.prefPane"]];
 }

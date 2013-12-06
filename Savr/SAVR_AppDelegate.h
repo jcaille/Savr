@@ -30,6 +30,7 @@
 
 @property (assign) IBOutlet NSWindow *window;
 @property (strong) NSTimer *reloadTimer;
+@property (unsafe_unretained) IBOutlet NSWindow *helpWindow;
 
 // STATUS MENU BUTTONS
 - (IBAction)reloadButtonWasClicked:(id)sender;

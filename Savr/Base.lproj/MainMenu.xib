@@ -39,6 +39,7 @@
                 <outlet property="_notificationCheckbox" destination="xOd-R5-vJB" id="0NX-Ae-qaT"/>
                 <outlet property="applicationShouldStartAtLoginCheckbox" destination="pnB-a8-Mt4" id="LF5-D1-ukb"/>
                 <outlet property="fluxList" destination="svh-5x-mbM" id="0Pe-n0-0sQ"/>
+                <outlet property="helpWindow" destination="bJk-Zm-d6z" id="4Cc-Uf-kzs"/>
                 <outlet property="notificationCheckbox" destination="xOd-R5-vJB" id="qHe-dJ-u55"/>
                 <outlet property="preferenceWindow" destination="rwJ-pH-2dN" id="iJE-Gn-IU2"/>
                 <outlet property="statusMenu" destination="KQg-rX-JxS" id="Uzb-vM-1iw"/>
@@ -187,5 +188,26 @@
             </connections>
         </drawer>
         <customObject id="XGx-Tr-eD7" customClass="LaunchAtLoginController"/>
+        <window title="How to use Savr ?" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="bJk-Zm-d6z">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="109" y="132" width="480" height="168"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <view key="contentView" id="OSD-uc-Q06">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="168"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Os5-Xn-WrT">
+                        <rect key="frame" x="164" y="131" width="152" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="This is the help window" id="0K2-hD-cdF">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+            </view>
+        </window>
     </objects>
 </document>
