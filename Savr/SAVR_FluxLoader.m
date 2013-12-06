@@ -126,7 +126,7 @@
 #pragma mark - RELOADING
 
 //TODO: Should probably return a bool
--(void) reload:(BOOL)force error:(NSError**)error{
+-(BOOL) reload:(BOOL)force error:(NSError**)error{
     //This is probably not called in the main thread
     NSString *lastReloadDateKey = [_fluxName stringByAppendingString:@"lastReloadDate"];
     NSDate *lastReloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:lastReloadDateKey];
@@ -141,14 +141,12 @@
                 *error = [[NSError alloc] initWithDomain:@"FluxManager" code:1 userInfo:details];
             }
 
-            //TODO: Notify someone of failure
-            return;
+            return NO;
         } else {
-            //TODO: Notify someone of success
+            return NO;
         }
     } else {
-        //Reload should not take place
-        //???: Notify ?
+        return YES;
     }
 }
 @end
