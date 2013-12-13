@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Jean Caillé. All rights reserved.
 //
 
+#import <ParseOSX/ParseOSX.h>
+
 #import "SAVR_AppDelegate.h"
 #import "SAVR_Utils.h"
 #import "SAVR_URLFluxLoader.h"
@@ -32,6 +34,14 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    // Init Parse
+    [Parse setApplicationId:@"jeq89GwwfBhAAA5tUtFfSWwNCvKNqyGkBazzXRnU"
+                  clientKey:@"EXe8h3KhUbBlzqDieDki32a4f9ZPyX7ZI5YybRSK"];
+    [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:aNotification.userInfo];
+    
+    // Test Parse
+    [PFAnalytics trackEvent:@"Event:Launch"];
+    
     // File for notification
     [self fileNotifications];
     
