@@ -9,6 +9,7 @@
 #import "SAVR_ImgurFluxLoader.h"
 #import "SAVR_Secrets.h"
 #import "UNIRest.h"
+#import <ParseOSX/ParseOSX.h>
 
 @implementation SAVR_ImgurFluxLoader
 
@@ -111,6 +112,10 @@
     }
     NSString* imagePath = [[self getOrCreateFluxDirectory] stringByAppendingPathComponent:imageName];
     [imageData writeToFile:imagePath atomically:YES];
+    
+    NSString* event_name = [NSString stringWithFormat:@"Event:Flux:%@:fetch_one_image", self.fluxName];
+    [PFAnalytics trackEvent:event_name];
+    
     return YES;
 }
 

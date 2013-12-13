@@ -127,6 +127,7 @@
         NSLog(@"Starting to reload");
         isLoading = YES;
         [_reloadTimer invalidate];
+        [PFAnalytics trackEvent:@"Event:Reload:Start"];
     });
 }
 
@@ -142,7 +143,7 @@
             notification.informativeText = @"Savr just downloaded a bunch of fresh images for your screensaver.";
             notification.soundName = NSUserNotificationDefaultSoundName;
             [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-
+            [PFAnalytics trackEvent:@"Event:Reload:Success"];
         }
     });
 }
@@ -153,6 +154,7 @@
         NSLog(@"Reloading failed : %@", error.localizedDescription);
         [self resetReloadTimer];
         isLoading = NO;
+        [PFAnalytics trackEvent:@"Event:Reload:Failure"];
     });}
 
 #pragma mark - STATUS BAR BUTTONS
@@ -160,16 +162,21 @@
 - (IBAction)openSavrPreferencesWasClicked:(id)sender
 {
     [_preferenceWindow makeKeyAndOrderFront:nil];
+    [PFAnalytics trackEvent:@"Page:Preference_Window"];
+
 }
 
 - (IBAction)reloadButtonWasClicked:(id)sender;
 {
     [self tryReloadingActiveFlux:YES];
+    [PFAnalytics trackEvent:@"Event:Force_Reload"];
+
 }
 
 - (IBAction)quitButtonWasClicked:(id)sender
 {
     [NSApp terminate: nil];
+    [PFAnalytics trackEvent:@"Event:Quit"];
 }
 
 #pragma mark - PREFERENCE MANAGEMENT
@@ -178,9 +185,11 @@
     LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
     if(_applicationShouldStartAtLoginCheckbox.state == NSOnState){
         NSLog(@"Adding application to login list");
+        [PFAnalytics trackEvent:@"Event:Start_at_login:YES"];
         [lc setLaunchAtLogin:YES];
     } else {
         NSLog(@"Removing application from login list");
+        [PFAnalytics trackEvent:@"Event:Start_at_login:NO"];
         [lc setLaunchAtLogin:NO];
     }
 }
@@ -188,8 +197,10 @@
 - (IBAction)notificationCheckboxWasToggled:(id)sender {
     if(_notificationCheckbox.state == NSOnState){
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"notification"];
+        [PFAnalytics trackEvent:@"Event:Send_notifications:YES"];
     } else {
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"notification"];
+        [PFAnalytics trackEvent:@"Event:Send_notifications:NO"];
     }
 }
 
@@ -199,6 +210,7 @@
     [_helpWindow makeKeyAndOrderFront:nil];
     [[NSWorkspace sharedWorkspace] openURL:
      [NSURL fileURLWithPath:@"/System/Library/PreferencePanes/DesktopScreenEffectsPref.prefPane"]];
+    [PFAnalytics trackEvent:@"Page:Help"];
 }
 
 @end
