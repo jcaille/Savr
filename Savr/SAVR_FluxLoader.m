@@ -12,9 +12,9 @@
 
 @implementation SAVR_FluxLoader
 
--(BOOL) fetch
+-(int) fetch
 {
-    return NO;
+    return -1;
 }
 
 #pragma mark - FILE MANAGEMENT
