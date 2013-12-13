@@ -41,15 +41,16 @@
     // TODO : CHECK FOR CONNECTIVITY
     [self.delegate fluxManagerDidStartReloading:self];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        int totalImagesFetched = 0;
         for (SAVR_FluxLoader* fluxLoader in _fluxArray) {
             NSError *error;
-            [fluxLoader reload:force error:&error];
+            totalImagesFetched += [fluxLoader reload:force error:&error];
             if(error){
                 [self.delegate fluxManager:self didFailReloadingWithError:error];
                 return;
             }
         }
-        [self.delegate fluxManagerDidFinishReloading:self];
+        [self.delegate fluxManagerDidFinishReloading:self newImages:totalImagesFetched];
     });
 }
 

@@ -19,11 +19,11 @@
     return self;
 }
 
--(BOOL) fetch
+-(int) fetch
 {
     NSData* imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: myUrl]];
     NSString* imagePath = [[[self getOrCreateFluxDirectory] stringByAppendingPathComponent:@"image"] stringByAppendingPathExtension:@"jpg"];
     [imageData writeToFile:imagePath atomically:YES];
-    return YES;
+    return 1;
 }
 @end

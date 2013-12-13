@@ -20,7 +20,7 @@
 @protocol SAVR_FluxManagerDelegate <NSObject>
 
 -(void)fluxManagerDidStartReloading:(SAVR_FluxManager*)fluxManager;
--(void)fluxManagerDidFinishReloading:(SAVR_FluxManager*)fluxManager;
+-(void)fluxManagerDidFinishReloading:(SAVR_FluxManager*)fluxManager newImages:(int)newImagesCount;
 
 -(void)fluxManager:(SAVR_FluxManager*)fluxManager didFailReloadingWithError:(NSError*)error;
 

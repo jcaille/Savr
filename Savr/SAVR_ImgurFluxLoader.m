@@ -119,20 +119,23 @@
     return YES;
 }
 
--(BOOL) fetch
+-(int) fetch
 {
     NSArray* images = [self fetchSubredditImageList];
     if((int)[images count] == 0){
-        return NO;
+        return 0;
     }
+    int totalImagesFetched = 0;
     for(NSDictionary* image in images){
         if([self isImageAcceptable:image] && ![self isImageAlreadyDownloaded:image]){
-            if(![self fetchSingleImage:image]){
-                return NO;
+            int i = [self fetchSingleImage:image];
+            if(i < 0){
+                return -1;
             }
+            totalImagesFetched += i;
         }
     }
-    return YES;
+    return totalImagesFetched;
 }
 
 

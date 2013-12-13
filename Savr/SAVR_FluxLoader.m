@@ -138,15 +138,15 @@
 
 #pragma mark - RELOADING
 
-//TODO: Should probably return a bool
--(BOOL) reload:(BOOL)force error:(NSError**)error{
+-(int) reload:(BOOL)force error:(NSError**)error{
     //This is probably not called in the main thread
     NSString *lastReloadDateKey = [_fluxName stringByAppendingString:@"lastReloadDate"];
     NSDate *lastReloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:lastReloadDateKey];
     if([self isActive] && (lastReloadDate == nil || [lastReloadDate timeIntervalSinceNow] < - TIME_BETWEEN_FETCHING || force)){
         //Reload should actually take place
         [self cleanFilesOlderThan:TIME_BEFORE_DELETING_FILES];
-        if(![self fetch]){
+        int numbersOfImagesFetched = [self fetch];
+        if(numbersOfImagesFetched < 0){
             // This flux fetched failed
             NSMutableDictionary* details = [NSMutableDictionary dictionary];
             [details setValue:[NSString stringWithFormat:@"Fetching of flux %@ failed.", _fluxName] forKey:NSLocalizedDescriptionKey];
@@ -154,9 +154,9 @@
                 *error = [[NSError alloc] initWithDomain:@"FluxManager" code:1 userInfo:details];
             }
 
-            return NO;
+            return -1;
         } else {
-            return NO;
+            return numbersOfImagesFetched;
         }
     } else {
         return YES;

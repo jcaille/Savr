@@ -131,16 +131,16 @@
     });
 }
 
--(void)fluxManagerDidFinishReloading:(SAVR_FluxManager *)fluxManager{
+-(void)fluxManagerDidFinishReloading:(SAVR_FluxManager *)fluxManager newImages:(int)newImagesCount{
     //Set new timer
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"Finished reloading");
+        NSLog(@"Finished reloading, got %d images", newImagesCount);
         [self resetReloadTimer];
         isLoading = NO;
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"notification"]){
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"notification"] && newImagesCount > 5){
             NSUserNotification *notification = [[NSUserNotification alloc] init];
             notification.title = @"Savr just got new images!";
-            notification.informativeText = @"Savr just downloaded a bunch of fresh images for your screensaver.";
+            notification.informativeText = [NSString stringWithFormat:@"Savr just downloaded %d new images for your screensaver.", newImagesCount];
             notification.soundName = NSUserNotificationDefaultSoundName;
             [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
             [PFAnalytics trackEvent:@"Event:Reload:Success"];

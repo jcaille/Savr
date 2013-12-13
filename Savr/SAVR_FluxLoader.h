@@ -11,12 +11,22 @@
 @interface SAVR_FluxLoader : NSObject
 @property (strong, nonatomic) NSString *fluxName;
 
-// Fetch the data from the source, save it to flux directory
-// Returns success status
--(BOOL) fetch;
+/**
+ *  Fetch images from the flux. This method should be overloaded by respective classes
+ *
+ *  @return The number of images actually fetched. If this value is negative, it means an error has happened
+ */
+-(int) fetch;
 
-// Wrapper for reloading, that will fetch only if necessary, and wrap the error if something happens
--(BOOL) reload:(BOOL)force error:(NSError**)error;
+/**
+ *  Reload the flux
+ *
+ *  @param force If force is YES, the flux will be reloaded no matter what.
+ *  @param error If there is a problem fetching, this parameter will contain a description of the error
+ *
+ *  @return The number of images actually fetched. If this value is negative, it means an error has happened
+ */
+-(int) reload:(BOOL)force error:(NSError**)error;
 
 // Remove everything elements from directory
 -(BOOL) cleanDirectory;
