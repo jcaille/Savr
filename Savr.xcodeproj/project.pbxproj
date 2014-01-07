@@ -31,16 +31,24 @@
 		0F31A1B7185B437E004A7112 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F31A1B6185B437E004A7112 /* Security.framework */; };
 		0F31A1B9185B4386004A7112 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F31A1B8185B4386004A7112 /* SystemConfiguration.framework */; };
 		0F31A1BB185B4488004A7112 /* ParseOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0F31A1A8185B42B1004A7112 /* ParseOSX.framework */; };
-		0F31A1C6185BA4FE004A7112 /* Savr_Logo_1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F31A1BE185BA4FE004A7112 /* Savr_Logo_1024.png */; };
-		0F31A1C7185BA4FE004A7112 /* Savr_Logo_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F31A1BF185BA4FE004A7112 /* Savr_Logo_128.png */; };
-		0F31A1C8185BA4FE004A7112 /* Savr_Logo_16.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F31A1C0185BA4FE004A7112 /* Savr_Logo_16.png */; };
-		0F31A1C9185BA4FE004A7112 /* Savr_Logo_256.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F31A1C1185BA4FE004A7112 /* Savr_Logo_256.png */; };
-		0F31A1CA185BA4FE004A7112 /* Savr_Logo_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F31A1C2185BA4FE004A7112 /* Savr_Logo_32.png */; };
-		0F31A1CB185BA4FE004A7112 /* Savr_Logo_512.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F31A1C3185BA4FE004A7112 /* Savr_Logo_512.png */; };
-		0F31A1CC185BA4FE004A7112 /* Savr_Logo_64.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F31A1C4185BA4FE004A7112 /* Savr_Logo_64.png */; };
 		0F38B4321821B2B7004B41A1 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F38B4311821B2B7004B41A1 /* LaunchAtLoginController.m */; };
 		0F38B43518244221004B41A1 /* SAVR_FluxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F38B43418244221004B41A1 /* SAVR_FluxManager.m */; };
 		0F3BF7C3183A35D100E236C6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0F3BF7C2183A35D100E236C6 /* README.md */; };
+		0F42E125187CABED0004090E /* Savr_Logo_32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E116187CABED0004090E /* Savr_Logo_32@2x.png */; };
+		0F42E128187CABED0004090E /* Savr_Logo_16.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E119187CABED0004090E /* Savr_Logo_16.png */; };
+		0F42E129187CABED0004090E /* Savr_Logo_16@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E11A187CABED0004090E /* Savr_Logo_16@2x.png */; };
+		0F42E12A187CABED0004090E /* Savr_Logo_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E11B187CABED0004090E /* Savr_Logo_32.png */; };
+		0F42E12B187CABED0004090E /* Savr_Logo_64.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E11C187CABED0004090E /* Savr_Logo_64.png */; };
+		0F42E12C187CABED0004090E /* Savr_Logo_64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E11D187CABED0004090E /* Savr_Logo_64@2x.png */; };
+		0F42E12D187CABED0004090E /* Savr_Logo_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E11E187CABED0004090E /* Savr_Logo_128.png */; };
+		0F42E12E187CABED0004090E /* Savr_Logo_128@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E11F187CABED0004090E /* Savr_Logo_128@2x.png */; };
+		0F42E12F187CABED0004090E /* Savr_Logo_256.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E120187CABED0004090E /* Savr_Logo_256.png */; };
+		0F42E130187CABED0004090E /* Savr_Logo_256@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E121187CABED0004090E /* Savr_Logo_256@2x.png */; };
+		0F42E131187CABED0004090E /* Savr_Logo_512.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E122187CABED0004090E /* Savr_Logo_512.png */; };
+		0F42E132187CABED0004090E /* Savr_Logo_512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E123187CABED0004090E /* Savr_Logo_512@2x.png */; };
+		0F42E133187CABED0004090E /* Savr_Logo_1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E124187CABED0004090E /* Savr_Logo_1024.png */; };
+		0F42E13A187CAE210004090E /* Savr_LogoW_16.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E138187CAE210004090E /* Savr_LogoW_16.png */; };
+		0F42E13B187CAE210004090E /* Savr_LogoW_16@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E139187CAE210004090E /* Savr_LogoW_16@2x.png */; };
 		0F9DD3B91817BE5A00A2CD06 /* UNIBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9DD3981817BE5A00A2CD06 /* UNIBaseRequest.m */; };
 		0F9DD3BA1817BE5A00A2CD06 /* UNIBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9DD3981817BE5A00A2CD06 /* UNIBaseRequest.m */; };
 		0F9DD3BB1817BE5A00A2CD06 /* UNIBodyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9DD39A1817BE5A00A2CD06 /* UNIBodyRequest.m */; };
@@ -131,19 +139,27 @@
 		0F31A1B4185B4377004A7112 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0F31A1B6185B437E004A7112 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0F31A1B8185B4386004A7112 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		0F31A1BE185BA4FE004A7112 /* Savr_Logo_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Savr_Logo_1024.png; sourceTree = "<group>"; };
-		0F31A1BF185BA4FE004A7112 /* Savr_Logo_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Savr_Logo_128.png; sourceTree = "<group>"; };
-		0F31A1C0185BA4FE004A7112 /* Savr_Logo_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Savr_Logo_16.png; sourceTree = "<group>"; };
-		0F31A1C1185BA4FE004A7112 /* Savr_Logo_256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Savr_Logo_256.png; sourceTree = "<group>"; };
-		0F31A1C2185BA4FE004A7112 /* Savr_Logo_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Savr_Logo_32.png; sourceTree = "<group>"; };
-		0F31A1C3185BA4FE004A7112 /* Savr_Logo_512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Savr_Logo_512.png; sourceTree = "<group>"; };
-		0F31A1C4185BA4FE004A7112 /* Savr_Logo_64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Savr_Logo_64.png; sourceTree = "<group>"; };
 		0F38B4301821B2B7004B41A1 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		0F38B4311821B2B7004B41A1 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
 		0F38B43318244221004B41A1 /* SAVR_FluxManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAVR_FluxManager.h; sourceTree = "<group>"; };
 		0F38B43418244221004B41A1 /* SAVR_FluxManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_FluxManager.m; sourceTree = "<group>"; };
 		0F38B4361827A3E7004B41A1 /* Savr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Savr.entitlements; sourceTree = "<group>"; };
 		0F3BF7C2183A35D100E236C6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		0F42E116187CABED0004090E /* Savr_Logo_32@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Savr_Logo_32@2x.png"; sourceTree = "<group>"; };
+		0F42E119187CABED0004090E /* Savr_Logo_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Savr_Logo_16.png; sourceTree = "<group>"; };
+		0F42E11A187CABED0004090E /* Savr_Logo_16@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Savr_Logo_16@2x.png"; sourceTree = "<group>"; };
+		0F42E11B187CABED0004090E /* Savr_Logo_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Savr_Logo_32.png; sourceTree = "<group>"; };
+		0F42E11C187CABED0004090E /* Savr_Logo_64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Savr_Logo_64.png; sourceTree = "<group>"; };
+		0F42E11D187CABED0004090E /* Savr_Logo_64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Savr_Logo_64@2x.png"; sourceTree = "<group>"; };
+		0F42E11E187CABED0004090E /* Savr_Logo_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Savr_Logo_128.png; sourceTree = "<group>"; };
+		0F42E11F187CABED0004090E /* Savr_Logo_128@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Savr_Logo_128@2x.png"; sourceTree = "<group>"; };
+		0F42E120187CABED0004090E /* Savr_Logo_256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Savr_Logo_256.png; sourceTree = "<group>"; };
+		0F42E121187CABED0004090E /* Savr_Logo_256@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Savr_Logo_256@2x.png"; sourceTree = "<group>"; };
+		0F42E122187CABED0004090E /* Savr_Logo_512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Savr_Logo_512.png; sourceTree = "<group>"; };
+		0F42E123187CABED0004090E /* Savr_Logo_512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Savr_Logo_512@2x.png"; sourceTree = "<group>"; };
+		0F42E124187CABED0004090E /* Savr_Logo_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Savr_Logo_1024.png; sourceTree = "<group>"; };
+		0F42E138187CAE210004090E /* Savr_LogoW_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Savr_LogoW_16.png; sourceTree = "<group>"; };
+		0F42E139187CAE210004090E /* Savr_LogoW_16@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Savr_LogoW_16@2x.png"; sourceTree = "<group>"; };
 		0F9DD3971817BE5A00A2CD06 /* UNIBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIBaseRequest.h; sourceTree = "<group>"; };
 		0F9DD3981817BE5A00A2CD06 /* UNIBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNIBaseRequest.m; sourceTree = "<group>"; };
 		0F9DD3991817BE5A00A2CD06 /* UNIBodyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIBodyRequest.h; sourceTree = "<group>"; };
@@ -325,13 +341,21 @@
 		0F31A1BC185BA4FE004A7112 /* Logo */ = {
 			isa = PBXGroup;
 			children = (
-				0F31A1BE185BA4FE004A7112 /* Savr_Logo_1024.png */,
-				0F31A1BF185BA4FE004A7112 /* Savr_Logo_128.png */,
-				0F31A1C0185BA4FE004A7112 /* Savr_Logo_16.png */,
-				0F31A1C1185BA4FE004A7112 /* Savr_Logo_256.png */,
-				0F31A1C2185BA4FE004A7112 /* Savr_Logo_32.png */,
-				0F31A1C3185BA4FE004A7112 /* Savr_Logo_512.png */,
-				0F31A1C4185BA4FE004A7112 /* Savr_Logo_64.png */,
+				0F42E138187CAE210004090E /* Savr_LogoW_16.png */,
+				0F42E139187CAE210004090E /* Savr_LogoW_16@2x.png */,
+				0F42E116187CABED0004090E /* Savr_Logo_32@2x.png */,
+				0F42E119187CABED0004090E /* Savr_Logo_16.png */,
+				0F42E11A187CABED0004090E /* Savr_Logo_16@2x.png */,
+				0F42E11B187CABED0004090E /* Savr_Logo_32.png */,
+				0F42E11C187CABED0004090E /* Savr_Logo_64.png */,
+				0F42E11D187CABED0004090E /* Savr_Logo_64@2x.png */,
+				0F42E11E187CABED0004090E /* Savr_Logo_128.png */,
+				0F42E11F187CABED0004090E /* Savr_Logo_128@2x.png */,
+				0F42E120187CABED0004090E /* Savr_Logo_256.png */,
+				0F42E121187CABED0004090E /* Savr_Logo_256@2x.png */,
+				0F42E122187CABED0004090E /* Savr_Logo_512.png */,
+				0F42E123187CABED0004090E /* Savr_Logo_512@2x.png */,
+				0F42E124187CABED0004090E /* Savr_Logo_1024.png */,
 			);
 			path = Logo;
 			sourceTree = "<group>";
@@ -484,18 +508,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F42E12E187CABED0004090E /* Savr_Logo_128@2x.png in Resources */,
+				0F42E131187CABED0004090E /* Savr_Logo_512.png in Resources */,
 				0F1C2BAD1813243F009AB0C1 /* InfoPlist.strings in Resources */,
-				0F31A1C7185BA4FE004A7112 /* Savr_Logo_128.png in Resources */,
 				0F1C2BBB1813243F009AB0C1 /* Images.xcassets in Resources */,
-				0F31A1C8185BA4FE004A7112 /* Savr_Logo_16.png in Resources */,
 				0F3BF7C3183A35D100E236C6 /* README.md in Resources */,
-				0F31A1CA185BA4FE004A7112 /* Savr_Logo_32.png in Resources */,
-				0F31A1CB185BA4FE004A7112 /* Savr_Logo_512.png in Resources */,
-				0F31A1CC185BA4FE004A7112 /* Savr_Logo_64.png in Resources */,
-				0F31A1C9185BA4FE004A7112 /* Savr_Logo_256.png in Resources */,
+				0F42E13A187CAE210004090E /* Savr_LogoW_16.png in Resources */,
+				0F42E12B187CABED0004090E /* Savr_Logo_64.png in Resources */,
+				0F42E133187CABED0004090E /* Savr_Logo_1024.png in Resources */,
+				0F42E12C187CABED0004090E /* Savr_Logo_64@2x.png in Resources */,
+				0F42E129187CABED0004090E /* Savr_Logo_16@2x.png in Resources */,
+				0F42E13B187CAE210004090E /* Savr_LogoW_16@2x.png in Resources */,
+				0F42E128187CABED0004090E /* Savr_Logo_16.png in Resources */,
+				0F42E12D187CABED0004090E /* Savr_Logo_128.png in Resources */,
+				0F42E12A187CABED0004090E /* Savr_Logo_32.png in Resources */,
 				0F1C2BB31813243F009AB0C1 /* Credits.rtf in Resources */,
+				0F42E130187CABED0004090E /* Savr_Logo_256@2x.png in Resources */,
+				0F42E12F187CABED0004090E /* Savr_Logo_256.png in Resources */,
+				0F42E125187CABED0004090E /* Savr_Logo_32@2x.png in Resources */,
 				0F1C2BB91813243F009AB0C1 /* MainMenu.xib in Resources */,
-				0F31A1C6185BA4FE004A7112 /* Savr_Logo_1024.png in Resources */,
+				0F42E132187CABED0004090E /* Savr_Logo_512@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
