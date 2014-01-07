@@ -44,8 +44,6 @@
     [Parse setApplicationId:@"jeq89GwwfBhAAA5tUtFfSWwNCvKNqyGkBazzXRnU"
                   clientKey:@"EXe8h3KhUbBlzqDieDki32a4f9ZPyX7ZI5YybRSK"];
     [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:aNotification.userInfo];
-    
-    // Test Parse
     [PFAnalytics trackEvent:@"Event:Launch"];
     
     // File for notification
@@ -143,7 +141,7 @@
         NSLog(@"Finished reloading, got %d images", newImagesCount);
         [self resetReloadTimer];
         isLoading = NO;
-        if([[NSUserDefaults standardUserDefaults] boolForKey:@"notification"] && newImagesCount > 5){
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"notification"] && newImagesCount > 2){
             NSUserNotification *notification = [[NSUserNotification alloc] init];
             notification.title = @"Savr just got new images!";
             notification.informativeText = [NSString stringWithFormat:@"Savr just downloaded %d new images for your screensaver.", newImagesCount];

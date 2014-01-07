@@ -72,16 +72,26 @@
 #pragma mark - FILTER IMAGES
 
 
--(BOOL) isImageHighRes:(NSDictionary*) image
+-(BOOL)isImageHighRes:(NSDictionary*) image
 {
-    NSNumber* width = [image objectForKey:@"width"];
-    NSNumber* height = [image objectForKey:@"height"];
-    return (MIN(width, height) > [NSNumber numberWithInt:1000]);
+    int width = [[image objectForKey:@"width"] intValue];
+    int height = [[image objectForKey:@"height"] intValue];
+    NSScreen *mainScreen = [[NSScreen screens] firstObject];
+
+    return (1.5 * MIN(width, height) > MAX(mainScreen.frame.size.width, mainScreen.frame.size.height));
+}
+
+-(BOOL)isImageNotPanorama:(NSDictionary*)image
+{
+    int width = [[image objectForKey:@"width"] intValue];
+    int height = [[image objectForKey:@"height"] intValue];
+    float aspectRatio = MAX(width/height, height/width);
+    return aspectRatio < 2.5;
 }
 
 -(BOOL) isImageAcceptable:(NSDictionary*) image
 {
-    return  [self isImageHighRes:image];
+    return  [self isImageHighRes:image] && [self isImageNotPanorama:image];
 }
 
 -(BOOL) isImageAlreadyDownloaded:(NSDictionary*) image
