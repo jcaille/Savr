@@ -78,11 +78,11 @@
                             <action selector="applicationShouldStartAtLoginWasToggled:" target="494" id="EPk-1y-wMc"/>
                         </connections>
                     </button>
-                    <scrollView fixedFrame="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aw5-Rf-KpF">
-                        <rect key="frame" x="20" y="93" width="319" height="115"/>
+                    <scrollView fixedFrame="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="Aw5-Rf-KpF">
+                        <rect key="frame" x="20" y="93" width="317" height="115"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <clipView key="contentView" ambiguous="YES" misplaced="YES" id="L7t-Mm-jA9">
-                            <rect key="frame" x="1" y="1" width="317" height="113"/>
+                        <clipView key="contentView" autoresizesSubviews="NO" ambiguous="YES" misplaced="YES" id="L7t-Mm-jA9">
+                            <rect key="frame" x="1" y="1" width="315" height="113"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="svh-5x-mbM">
@@ -197,7 +197,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Os5-Xn-WrT">
-                        <rect key="frame" x="24" y="126" width="427" height="17"/>
+                        <rect key="frame" x="18" y="131" width="427" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="1. Open the Preference pane, and select &quot;Desktop and Screensaver&quot;" id="0K2-hD-cdF">
                             <font key="font" metaFont="system"/>
@@ -206,7 +206,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mnP-BN-eGS">
-                        <rect key="frame" x="24" y="101" width="220" height="17"/>
+                        <rect key="frame" x="18" y="106" width="220" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="2. Select one of Apple screensaver" id="AFW-Zb-Blr">
                             <font key="font" metaFont="system"/>
@@ -215,7 +215,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="17Z-kE-ZLi">
-                        <rect key="frame" x="24" y="76" width="257" height="17"/>
+                        <rect key="frame" x="18" y="81" width="257" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="3. Click on &quot;Source&quot; > &quot;Choose a Folder&quot;" id="isf-yj-mNN">
                             <font key="font" metaFont="system"/>
@@ -224,7 +224,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8mN-Vu-ER5">
-                        <rect key="frame" x="24" y="51" width="251" height="17"/>
+                        <rect key="frame" x="18" y="56" width="251" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="4. Select the folder at &quot;~/Pictures/Savr&quot;" id="KNI-9d-9qt">
                             <font key="font" metaFont="system"/>
@@ -233,7 +233,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qsH-u2-70l">
-                        <rect key="frame" x="24" y="26" width="233" height="17"/>
+                        <rect key="frame" x="12" y="31" width="233" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="5. Sit back, and let Savr amaze you !" id="y3R-er-gyb">
                             <font key="font" metaFont="system"/>

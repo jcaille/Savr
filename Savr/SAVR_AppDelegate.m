@@ -26,7 +26,11 @@
     // Initialize status bar
     statusItem = statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [statusItem setMenu:statusMenu];
-    [statusItem setTitle:@"Savr"];
+    
+    NSString* imagePath = [[NSBundle mainBundle] pathForResource:@"Savr_Logo_16" ofType:@"png"];
+    NSImage* image = [[NSImage alloc] initWithContentsOfFile:imagePath];
+    
+    [statusItem setImage:image];
     [statusItem setHighlightMode:YES];
 }
 
