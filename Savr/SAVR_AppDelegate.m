@@ -16,9 +16,45 @@
 
 #define SAVR_FLUX @[@{@"subreddit" : @"earthporn", @"description" : @"Earth - Gorgeous images of nature"}, @{@"subreddit" : @"animalporn", @"description" : @"Animal - Beautiful photos of wildlife"}, @{@"subreddit" : @"skyporn", @"description" : @"Sky - Amazing pictures of the sky"}, @{@"subreddit" : @"macroporn", @"description" : @"Macro - Incredible close-up photos"}, @{@"subreddit" : @"cityporn", @"description" : @"City - Breathtaking views of towns"}]
 
+
 @implementation SAVR_AppDelegate
 {
     SAVR_FluxManager* fluxManager;
+}
+
+
+NSArray* SAVR_DEFAULT_FLUX()
+{
+    return @[
+             @{@"subreddit" : @"earthporn",
+               @"userFacingName" : @"Earth",
+               @"description" : @"Mother nature"
+               },
+             @{@"subreddit" : @"animalporn",
+               @"userFacingName" : @"Animals",
+               @"description" : @"Wild or tame"
+               },
+             @{@"subreddit" : @"skyporn",
+               @"userFacingName" : @"Sky",
+               @"description" : @"Amazing clouds"
+               },
+             @{@"subreddit" : @"macroporn",
+               @"userFacingName" : @"Macro",
+               @"description" : @"Incredible close-ups"
+               },
+             @{@"subreddit" : @"cityporn",
+               @"userFacingName" : @"City",
+               @"description" : @"Breathtaking skylines"
+               },
+             @{@"subreddit" : @"winterporn",
+               @"userFacingName" : @"Winter",
+               @"description" : @"Chilling images"
+               },
+             @{@"subreddit" : @"foodporn",
+               @"userFacingName" : @"Food",
+               @"description" : @"Mouth-watering"
+               },
+             ];
 }
 
 - (void)awakeFromNib
@@ -26,10 +62,9 @@
     // Initialize status bar
     statusItem = statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [statusItem setMenu:statusMenu];
-    NSString* imagePath = [[NSBundle mainBundle] pathForResource:@"Savr_Logo_16" ofType:@"png"];
-    NSString* alternateImagePath = [[NSBundle mainBundle] pathForResource:@"Savr_LogoW_16" ofType:@"png"];
-    NSImage* image = [[NSImage alloc] initWithContentsOfFile:imagePath];
-    NSImage* alternateImage = [[NSImage alloc] initWithContentsOfFile:alternateImagePath];
+
+    NSImage* image = [NSImage imageNamed:@"Savr_Logo_16"];
+    NSImage* alternateImage = [NSImage imageNamed:@"Savr_LogoW_16"];
     
     [statusItem setImage:image];
     [statusItem setAlternateImage:alternateImage];
@@ -70,18 +105,40 @@
     } else {
         [_notificationCheckbox setState:NSOffState];
     }
+
+    
     
     //Create flux manager
-    fluxManager = [[SAVR_FluxManager alloc] initWithImgurFlux:SAVR_FLUX];
+    fluxManager = [[SAVR_FluxManager alloc] initWithImgurFlux:SAVR_DEFAULT_FLUX()];
     fluxManager.delegate = self;
     [fluxManager checkIntegrity];
     [_fluxList setDataSource:fluxManager];
     [_fluxList setSelectionHighlightStyle:NSTableViewSelectionHighlightStyleNone];
 
-    
+    // Set status text
+
     //Reload active flux
     isLoading = NO;
     [self tryReloadingActiveFlux:NO];
+}
+
+-(void)updateStatusLabel
+{
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterLongStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en-US"]];
+    formatter.doesRelativeDateFormatting = YES;
+    
+    NSString* formattedLastReloadDate;
+    NSDate* lastReloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastReloadDate"];
+    if (!lastReloadDate) {
+        formattedLastReloadDate = @"Never";
+    } else {
+        formattedLastReloadDate = [formatter stringFromDate:lastReloadDate];
+    }
+    NSString* statusString = [@"Last reloaded : " stringByAppendingString:formattedLastReloadDate];
+    [_statusLabel setStringValue:statusString];
 }
 
 - (void) fileNotifications
@@ -128,6 +185,7 @@
 -(void)fluxManagerDidStartReloading:(SAVR_FluxManager *)fluxManager{
     //Invalidate timer
     dispatch_async(dispatch_get_main_queue(), ^{
+        [_statusLabel setStringValue:@"Reloading"];
         NSLog(@"Starting to reload");
         isLoading = YES;
         [_reloadTimer invalidate];
@@ -138,6 +196,8 @@
 -(void)fluxManagerDidFinishReloading:(SAVR_FluxManager *)fluxManager newImages:(int)newImagesCount{
     //Set new timer
     dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastReloadDate"];
+        [self updateStatusLabel];
         NSLog(@"Finished reloading, got %d images", newImagesCount);
         [self resetReloadTimer];
         isLoading = NO;
@@ -209,12 +269,12 @@
 }
 
 - (IBAction)openPreferencePane:(id)sender {
-    NSPoint ref = {.x = 25, .y = (_helpWindow.screen.frame.size.height - _helpWindow.frame.size.height) / 2};
-    [_helpWindow setFrameOrigin:ref];
-    [_helpWindow makeKeyAndOrderFront:nil];
     [[NSWorkspace sharedWorkspace] openURL:
      [NSURL fileURLWithPath:@"/System/Library/PreferencePanes/DesktopScreenEffectsPref.prefPane"]];
     [PFAnalytics trackEvent:@"Page:Help"];
+    NSPoint ref = {.x = 25, .y = (_helpWindow.screen.frame.size.height - _helpWindow.frame.size.height) / 2};
+    [_helpWindow setFrameOrigin:ref];
+    [_helpWindow makeKeyAndOrderFront:nil];
 }
 
 @end

@@ -159,7 +159,7 @@
             return numbersOfImagesFetched;
         }
     } else {
-        return YES;
+        return 0;
     }
 }
 @end

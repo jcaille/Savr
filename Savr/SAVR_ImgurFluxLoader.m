@@ -22,12 +22,12 @@
     return self;
 }
 
-- (id)initWithSubreddit:(NSString*)subredditName
+-(id)initWithDictionnary:(NSDictionary*)fluxDictionnary;
 {
     self = [super init];
     if (self) {
-        mySubreddit = subredditName;
-        self.fluxName = [[@"Imgur" stringByAppendingString:@"_"] stringByAppendingString:mySubreddit];
+        mySubreddit = [fluxDictionnary objectForKey:@"subreddit"];
+        self.fluxName = [[@"Imgur" stringByAppendingString:@"_"] stringByAppendingString:[fluxDictionnary objectForKey:@"userFacingName"]];
     }
     return self;
 }

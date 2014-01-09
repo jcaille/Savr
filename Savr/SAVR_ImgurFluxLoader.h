@@ -13,5 +13,5 @@
     NSString* mySubreddit;
 }
 
-- (id)initWithSubreddit:(NSString*)subredditName;
+-(id)initWithDictionnary:(NSDictionary*)fluxDictionnary;
 @end

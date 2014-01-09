@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #define TIME_BETWEEN_FETCHING 3600
-#define TIME_BETWEEN_RELOAD_TRY 600
-#define TIME_BEFORE_DELETING_FILES 1209600 // 2 week
+#define TIME_BETWEEN_RELOAD_TRY 1800
+#define TIME_BEFORE_DELETING_FILES 1209600 // 2 weeks
 
 @interface SAVR_Utils : NSObject
 

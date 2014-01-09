@@ -46,4 +46,5 @@
 @property (weak) IBOutlet NSButton *notificationCheckbox;
 @property (weak) IBOutlet NSButton *applicationShouldStartAtLoginCheckbox;
 @property (weak) IBOutlet NSTableView *fluxList;
+@property (weak) IBOutlet NSTextField *statusLabel;
 @end

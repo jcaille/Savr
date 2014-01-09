@@ -23,10 +23,9 @@
         NSMutableArray* tmpHumanReadableDescription = [[NSMutableArray alloc] initWithCapacity:imgurFlux.count];
 
         for(NSDictionary* flux in imgurFlux){
-            NSString* fluxSubreddit = [flux objectForKey:@"subreddit"];
-            [tmpFlux addObject:[[SAVR_ImgurFluxLoader alloc] initWithSubreddit:fluxSubreddit]];
+            [tmpFlux addObject:[[SAVR_ImgurFluxLoader alloc] initWithDictionnary:flux]];
             
-            NSString* fluxHumanReadableDescription = [flux objectForKey:@"description"];
+            NSString* fluxHumanReadableDescription = [[[flux objectForKey:@"userFacingName"] stringByAppendingString:@" — "] stringByAppendingString:[flux objectForKey:@"description"]];
             [tmpHumanReadableDescription addObject:fluxHumanReadableDescription];
         }
         _fluxArray = tmpFlux;
