@@ -19,9 +19,11 @@
 #define kSAVRFluxIsActiveKeySuffix @"fluxIsActive"
 #define kSAVRFluxLastReloadDateKeySuffix @"lastReloadDate"
 
+
 @interface SAVR_Utils : NSObject
 
 +(NSString*) getOrCreateUserVisibleDirectory;
 +(NSString*) getOrCreateApplicationSupportDirectory;
+NSArray* SAVR_DEFAULT_FLUX();
 
 @end

@@ -20,40 +20,6 @@
 }
 
 
-NSArray* SAVR_DEFAULT_FLUX()
-{
-    return @[
-             @{@"subreddit" : @"earthporn",
-               @"userFacingName" : @"Earth",
-               @"description" : @"Mother nature"
-               },
-             @{@"subreddit" : @"animalporn",
-               @"userFacingName" : @"Animals",
-               @"description" : @"Wild or tame"
-               },
-             @{@"subreddit" : @"skyporn",
-               @"userFacingName" : @"Sky",
-               @"description" : @"Amazing clouds"
-               },
-             @{@"subreddit" : @"macroporn",
-               @"userFacingName" : @"Macro",
-               @"description" : @"Incredible close-ups"
-               },
-             @{@"subreddit" : @"cityporn",
-               @"userFacingName" : @"City",
-               @"description" : @"Breathtaking skylines"
-               },
-             @{@"subreddit" : @"winterporn",
-               @"userFacingName" : @"Winter",
-               @"description" : @"Chilling images"
-               },
-             @{@"subreddit" : @"foodporn",
-               @"userFacingName" : @"Food",
-               @"description" : @"Mouth-watering"
-               },
-             ];
-}
-
 - (void)awakeFromNib
 {
     // Initialize status bar
