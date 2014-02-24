@@ -52,7 +52,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="109" y="132" width="609" height="243"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <view key="contentView" id="piK-MP-3s7">
                 <rect key="frame" x="0.0" y="0.0" width="609" height="243"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -211,14 +211,14 @@
         <window title="How to use Savr ?" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="bJk-Zm-d6z">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="109" y="132" width="480" height="168"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="contentRect" x="109" y="132" width="480" height="189"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <view key="contentView" id="OSD-uc-Q06">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="168"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="189"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Os5-Xn-WrT">
-                        <rect key="frame" x="18" y="131" width="427" height="17"/>
+                        <rect key="frame" x="18" y="152" width="427" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="1. Open the Preference pane, and select &quot;Desktop and Screensaver&quot;" id="0K2-hD-cdF">
                             <font key="font" metaFont="system"/>
@@ -227,7 +227,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mnP-BN-eGS">
-                        <rect key="frame" x="18" y="106" width="220" height="17"/>
+                        <rect key="frame" x="18" y="127" width="220" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="2. Select one of Apple screensaver" id="AFW-Zb-Blr">
                             <font key="font" metaFont="system"/>
@@ -236,7 +236,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="17Z-kE-ZLi">
-                        <rect key="frame" x="18" y="81" width="257" height="17"/>
+                        <rect key="frame" x="18" y="102" width="257" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="3. Click on &quot;Source&quot; > &quot;Choose a Folder&quot;" id="isf-yj-mNN">
                             <font key="font" metaFont="system"/>
@@ -245,7 +245,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8mN-Vu-ER5">
-                        <rect key="frame" x="18" y="56" width="251" height="17"/>
+                        <rect key="frame" x="18" y="77" width="251" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="4. Select the folder at &quot;~/Pictures/Savr&quot;" id="KNI-9d-9qt">
                             <font key="font" metaFont="system"/>
@@ -254,7 +254,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qsH-u2-70l">
-                        <rect key="frame" x="12" y="31" width="233" height="17"/>
+                        <rect key="frame" x="12" y="52" width="233" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="5. Sit back, and let Savr amaze you !" id="y3R-er-gyb">
                             <font key="font" metaFont="system"/>
@@ -262,8 +262,31 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VDT-kK-k8P">
+                        <rect key="frame" x="189" y="13" width="84" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Got it !" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lHp-1E-y0U">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="closeHelpPanel:" target="494" id="DJg-so-ICv"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
         </window>
+        <buttonCell type="push" title="Got it !" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="G6S-vC-z0Y">
+            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+            <font key="font" metaFont="system"/>
+        </buttonCell>
+        <buttonCell type="push" title="Got it !" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eBa-wi-8wd">
+            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+            <font key="font" metaFont="system"/>
+        </buttonCell>
+        <buttonCell type="push" title="Got it !" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cRf-hF-r6v">
+            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+            <font key="font" metaFont="system"/>
+        </buttonCell>
     </objects>
 </document>

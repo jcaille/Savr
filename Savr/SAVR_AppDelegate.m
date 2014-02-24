@@ -276,5 +276,8 @@ NSArray* SAVR_DEFAULT_FLUX()
     [_helpWindow setFrameOrigin:ref];
     [_helpWindow makeKeyAndOrderFront:nil];
 }
+- (IBAction)closeHelpPanel:(id)sender {
+    [_helpWindow orderOut:self];
+}
 
 @end
