@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -52,7 +52,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="109" y="132" width="609" height="243"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
             <view key="contentView" id="piK-MP-3s7">
                 <rect key="frame" x="0.0" y="0.0" width="609" height="243"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -79,21 +79,21 @@
                             <action selector="applicationShouldStartAtLoginWasToggled:" target="494" id="EPk-1y-wMc"/>
                         </connections>
                     </button>
-                    <scrollView fixedFrame="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="Aw5-Rf-KpF">
+                    <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aw5-Rf-KpF">
                         <rect key="frame" x="20" y="66" width="317" height="115"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <clipView key="contentView" autoresizesSubviews="NO" ambiguous="YES" misplaced="YES" id="L7t-Mm-jA9">
+                        <clipView key="contentView" autoresizesSubviews="NO" id="L7t-Mm-jA9">
                             <rect key="frame" x="1" y="1" width="315" height="113"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="svh-5x-mbM">
-                                    <rect key="frame" x="0.0" y="0.0" width="324" height="113"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="315" height="113"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <size key="intercellSpacing" width="3" height="2"/>
+                                    <size key="intercellSpacing" width="0.0" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="Flux" editable="NO" width="321" minWidth="40" maxWidth="1000" id="BP4-JH-63Y">
+                                        <tableColumn identifier="Flux" editable="NO" width="315" minWidth="40" maxWidth="1000" id="BP4-JH-63Y">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Flux">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -112,6 +112,10 @@
                             </subviews>
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="115" id="2n5-hH-w3r"/>
+                            <constraint firstAttribute="width" constant="317" id="5wl-P1-DY3"/>
+                        </constraints>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="mfO-B7-j5e">
                             <rect key="frame" x="-100" y="-100" width="238" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
@@ -121,9 +125,12 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kgb-GT-xVO">
-                        <rect key="frame" x="81" y="207" width="197" height="19"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kgb-GT-xVO">
+                        <rect key="frame" x="18" y="207" width="321" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="317" id="C07-dZ-PNU"/>
+                        </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Image sources" id="Myk-sy-bit">
                             <font key="font" size="15" name="LucidaGrande"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -161,9 +168,12 @@
                             <action selector="reloadButtonWasClicked:" target="494" id="FwV-Un-ZUe"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yJo-8B-Zc3">
-                        <rect key="frame" x="47" y="189" width="264" height="17"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yJo-8B-Zc3">
+                        <rect key="frame" x="18" y="189" width="321" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="317" id="qhq-WW-Ywb"/>
+                        </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="New images are added eveyday on reddit" id="ArE-yN-dLr">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -180,6 +190,14 @@
                         </textFieldCell>
                     </textField>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="Aw5-Rf-KpF" firstAttribute="leading" secondItem="piK-MP-3s7" secondAttribute="leading" constant="20" id="0b1-lD-dYR"/>
+                    <constraint firstItem="yJo-8B-Zc3" firstAttribute="top" secondItem="Kgb-GT-xVO" secondAttribute="bottom" constant="1" id="1nk-je-KTJ"/>
+                    <constraint firstItem="Kgb-GT-xVO" firstAttribute="leading" secondItem="piK-MP-3s7" secondAttribute="leading" constant="20" id="A4D-dL-4OS"/>
+                    <constraint firstItem="yJo-8B-Zc3" firstAttribute="leading" secondItem="piK-MP-3s7" secondAttribute="leading" constant="20" id="Huq-gO-xYi"/>
+                    <constraint firstItem="Aw5-Rf-KpF" firstAttribute="top" secondItem="yJo-8B-Zc3" secondAttribute="bottom" constant="8" id="QVw-OX-7kk"/>
+                    <constraint firstItem="Kgb-GT-xVO" firstAttribute="top" secondItem="piK-MP-3s7" secondAttribute="top" constant="17" id="Xua-fX-LPU"/>
+                </constraints>
             </view>
         </window>
         <drawer trailingOffset="15" id="yox-rx-SzX">
@@ -194,7 +212,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="109" y="132" width="480" height="168"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
             <view key="contentView" id="OSD-uc-Q06">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="168"/>
                 <autoresizingMask key="autoresizingMask"/>

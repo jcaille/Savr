@@ -712,7 +712,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/jean/Devel/Savr/Savr,
+					"$(SRCROOT)/Savr",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Savr/Savr-Prefix.pch";
@@ -731,7 +731,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/jean/Devel/Savr/Savr,
+					"$(SRCROOT)/Savr",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Savr/Savr-Prefix.pch";
