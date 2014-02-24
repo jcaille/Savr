@@ -67,7 +67,7 @@
 
 -(BOOL) isActive
 {
-    NSString* userDefaultKey = [_fluxName stringByAppendingString:@"fluxIsActive"];
+    NSString* userDefaultKey = [_fluxName stringByAppendingString:kSAVRFluxIsActiveKeySuffix];
     NSUserDefaults* savrDefaults = [NSUserDefaults standardUserDefaults];
     
     // If key does not exist, we set the flux as active by default and set the key
@@ -93,7 +93,7 @@
     }
     
     // Modify NSUSerDefault to save state
-    NSString* userDefaultKey = [_fluxName stringByAppendingString:@"fluxIsActive"];
+    NSString* userDefaultKey = [_fluxName stringByAppendingString:kSAVRFluxIsActiveKeySuffix];
     NSUserDefaults* savrDefaults = [NSUserDefaults standardUserDefaults];
     [savrDefaults setBool:YES forKey:userDefaultKey];
     [savrDefaults synchronize];
@@ -140,7 +140,7 @@
 
 -(int) reload:(BOOL)force error:(NSError**)error{
     //This is probably not called in the main thread
-    NSString *lastReloadDateKey = [_fluxName stringByAppendingString:@"lastReloadDate"];
+    NSString *lastReloadDateKey = [_fluxName stringByAppendingString:kSAVRFluxLastReloadDateKeySuffix];
     NSDate *lastReloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:lastReloadDateKey];
     if([self isActive] && (lastReloadDate == nil || [lastReloadDate timeIntervalSinceNow] < - TIME_BETWEEN_FETCHING || force)){
         //Reload should actually take place

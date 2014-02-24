@@ -14,9 +14,6 @@
 #import "SAVR_ImgurFluxLoader.h"
 #import "LaunchAtLoginController.h"
 
-#define SAVR_FLUX @[@{@"subreddit" : @"earthporn", @"description" : @"Earth - Gorgeous images of nature"}, @{@"subreddit" : @"animalporn", @"description" : @"Animal - Beautiful photos of wildlife"}, @{@"subreddit" : @"skyporn", @"description" : @"Sky - Amazing pictures of the sky"}, @{@"subreddit" : @"macroporn", @"description" : @"Macro - Incredible close-up photos"}, @{@"subreddit" : @"cityporn", @"description" : @"City - Breathtaking views of towns"}]
-
-
 @implementation SAVR_AppDelegate
 {
     SAVR_FluxManager* fluxManager;
@@ -97,10 +94,10 @@ NSArray* SAVR_DEFAULT_FLUX()
     }
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    if([defaults valueForKey:@"notification"] == nil){
-        [defaults setBool:YES forKey:@"notification"];
+    if([defaults valueForKey:kSAVRShouldSendNotificationsWhenDoneFetchingKey] == nil){
+        [defaults setBool:YES forKey:kSAVRShouldSendNotificationsWhenDoneFetchingKey];
     }
-    if([defaults boolForKey:@"notification"]){
+    if([defaults boolForKey:kSAVRShouldSendNotificationsWhenDoneFetchingKey]){
         [_notificationCheckbox setState:NSOnState];
     } else {
         [_notificationCheckbox setState:NSOffState];
@@ -131,7 +128,7 @@ NSArray* SAVR_DEFAULT_FLUX()
     formatter.doesRelativeDateFormatting = YES;
     
     NSString* formattedLastReloadDate;
-    NSDate* lastReloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastReloadDate"];
+    NSDate* lastReloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:kSAVRLastReloadDateKey];
     if (!lastReloadDate) {
         formattedLastReloadDate = @"Never";
     } else {
