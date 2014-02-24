@@ -17,7 +17,7 @@
     self = [super init];
     if (self) {
         mySubreddit = @"earthporn";
-        self.fluxName = [[@"Imgur" stringByAppendingString:@"_"] stringByAppendingString:mySubreddit];
+        self.fluxName = [[@"Imgur" stringByAppendingString:@"_"] stringByAppendingString:@"earth"];
     }
     return self;
 }
