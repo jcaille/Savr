@@ -12,7 +12,6 @@
 @interface SAVR_AppDelegate : NSObject <NSApplicationDelegate, SAVR_FluxManagerDelegate>
 {
     // STATUS MENU
-    IBOutlet NSMenu *statusMenu;
     NSStatusItem * statusItem;
     
     // PREFERENCE PANE
@@ -29,11 +28,6 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (strong) NSTimer *reloadTimer;
 @property (unsafe_unretained) IBOutlet NSWindow *helpWindow;
-
-// STATUS MENU BUTTONS
-- (IBAction)reloadButtonWasClicked:(id)sender;
-- (IBAction)openSavrPreferencesWasClicked:(id)sender;
-- (IBAction)quitButtonWasClicked:(id)sender;
 
 // PREFERENCE PANE INTERACTION
 - (IBAction)openPreferencePane:(id)sender;

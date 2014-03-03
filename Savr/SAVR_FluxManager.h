@@ -11,7 +11,10 @@
 @protocol SAVR_FluxManagerDelegate;
 
 @interface SAVR_FluxManager : NSObject <NSTableViewDataSource>
+
 @property (nonatomic, weak) id<SAVR_FluxManagerDelegate> delegate;
+
++(id) sharedInstance;
 -(id) initWithImgurFlux:(NSArray*)imgurFlux;
 -(void) reloadActiveFlux:(BOOL)force;
 -(void) checkIntegrity;
@@ -21,7 +24,6 @@
 
 -(void)fluxManagerDidStartReloading:(SAVR_FluxManager*)fluxManager;
 -(void)fluxManagerDidFinishReloading:(SAVR_FluxManager*)fluxManager newImages:(int)newImagesCount;
-
 -(void)fluxManager:(SAVR_FluxManager*)fluxManager didFailReloadingWithError:(NSError*)error;
 
 @end

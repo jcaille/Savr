@@ -17,19 +17,19 @@
                 <menuItem title="Reload" id="gUW-B0-Dne">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="reloadButtonWasClicked:" target="494" id="FWi-U4-KpK"/>
+                        <action selector="reloadButtonWasClicked:" target="ezh-xx-Rnv" id="NNF-Y7-IIw"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Open Preferences" id="u6A-KE-ACE">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="openSavrPreferencesWasClicked:" target="494" id="0Hs-kN-ou8"/>
+                        <action selector="openSavrPreferencesWasClicked:" target="ezh-xx-Rnv" id="Ggo-bS-hBb"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Quit" id="W3w-j4-cis">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="quitButtonWasClicked:" target="494" id="BDW-Ec-yyA"/>
+                        <action selector="quitButtonWasClicked:" target="ezh-xx-Rnv" id="m2q-Rw-D6f"/>
                     </connections>
                 </menuItem>
             </items>
@@ -43,7 +43,6 @@
                 <outlet property="notificationCheckbox" destination="xOd-R5-vJB" id="AcN-Ts-QxF"/>
                 <outlet property="preferenceWindow" destination="rwJ-pH-2dN" id="iJE-Gn-IU2"/>
                 <outlet property="statusLabel" destination="3xA-Hn-LOe" id="qLI-PE-U8X"/>
-                <outlet property="statusMenu" destination="KQg-rX-JxS" id="Uzb-vM-1iw"/>
                 <outlet property="window" destination="rwJ-pH-2dN" id="7CQ-yW-3ZK"/>
             </connections>
         </customObject>
@@ -287,5 +286,11 @@
                 </subviews>
             </view>
         </window>
+        <customObject id="ezh-xx-Rnv" customClass="SAVR_StatusBarIconController">
+            <connections>
+                <outlet property="preferenceWindow" destination="rwJ-pH-2dN" id="MYm-wp-UHe"/>
+                <outlet property="statusMenu" destination="KQg-rX-JxS" id="rnm-wh-Kzh"/>
+            </connections>
+        </customObject>
     </objects>
 </document>

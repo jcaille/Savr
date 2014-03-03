@@ -12,11 +12,12 @@
 #import "SAVR_Utils.h"
 #import "SAVR_URLFluxLoader.h"
 #import "SAVR_ImgurFluxLoader.h"
+#import "SAVR_StatusBarIconController.h"
 #import "LaunchAtLoginController.h"
 
 @implementation SAVR_AppDelegate
 {
-    SAVR_FluxManager* fluxManager;
+    SAVR_FluxManager* _fluxManager;
 }
 
 #pragma mark - APP LIFE CYCLE
@@ -34,10 +35,9 @@
     [SAVR_Utils getOrCreateUserVisibleDirectory];
 
     //Create flux manager
-    fluxManager = [[SAVR_FluxManager alloc] initWithImgurFlux:SAVR_DEFAULT_FLUX()];
-    fluxManager.delegate = self;
-    [fluxManager checkIntegrity];
-    [_fluxList setDataSource:fluxManager];
+    _fluxManager = [SAVR_FluxManager sharedInstance];
+    _fluxManager.delegate = self;
+    [_fluxList setDataSource:_fluxManager];
     [_fluxList setSelectionHighlightStyle:NSTableViewSelectionHighlightStyleNone];
     isLoading = NO;
     
@@ -69,7 +69,6 @@
         [_hideStatusBarIconCheckbox setState:NSOnState];
     } else {
         [_hideStatusBarIconCheckbox setState:NSOffState];
-        [self showStatusBarIcon];
     }
     
 }
@@ -89,13 +88,7 @@
 {
     NSLog(@"Did finish Launching");
     [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:aNotification.userInfo];
-    [PFAnalytics trackEvent:@"Event:Launch"];
-
-    // File for notification
-    [self fileNotifications];
-    
-    //Reload active flux
-    [self tryReloadingActiveFlux:NO];
+    [PFAnalytics trackEvent:@"Event:Launch"];    
 }
 
 -(void)updateStatusLabel
@@ -117,54 +110,12 @@
     [_statusLabel setStringValue:statusString];
 }
 
-- (void) fileNotifications
-{
-    NSLog(@"Filing for notification");
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
-                                                           selector: @selector(receiveSleepNote:)
-                                                               name: NSWorkspaceWillSleepNotification object: NULL];
-    
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
-                                                           selector: @selector(receiveWakeNote:)
-                                                               name: NSWorkspaceDidWakeNotification object: NULL];
-}
-
-- (void) receiveWakeNote: (NSNotification*) note
-{
-    NSLog(@"Waking up - Reloading flux, no force");
-    [self tryReloadingActiveFlux:NO];
-}
-
-- (void) receiveSleepNote: (NSNotification*) note
-{
-    NSLog(@"Going to sleep - Invalidate timer");
-    [_reloadTimer invalidate];
-}
-
 #pragma mark - FLUX MANAGER DELEGATE
-
--(void)resetReloadTimer{
-    _reloadTimer = [NSTimer timerWithTimeInterval:TIME_BETWEEN_RELOAD_TRY target:self selector:@selector(tryReloadingActiveFlux) userInfo:nil repeats:NO];
-    [[NSRunLoop mainRunLoop] addTimer:_reloadTimer forMode:NSRunLoopCommonModes];
-}
-
--(void)tryReloadingActiveFlux{
-    [fluxManager reloadActiveFlux:NO];
-}
-
--(void)tryReloadingActiveFlux:(BOOL) force{
-    if(!isLoading){
-        [fluxManager reloadActiveFlux:force];
-    }
-}
 
 -(void)fluxManagerDidStartReloading:(SAVR_FluxManager *)fluxManager{
     //Invalidate timer
     dispatch_async(dispatch_get_main_queue(), ^{
         [_statusLabel setStringValue:@"Reloading"];
-        NSLog(@"Starting to reload");
-        isLoading = YES;
-        [_reloadTimer invalidate];
         [PFAnalytics trackEvent:@"Event:Reload:Start"];
     });
 }
@@ -172,11 +123,7 @@
 -(void)fluxManagerDidFinishReloading:(SAVR_FluxManager *)fluxManager newImages:(int)newImagesCount{
     //Set new timer
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastReloadDate"];
         [self updateStatusLabel];
-        NSLog(@"Finished reloading, got %d images", newImagesCount);
-        [self resetReloadTimer];
-        isLoading = NO;
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"notification"] && newImagesCount > 2){
             NSUserNotification *notification = [[NSUserNotification alloc] init];
             notification.title = @"Savr just got new images!";
@@ -191,33 +138,8 @@
 -(void)fluxManager:(SAVR_FluxManager *)fluxManager didFailReloadingWithError:(NSError *)error{
     //Set new timer
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"Reloading failed : %@", error.localizedDescription);
-        [self resetReloadTimer];
-        isLoading = NO;
         [PFAnalytics trackEvent:@"Event:Reload:Failure"];
     });}
-
-#pragma mark - STATUS BAR BUTTONS
-
-- (IBAction)openSavrPreferencesWasClicked:(id)sender
-{
-    [_preferenceWindow makeKeyAndOrderFront:nil];
-    [PFAnalytics trackEvent:@"Page:Preference_Window"];
-
-}
-
-- (IBAction)reloadButtonWasClicked:(id)sender;
-{
-    [self tryReloadingActiveFlux:YES];
-    [PFAnalytics trackEvent:@"Event:Force_Reload"];
-
-}
-
-- (IBAction)quitButtonWasClicked:(id)sender
-{
-    [NSApp terminate: nil];
-    [PFAnalytics trackEvent:@"Event:Quit"];
-}
 
 #pragma mark - PREFERENCE MANAGEMENT
 
@@ -240,12 +162,10 @@
         NSLog(@"Hide status bar icon");
         [PFAnalytics trackEvent:@"Event:Hide_status_bar_icon:YES"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kSAVRHideStatusBarIconKey];
-        [self hideStatusBarIcon];
     } else {
         NSLog(@"Show status bar icon");
         [PFAnalytics trackEvent:@"Event:Hide_status_bar_icon:NO"];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kSAVRHideStatusBarIconKey];
-        [self showStatusBarIcon];
     }
 }
 
@@ -257,25 +177,6 @@
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kSAVRShouldSendNotificationsWhenDoneFetchingKey];
         [PFAnalytics trackEvent:@"Event:Send_notifications:NO"];
     }
-}
-
--(void)showStatusBarIcon
-{
-    statusItem  = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    [statusItem setMenu:statusMenu];
-    
-    NSImage* image = [NSImage imageNamed:@"Savr_Logo_16"];
-    NSImage* alternateImage = [NSImage imageNamed:@"Savr_LogoW_16"];
-    
-    [statusItem setImage:image];
-    [statusItem setAlternateImage:alternateImage];
-    [statusItem setHighlightMode:YES];
-}
-
--(void)hideStatusBarIcon
-{
-    [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
-    statusItem = nil;
 }
 
 
