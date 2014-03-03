@@ -15,10 +15,10 @@
 // NSDefaults Keys
 
 #define kSAVRShouldSendNotificationsWhenDoneFetchingKey @"notification"
+#define kSAVRHideStatusBarIconKey @"hideStatusBarIcon"
 #define kSAVRLastReloadDateKey @"lastReloadDate"
 #define kSAVRFluxIsActiveKeySuffix @"fluxIsActive"
 #define kSAVRFluxLastReloadDateKeySuffix @"lastReloadDate"
-
 
 @interface SAVR_Utils : NSObject
 

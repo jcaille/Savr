@@ -19,39 +19,30 @@
     SAVR_FluxManager* fluxManager;
 }
 
+#pragma mark - APP LIFE CYCLE
 
 - (void)awakeFromNib
 {
-    // Initialize status bar
-    statusItem = statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    [statusItem setMenu:statusMenu];
-
-    NSImage* image = [NSImage imageNamed:@"Savr_Logo_16"];
-    NSImage* alternateImage = [NSImage imageNamed:@"Savr_LogoW_16"];
+    NSLog(@"Awake form nib");
     
-    [statusItem setImage:image];
-    [statusItem setAlternateImage:alternateImage];
-    [statusItem setHighlightMode:YES];
-}
-
-#pragma mark - APP LIFE CYCLE
-
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
-    // Init Parse
+    // Initialize Parse
     [Parse setApplicationId:@"jeq89GwwfBhAAA5tUtFfSWwNCvKNqyGkBazzXRnU"
                   clientKey:@"EXe8h3KhUbBlzqDieDki32a4f9ZPyX7ZI5YybRSK"];
-    [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:aNotification.userInfo];
-    [PFAnalytics trackEvent:@"Event:Launch"];
     
-    // File for notification
-    [self fileNotifications];
-    
-    // Make sure that folders exist and state is correct for each flux
+    // Make sure that folders exist
     [SAVR_Utils getOrCreateApplicationSupportDirectory];
     [SAVR_Utils getOrCreateUserVisibleDirectory];
 
-    // Init preference pane state
+    //Create flux manager
+    fluxManager = [[SAVR_FluxManager alloc] initWithImgurFlux:SAVR_DEFAULT_FLUX()];
+    fluxManager.delegate = self;
+    [fluxManager checkIntegrity];
+    [_fluxList setDataSource:fluxManager];
+    [_fluxList setSelectionHighlightStyle:NSTableViewSelectionHighlightStyleNone];
+    isLoading = NO;
+    
+    /*** Initialize the state of the UI ***/
+    // Lauch at login checkbox
     LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
     if ([lc launchAtLogin]) {
         [_applicationShouldStartAtLoginCheckbox setState:NSOnState];
@@ -59,6 +50,7 @@
         [_applicationShouldStartAtLoginCheckbox setState:NSOffState];
     }
     
+    // Notification checkbox
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     if([defaults valueForKey:kSAVRShouldSendNotificationsWhenDoneFetchingKey] == nil){
         [defaults setBool:YES forKey:kSAVRShouldSendNotificationsWhenDoneFetchingKey];
@@ -68,20 +60,41 @@
     } else {
         [_notificationCheckbox setState:NSOffState];
     }
-
     
+    // Hide status bar icon checkbox
+    if([defaults valueForKey:kSAVRHideStatusBarIconKey] ==nil){
+        [defaults setBool:NO forKey:kSAVRHideStatusBarIconKey];
+    }
+    if([defaults boolForKey:kSAVRHideStatusBarIconKey]){
+        [_hideStatusBarIconCheckbox setState:NSOnState];
+    } else {
+        [_hideStatusBarIconCheckbox setState:NSOffState];
+        [self showStatusBarIcon];
+    }
     
-    //Create flux manager
-    fluxManager = [[SAVR_FluxManager alloc] initWithImgurFlux:SAVR_DEFAULT_FLUX()];
-    fluxManager.delegate = self;
-    [fluxManager checkIntegrity];
-    [_fluxList setDataSource:fluxManager];
-    [_fluxList setSelectionHighlightStyle:NSTableViewSelectionHighlightStyleNone];
+}
 
-    // Set status text
+-(void)applicationDidBecomeActive:(NSNotification *)notification
+{
+    NSLog(@"Did become active");
+    if(isAlreadyLaunched){
+        // Application is not starting up
+        [_preferenceWindow makeKeyAndOrderFront:nil];
+        [PFAnalytics trackEvent:@"Page:Preference_Window"];
+    }
+    isAlreadyLaunched = YES;
+}
 
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+    NSLog(@"Did finish Launching");
+    [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:aNotification.userInfo];
+    [PFAnalytics trackEvent:@"Event:Launch"];
+
+    // File for notification
+    [self fileNotifications];
+    
     //Reload active flux
-    isLoading = NO;
     [self tryReloadingActiveFlux:NO];
 }
 
@@ -221,15 +234,52 @@
     }
 }
 
+- (IBAction)hideStatusBarIconWasToggled:(id)sender {
+    if(_hideStatusBarIconCheckbox.state == NSOnState)
+    {
+        NSLog(@"Hide status bar icon");
+        [PFAnalytics trackEvent:@"Event:Hide_status_bar_icon:YES"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kSAVRHideStatusBarIconKey];
+        [self hideStatusBarIcon];
+    } else {
+        NSLog(@"Show status bar icon");
+        [PFAnalytics trackEvent:@"Event:Hide_status_bar_icon:NO"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kSAVRHideStatusBarIconKey];
+        [self showStatusBarIcon];
+    }
+}
+
 - (IBAction)notificationCheckboxWasToggled:(id)sender {
     if(_notificationCheckbox.state == NSOnState){
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"notification"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kSAVRShouldSendNotificationsWhenDoneFetchingKey];
         [PFAnalytics trackEvent:@"Event:Send_notifications:YES"];
     } else {
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"notification"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kSAVRShouldSendNotificationsWhenDoneFetchingKey];
         [PFAnalytics trackEvent:@"Event:Send_notifications:NO"];
     }
 }
+
+-(void)showStatusBarIcon
+{
+    statusItem  = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    [statusItem setMenu:statusMenu];
+    
+    NSImage* image = [NSImage imageNamed:@"Savr_Logo_16"];
+    NSImage* alternateImage = [NSImage imageNamed:@"Savr_LogoW_16"];
+    
+    [statusItem setImage:image];
+    [statusItem setAlternateImage:alternateImage];
+    [statusItem setHighlightMode:YES];
+}
+
+-(void)hideStatusBarIcon
+{
+    [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
+    statusItem = nil;
+}
+
+
+#pragma mark - HELP AND PREFERENCE PANE
 
 - (IBAction)openPreferencePane:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -36,11 +36,11 @@
         </menu>
         <customObject id="494" customClass="SAVR_AppDelegate">
             <connections>
-                <outlet property="_notificationCheckbox" destination="xOd-R5-vJB" id="0NX-Ae-qaT"/>
-                <outlet property="applicationShouldStartAtLoginCheckbox" destination="pnB-a8-Mt4" id="LF5-D1-ukb"/>
+                <outlet property="applicationShouldStartAtLoginCheckbox" destination="pnB-a8-Mt4" id="yzI-oZ-BRn"/>
                 <outlet property="fluxList" destination="svh-5x-mbM" id="0Pe-n0-0sQ"/>
                 <outlet property="helpWindow" destination="bJk-Zm-d6z" id="4Cc-Uf-kzs"/>
-                <outlet property="notificationCheckbox" destination="xOd-R5-vJB" id="qHe-dJ-u55"/>
+                <outlet property="hideStatusBarIconCheckbox" destination="Dzy-hL-wwp" id="fjf-kW-prC"/>
+                <outlet property="notificationCheckbox" destination="xOd-R5-vJB" id="AcN-Ts-QxF"/>
                 <outlet property="preferenceWindow" destination="rwJ-pH-2dN" id="iJE-Gn-IU2"/>
                 <outlet property="statusLabel" destination="3xA-Hn-LOe" id="qLI-PE-U8X"/>
                 <outlet property="statusMenu" destination="KQg-rX-JxS" id="Uzb-vM-1iw"/>
@@ -66,17 +66,6 @@
                         </buttonCell>
                         <connections>
                             <action selector="openPreferencePane:" target="494" id="4oJ-wH-9J8"/>
-                        </connections>
-                    </button>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pnB-a8-Mt4">
-                        <rect key="frame" x="362" y="165" width="229" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Start Savr at login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5Ec-vy-PKP">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="applicationShouldStartAtLoginWasToggled:" target="494" id="EPk-1y-wMc"/>
                         </connections>
                     </button>
                     <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aw5-Rf-KpF">
@@ -146,17 +135,6 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xOd-R5-vJB">
-                        <rect key="frame" x="362" y="145" width="229" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Notify me when fetching images" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="2af-8c-l7G">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="notificationCheckboxWasToggled:" target="494" id="BiS-mD-Sm8"/>
-                        </connections>
-                    </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Ax-EG-TBN">
                         <rect key="frame" x="190" y="5" width="153" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -189,6 +167,39 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pnB-a8-Mt4">
+                        <rect key="frame" x="362" y="165" width="229" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Start Savr at login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5Ec-vy-PKP">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="applicationShouldStartAtLoginWasToggled:" target="494" id="Tr2-2N-whw"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xOd-R5-vJB">
+                        <rect key="frame" x="362" y="145" width="229" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Notify me when fetching images" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="2af-8c-l7G">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="notificationCheckboxWasToggled:" target="494" id="rlM-Mf-ghW"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dzy-hL-wwp">
+                        <rect key="frame" x="361" y="125" width="148" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Hide status bar Icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="G0M-3I-t5d">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="hideStatusBarIconWasToggled:" target="494" id="r2S-bn-dE8"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Aw5-Rf-KpF" firstAttribute="leading" secondItem="piK-MP-3s7" secondAttribute="leading" constant="20" id="0b1-lD-dYR"/>
@@ -276,17 +287,5 @@
                 </subviews>
             </view>
         </window>
-        <buttonCell type="push" title="Got it !" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="G6S-vC-z0Y">
-            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-            <font key="font" metaFont="system"/>
-        </buttonCell>
-        <buttonCell type="push" title="Got it !" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eBa-wi-8wd">
-            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-            <font key="font" metaFont="system"/>
-        </buttonCell>
-        <buttonCell type="push" title="Got it !" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cRf-hF-r6v">
-            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-            <font key="font" metaFont="system"/>
-        </buttonCell>
     </objects>
 </document>

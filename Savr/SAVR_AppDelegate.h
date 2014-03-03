@@ -17,13 +17,11 @@
     
     // PREFERENCE PANE
     __unsafe_unretained NSWindow *_preferenceWindow;
-    __weak NSButton *_applicationShouldStartAtLoginCheckbox;
-    __weak NSButton *_notificationCheckbox;
     __weak NSTableView *_fluxList;
     
     // RELOAD
     BOOL isLoading;
-    
+    BOOL isAlreadyLaunched;
     // FLUX MANAGER
     
 }
@@ -41,10 +39,15 @@
 - (IBAction)openPreferencePane:(id)sender;
 - (IBAction)notificationCheckboxWasToggled:(id)sender;
 - (IBAction)applicationShouldStartAtLoginWasToggled:(id)sender;
+- (IBAction)hideStatusBarIconWasToggled:(id)sender;
+
 
 @property (unsafe_unretained) IBOutlet NSWindow *preferenceWindow;
 @property (weak) IBOutlet NSButton *notificationCheckbox;
 @property (weak) IBOutlet NSButton *applicationShouldStartAtLoginCheckbox;
+@property (weak) IBOutlet NSButton *hideStatusBarIconCheckbox;
+
 @property (weak) IBOutlet NSTableView *fluxList;
 @property (weak) IBOutlet NSTextField *statusLabel;
+
 @end
