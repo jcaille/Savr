@@ -54,6 +54,11 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - Wake Up / Sleep Notifications
 
 - (void) fileNotifications
@@ -121,19 +126,21 @@
 
 -(void) reloadActiveFlux:(BOOL)force{
     // TODO : CHECK FOR CONNECTIVITY
-    [self didStartReloading];
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        int totalImagesFetched = 0;
-        for (SAVR_FluxLoader* fluxLoader in _fluxArray) {
-            NSError *error;
-            totalImagesFetched += [fluxLoader reload:force error:&error];
-            if(error){
-                [self didFailReloadingWithError:error];
-                return;
+    if (!_isReloading){
+        [self didStartReloading];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            int totalImagesFetched = 0;
+            for (SAVR_FluxLoader* fluxLoader in _fluxArray) {
+                NSError *error;
+                totalImagesFetched += [fluxLoader reload:force error:&error];
+                if(error){
+                    [self didFailReloadingWithError:error];
+                    return;
+                }
             }
-        }
-        [self didFinishReloadingNewImages:totalImagesFetched];
-    });
+            [self didFinishReloadingNewImages:totalImagesFetched];
+        });
+    }
 }
 
 -(void)didStartReloading
@@ -164,6 +171,16 @@
     NSLog(@"Finished reloading, got %d images", numberOfImagesFetched);
     [self resetReloadTimer];
     _isReloading = NO;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if([[NSUserDefaults standardUserDefaults] boolForKey:kSAVRShouldSendNotificationsWhenDoneFetchingKey] && numberOfImagesFetched > 2){
+            NSUserNotification *notification = [[NSUserNotification alloc] init];
+            notification.title = @"Savr just got new images!";
+            notification.informativeText = [NSString stringWithFormat:@"Savr just downloaded %d new images for your screensaver.", numberOfImagesFetched];
+            notification.soundName = NSUserNotificationDefaultSoundName;
+            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+        }
+    });
 
     if (self.delegate && [self.delegate respondsToSelector:@selector(fluxManagerDidFinishReloading:newImages:)]) {
         [self.delegate fluxManagerDidFinishReloading:self newImages:numberOfImagesFetched];

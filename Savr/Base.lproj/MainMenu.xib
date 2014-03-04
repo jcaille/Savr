@@ -36,39 +36,32 @@
         </menu>
         <customObject id="494" customClass="SAVR_AppDelegate">
             <connections>
-                <outlet property="applicationShouldStartAtLoginCheckbox" destination="pnB-a8-Mt4" id="yzI-oZ-BRn"/>
-                <outlet property="fluxList" destination="svh-5x-mbM" id="0Pe-n0-0sQ"/>
-                <outlet property="helpWindow" destination="bJk-Zm-d6z" id="4Cc-Uf-kzs"/>
-                <outlet property="hideStatusBarIconCheckbox" destination="Dzy-hL-wwp" id="fjf-kW-prC"/>
-                <outlet property="notificationCheckbox" destination="xOd-R5-vJB" id="AcN-Ts-QxF"/>
-                <outlet property="preferenceWindow" destination="rwJ-pH-2dN" id="iJE-Gn-IU2"/>
-                <outlet property="statusLabel" destination="3xA-Hn-LOe" id="qLI-PE-U8X"/>
-                <outlet property="window" destination="rwJ-pH-2dN" id="7CQ-yW-3ZK"/>
+                <outlet property="preferenceWindow" destination="rwJ-pH-2dN" id="Tbt-n7-i84"/>
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
         <window title="Savr" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="rwJ-pH-2dN">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="109" y="132" width="609" height="243"/>
+            <rect key="contentRect" x="109" y="132" width="357" height="429"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <view key="contentView" id="piK-MP-3s7">
-                <rect key="frame" x="0.0" y="0.0" width="609" height="243"/>
+                <rect key="frame" x="0.0" y="0.0" width="357" height="429"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YtQ-Md-b1X">
-                        <rect key="frame" x="348" y="59" width="257" height="32"/>
+                        <rect key="frame" x="50" y="7" width="257" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Open Screensaver Preference Pane" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oeL-wo-Amg">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="openPreferencePane:" target="494" id="4oJ-wH-9J8"/>
+                            <action selector="didClickOpenScreensaverPreferencePane:" target="WDA-zQ-J5t" id="pzT-qS-ooJ"/>
                         </connections>
                     </button>
-                    <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aw5-Rf-KpF">
-                        <rect key="frame" x="20" y="66" width="317" height="115"/>
+                    <scrollView misplaced="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aw5-Rf-KpF">
+                        <rect key="frame" x="20" y="257" width="317" height="115"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" autoresizesSubviews="NO" id="L7t-Mm-jA9">
                             <rect key="frame" x="1" y="1" width="315" height="113"/>
@@ -113,8 +106,8 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kgb-GT-xVO">
-                        <rect key="frame" x="18" y="207" width="321" height="19"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kgb-GT-xVO">
+                        <rect key="frame" x="19" y="400" width="321" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="317" id="C07-dZ-PNU"/>
@@ -126,7 +119,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VU1-EB-7Xh">
-                        <rect key="frame" x="361" y="209" width="231" height="17"/>
+                        <rect key="frame" x="64" y="117" width="231" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Options" id="UKj-wY-TP4">
                             <font key="font" size="15" name="LucidaGrande"/>
@@ -135,68 +128,68 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Ax-EG-TBN">
-                        <rect key="frame" x="190" y="5" width="153" height="32"/>
+                        <rect key="frame" x="102" y="196" width="153" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Fetch new images" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lqJ-Wn-Tb3">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="reloadButtonWasClicked:" target="494" id="FwV-Un-ZUe"/>
+                            <action selector="didClickReloadButton:" target="WDA-zQ-J5t" id="SAm-wo-gmY"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yJo-8B-Zc3">
-                        <rect key="frame" x="18" y="189" width="321" height="17"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yJo-8B-Zc3">
+                        <rect key="frame" x="18" y="380" width="321" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="317" id="qhq-WW-Ywb"/>
                         </constraints>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="New images are added eveyday on reddit" id="ArE-yN-dLr">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="New images are added eveyday on reddit" id="ArE-yN-dLr">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3xA-Hn-LOe">
-                        <rect key="frame" x="20" y="41" width="319" height="17"/>
+                        <rect key="frame" x="18" y="232" width="322" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Last fetched : " id="nvb-3S-qe6">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Last fetched : " id="nvb-3S-qe6">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pnB-a8-Mt4">
-                        <rect key="frame" x="362" y="165" width="229" height="18"/>
+                        <rect key="frame" x="32" y="93" width="229" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Start Savr at login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5Ec-vy-PKP">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="applicationShouldStartAtLoginWasToggled:" target="494" id="Tr2-2N-whw"/>
+                            <action selector="didToggleStartApplicationAtLogin:" target="WDA-zQ-J5t" id="uK4-F6-j6Z"/>
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xOd-R5-vJB">
-                        <rect key="frame" x="362" y="145" width="229" height="18"/>
+                        <rect key="frame" x="32" y="73" width="229" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Notify me when fetching images" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="2af-8c-l7G">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="notificationCheckboxWasToggled:" target="494" id="rlM-Mf-ghW"/>
+                            <action selector="didToggleNotifyWhenFetchingImage:" target="WDA-zQ-J5t" id="WgW-F3-6t6"/>
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dzy-hL-wwp">
-                        <rect key="frame" x="361" y="125" width="148" height="18"/>
+                        <rect key="frame" x="31" y="53" width="148" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Hide status bar Icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="G0M-3I-t5d">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="hideStatusBarIconWasToggled:" target="494" id="r2S-bn-dE8"/>
+                            <action selector="didToggleHideStatusBarIcon:" target="WDA-zQ-J5t" id="XWW-F9-vup"/>
                         </connections>
                     </button>
                 </subviews>
@@ -280,7 +273,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="closeHelpPanel:" target="494" id="DJg-so-ICv"/>
+                            <action selector="didClickCloseHelpPanel:" target="WDA-zQ-J5t" id="BOd-X8-tQX"/>
                         </connections>
                     </button>
                 </subviews>
@@ -290,6 +283,18 @@
             <connections>
                 <outlet property="preferenceWindow" destination="rwJ-pH-2dN" id="MYm-wp-UHe"/>
                 <outlet property="statusMenu" destination="KQg-rX-JxS" id="rnm-wh-Kzh"/>
+            </connections>
+        </customObject>
+        <customObject id="WDA-zQ-J5t" customClass="SAVR_PreferenceWindowController">
+            <connections>
+                <outlet property="fluxList" destination="svh-5x-mbM" id="vbo-Y9-2dM"/>
+                <outlet property="helpWindow" destination="bJk-Zm-d6z" id="qsb-Qw-IgW"/>
+                <outlet property="hideStatusBarIconCheckbox" destination="Dzy-hL-wwp" id="Kkg-5i-P89"/>
+                <outlet property="notifyWhenFetchingImageCheckbox" destination="xOd-R5-vJB" id="5OJ-Uy-KrL"/>
+                <outlet property="preferenceWindow" destination="rwJ-pH-2dN" id="a6M-YR-yZ9"/>
+                <outlet property="startApplicationAtLoginCheckbox" destination="pnB-a8-Mt4" id="9DF-TD-kJf"/>
+                <outlet property="statusLabel" destination="3xA-Hn-LOe" id="e0k-fa-vlW"/>
+                <outlet property="statusLavel" destination="3xA-Hn-LOe" id="aZq-m9-ecE"/>
             </connections>
         </customObject>
     </objects>
