@@ -21,7 +21,7 @@
     [self setCheckboxes];
     [self setStatusLabelToLastReloadDate];
     [self prepareFluxList];
-    
+    _preferenceWindow.delegate = self;
 }
 
 #pragma mark - Interface
@@ -169,4 +169,22 @@
 {
     [_helpWindow orderOut:self];
 }
+
+#pragma mark - Window Delegation
+- (IBAction)keyboardClose:(id)sender {
+    [_preferenceWindow performClose:self];
+}
+
+//
+//-(BOOL)windowShouldClose:(id)sender
+//{
+//    NSLog(@"Ho");
+//    return YES;
+//}
+//
+//-(void)windowWillClose:(NSNotification *)notification
+//{
+//    NSLog(@"Hey");
+//}
+
 @end

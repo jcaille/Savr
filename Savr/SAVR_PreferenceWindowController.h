@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SAVR_FluxManager.h"
 
-@interface SAVR_PreferenceWindowController : NSObject <SAVR_FluxManagerDelegate>
+@interface SAVR_PreferenceWindowController : NSObject <SAVR_FluxManagerDelegate, NSWindowDelegate>
 
 @property (unsafe_unretained) IBOutlet NSWindow *preferenceWindow;
 @property (unsafe_unretained) IBOutlet NSWindow *helpWindow;
