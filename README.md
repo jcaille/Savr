@@ -19,3 +19,4 @@ This application was written a few month ago : code is messy, implementation cho
 ## Tanks
 
 Huge thanks to the guys and gals at [Mashape](http://mashape.com) for their dead-simple HTTP library : [unirest](https://github.com/Mashape/unirest-obj-c).
+I'm using [LaunchAtLoginController](https://github.com/Mozketo/LaunchAtLoginController) from Tomáš Znamenáček and Ben Clark-Robinson
