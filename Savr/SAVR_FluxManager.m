@@ -49,7 +49,6 @@
 
         [self checkIntegrity];
         [self fileNotifications];
-        [self reloadActiveFlux:NO];
     }
     return self;
 }

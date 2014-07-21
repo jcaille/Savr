@@ -21,6 +21,7 @@
     [self setCheckboxes];
     [self setStatusLabelToLastReloadDate];
     [self prepareFluxList];
+    [[SAVR_FluxManager sharedInstance] reloadActiveFlux:NO];
     _preferenceWindow.delegate = self;
 }
 
@@ -135,6 +136,7 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [_statusLabel setStringValue:@"Fetching new images"];
+        [_FetchNewImagesButton setEnabled:NO];
     });
 }
 
@@ -142,6 +144,7 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self setStatusLabelToLastReloadDate];
+        [_FetchNewImagesButton setEnabled:YES];
     });
 }
 
@@ -149,6 +152,7 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self setStatusLabelToLastReloadDate];
+        [_FetchNewImagesButton setEnabled:YES];
     });
 }
 
@@ -172,19 +176,9 @@
 
 #pragma mark - Window Delegation
 - (IBAction)keyboardClose:(id)sender {
+    [_helpWindow performClose:self];
     [_preferenceWindow performClose:self];
 }
 
-//
-//-(BOOL)windowShouldClose:(id)sender
-//{
-//    NSLog(@"Ho");
-//    return YES;
-//}
-//
-//-(void)windowWillClose:(NSNotification *)notification
-//{
-//    NSLog(@"Hey");
-//}
 
 @end

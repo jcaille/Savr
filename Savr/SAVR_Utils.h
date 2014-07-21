@@ -14,6 +14,7 @@
 
 // NSDefaults Keys
 
+#define kSAVRFirstLaunchKey @"firstLaunch"
 #define kSAVRShouldSendNotificationsWhenDoneFetchingKey @"notification"
 #define kSAVRHideStatusBarIconKey @"hideStatusBarIcon"
 #define kSAVRLastReloadDateKey @"lastReloadDate"

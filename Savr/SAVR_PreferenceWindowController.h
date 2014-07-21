@@ -25,6 +25,7 @@
 @property (weak) IBOutlet NSButton *startApplicationAtLoginCheckbox;
 @property (weak) IBOutlet NSButton *notifyWhenFetchingImageCheckbox;
 @property (weak) IBOutlet NSButton *hideStatusBarIconCheckbox;
+@property (weak) IBOutlet NSButton *FetchNewImagesButton;
 
 // Actions
 - (IBAction)didToggleStartApplicationAtLogin:(id)sender;

@@ -29,7 +29,21 @@
         [Parse setApplicationId:@"jeq89GwwfBhAAA5tUtFfSWwNCvKNqyGkBazzXRnU"
                       clientKey:@"EXe8h3KhUbBlzqDieDki32a4f9ZPyX7ZI5YybRSK"];
     }
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:kSAVRFirstLaunchKey]) {
+        [self handleFirstLaunch];
+    }
+    
     return self;
+}
+
+-(void)handleFirstLaunch
+{
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kSAVRFirstLaunchKey];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kSAVRShouldSendNotificationsWhenDoneFetchingKey];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kSAVRHideStatusBarIconKey];
+    LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
+    [lc setLaunchAtLogin:YES];
+    isAlreadyLaunched = true;
 }
 
 - (void)awakeFromNib
