@@ -9,7 +9,6 @@
 #import "SAVR_PreferenceWindowController.h"
 #import "SAVR_Utils.h"
 #import "LaunchAtLoginController.h"
-#import <ParseOSX/ParseOSX.h>
 
 @implementation SAVR_PreferenceWindowController
 
@@ -86,11 +85,9 @@
     LaunchAtLoginController *lc = [[LaunchAtLoginController alloc] init];
     if(_startApplicationAtLoginCheckbox.state == NSOnState){
         NSLog(@"Adding application to login list");
-        [PFAnalytics trackEvent:@"Event:Start_at_login:YES"];
         [lc setLaunchAtLogin:YES];
     } else {
         NSLog(@"Removing application from login list");
-        [PFAnalytics trackEvent:@"Event:Start_at_login:NO"];
         [lc setLaunchAtLogin:NO];
     }
 }
@@ -98,10 +95,8 @@
 - (IBAction)didToggleNotifyWhenFetchingImage:(id)sender {
     if(_notifyWhenFetchingImageCheckbox.state == NSOnState){
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kSAVRShouldSendNotificationsWhenDoneFetchingKey];
-        [PFAnalytics trackEvent:@"Event:Send_notifications:YES"];
     } else {
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kSAVRShouldSendNotificationsWhenDoneFetchingKey];
-        [PFAnalytics trackEvent:@"Event:Send_notifications:NO"];
     }
 }
 
@@ -109,11 +104,9 @@
     if(_hideStatusBarIconCheckbox.state == NSOnState)
     {
         NSLog(@"Hide status bar icon");
-        [PFAnalytics trackEvent:@"Event:Hide_status_bar_icon:YES"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kSAVRHideStatusBarIconKey];
     } else {
         NSLog(@"Show status bar icon");
-        [PFAnalytics trackEvent:@"Event:Hide_status_bar_icon:NO"];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kSAVRHideStatusBarIconKey];
     }
 }
@@ -163,7 +156,6 @@
 {
     [[NSWorkspace sharedWorkspace] openURL:
      [NSURL fileURLWithPath:@"/System/Library/PreferencePanes/DesktopScreenEffectsPref.prefPane"]];
-    [PFAnalytics trackEvent:@"Page:Help"];
     NSPoint ref = {.x = 25, .y = (_helpWindow.screen.frame.size.height - _helpWindow.frame.size.height) / 2};
     [_helpWindow setFrameOrigin:ref];
     [_helpWindow makeKeyAndOrderFront:nil];

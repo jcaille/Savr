@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Jean Caillé. All rights reserved.
 //
 
-#import <ParseOSX/ParseOSX.h>
-
 #import "SAVR_AppDelegate.h"
 #import "SAVR_Utils.h"
 #import "SAVR_URLFluxLoader.h"
@@ -24,11 +22,6 @@
 
 -(id)init
 {
-    if(self = [super init])
-    {
-        [Parse setApplicationId:@"jeq89GwwfBhAAA5tUtFfSWwNCvKNqyGkBazzXRnU"
-                      clientKey:@"EXe8h3KhUbBlzqDieDki32a4f9ZPyX7ZI5YybRSK"];
-    }
     if (![[NSUserDefaults standardUserDefaults] objectForKey:kSAVRFirstLaunchKey]) {
         [self handleFirstLaunch];
     }
@@ -61,7 +54,6 @@
     if(isAlreadyLaunched){
         // Application is not starting up
         [_preferenceWindow makeKeyAndOrderFront:nil];
-        [PFAnalytics trackEvent:@"Page:Preference_Window"];
     }
     isAlreadyLaunched = YES;
 }
@@ -69,8 +61,6 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     NSLog(@"Did finish Launching");
-    [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:aNotification.userInfo];
-    [PFAnalytics trackEvent:@"Event:Launch"];
 }
 
 @end

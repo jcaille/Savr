@@ -8,7 +8,6 @@
 
 #import "SAVR_FluxLoader.h"
 #import "SAVR_Utils.h"
-#import <ParseOSX/ParseOSX.h>
 
 @implementation SAVR_FluxLoader
 
@@ -54,9 +53,6 @@
         if(-[itemType timeIntervalSinceNow] > timeInterval){
             NSLog(@"Deleting old file %@", item);
             
-            NSString* event_name = [NSString stringWithFormat:@"Event:Flux:%@:delete_old_image", self.fluxName];
-            [PFAnalytics trackEvent:event_name];
-
             [[NSFileManager defaultManager] removeItemAtPath:itemFullPath error:nil];
         }
     }
@@ -99,8 +95,6 @@
     [savrDefaults synchronize];
     
     
-    NSString* event_name = [NSString stringWithFormat:@"Event:Flux:%@:set_active", self.fluxName];
-    [PFAnalytics trackEvent:event_name];
 
     return YES;
 }
@@ -129,9 +123,6 @@
     [savrDefaults setBool:NO forKey:userDefaultKey];
     [savrDefaults synchronize];
     
-    NSString* event_name = [NSString stringWithFormat:@"Event:Flux:%@:set_inactive", self.fluxName];
-    [PFAnalytics trackEvent:event_name];
-
     //Returns yes even if flux was not initially active
     return YES;
 }

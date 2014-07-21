@@ -10,7 +10,6 @@
 #import "SAVR_Utils.h"
 #import "SAVR_FluxManager.h"
 
-#import <ParseOSX/ParseOSX.h>
 
 @implementation SAVR_StatusBarIconController
 
@@ -78,21 +77,16 @@
 - (IBAction)openSavrPreferencesWasClicked:(id)sender
 {
     [_preferenceWindow makeKeyAndOrderFront:nil];
-    [PFAnalytics trackEvent:@"Page:Preference_Window"];
-    
 }
 
 - (IBAction)reloadButtonWasClicked:(id)sender;
 {
     [[SAVR_FluxManager sharedInstance] reloadActiveFlux:YES];
-    [PFAnalytics trackEvent:@"Event:Force_Reload"];
-    
 }
 
 - (IBAction)quitButtonWasClicked:(id)sender
 {
     [NSApp terminate: nil];
-    [PFAnalytics trackEvent:@"Event:Quit"];
 }
 
 @end

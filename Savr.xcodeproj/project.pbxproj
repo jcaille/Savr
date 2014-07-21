@@ -21,7 +21,6 @@
 		0F1C2BD91813296F009AB0C1 /* SAVR_FluxLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C2BD81813296F009AB0C1 /* SAVR_FluxLoader.m */; };
 		0F1C2BDC18132B08009AB0C1 /* SAVR_URLFluxLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C2BDB18132B08009AB0C1 /* SAVR_URLFluxLoader.m */; };
 		0F1C2BDF18132F5F009AB0C1 /* SAVR_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1C2BDE18132F5F009AB0C1 /* SAVR_Utils.m */; };
-		0F31A1A9185B42B1004A7112 /* ParseOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F31A1A8185B42B1004A7112 /* ParseOSX.framework */; };
 		0F31A1AB185B4349004A7112 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F31A1AA185B4349004A7112 /* CFNetwork.framework */; };
 		0F31A1AD185B434F004A7112 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F31A1AC185B434F004A7112 /* CoreGraphics.framework */; };
 		0F31A1AF185B4356004A7112 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F31A1AE185B4356004A7112 /* CoreLocation.framework */; };
@@ -30,7 +29,6 @@
 		0F31A1B5185B4377004A7112 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F31A1B4185B4377004A7112 /* QuartzCore.framework */; };
 		0F31A1B7185B437E004A7112 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F31A1B6185B437E004A7112 /* Security.framework */; };
 		0F31A1B9185B4386004A7112 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F31A1B8185B4386004A7112 /* SystemConfiguration.framework */; };
-		0F31A1BB185B4488004A7112 /* ParseOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0F31A1A8185B42B1004A7112 /* ParseOSX.framework */; };
 		0F38B4321821B2B7004B41A1 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F38B4311821B2B7004B41A1 /* LaunchAtLoginController.m */; };
 		0F38B43518244221004B41A1 /* SAVR_FluxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F38B43418244221004B41A1 /* SAVR_FluxManager.m */; };
 		0F42E125187CABED0004090E /* Savr_Logo_32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E116187CABED0004090E /* Savr_Logo_32@2x.png */; };
@@ -100,7 +98,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0F31A1BB185B4488004A7112 /* ParseOSX.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +129,6 @@
 		0F1C2BDB18132B08009AB0C1 /* SAVR_URLFluxLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_URLFluxLoader.m; sourceTree = "<group>"; };
 		0F1C2BDD18132F5F009AB0C1 /* SAVR_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAVR_Utils.h; sourceTree = "<group>"; };
 		0F1C2BDE18132F5F009AB0C1 /* SAVR_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_Utils.m; sourceTree = "<group>"; };
-		0F31A1A8185B42B1004A7112 /* ParseOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseOSX.framework; path = Savr/ParseOSX.framework; sourceTree = "<group>"; };
 		0F31A1AA185B4349004A7112 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		0F31A1AC185B434F004A7112 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		0F31A1AE185B4356004A7112 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -215,7 +211,6 @@
 				0F31A1AF185B4356004A7112 /* CoreLocation.framework in Frameworks */,
 				0F31A1AD185B434F004A7112 /* CoreGraphics.framework in Frameworks */,
 				0F31A1AB185B4349004A7112 /* CFNetwork.framework in Frameworks */,
-				0F31A1A9185B42B1004A7112 /* ParseOSX.framework in Frameworks */,
 				0F1C2BA31813243F009AB0C1 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,7 +259,6 @@
 				0F31A1AE185B4356004A7112 /* CoreLocation.framework */,
 				0F31A1AC185B434F004A7112 /* CoreGraphics.framework */,
 				0F31A1AA185B4349004A7112 /* CFNetwork.framework */,
-				0F31A1A8185B42B1004A7112 /* ParseOSX.framework */,
 				0F1C2BA21813243F009AB0C1 /* Cocoa.framework */,
 				0F1C2BC11813243F009AB0C1 /* XCTest.framework */,
 				0F1C2BA41813243F009AB0C1 /* Other Frameworks */,
