@@ -46,7 +46,6 @@
 		0F42E133187CABED0004090E /* Savr_Logo_1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E124187CABED0004090E /* Savr_Logo_1024.png */; };
 		0F42E13A187CAE210004090E /* Savr_LogoW_16.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E138187CAE210004090E /* Savr_LogoW_16.png */; };
 		0F42E13B187CAE210004090E /* Savr_LogoW_16@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F42E139187CAE210004090E /* Savr_LogoW_16@2x.png */; };
-		0F54E49E18D06EEB00083E46 /* SAVR_OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F54E49D18D06EEB00083E46 /* SAVR_OnboardingViewController.m */; };
 		0F5872BE18C4EC9400A367F0 /* SAVR_PreferenceWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5872BD18C4EC9400A367F0 /* SAVR_PreferenceWindowController.m */; };
 		0F9DD3B91817BE5A00A2CD06 /* UNIBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9DD3981817BE5A00A2CD06 /* UNIBaseRequest.m */; };
 		0F9DD3BA1817BE5A00A2CD06 /* UNIBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9DD3981817BE5A00A2CD06 /* UNIBaseRequest.m */; };
@@ -157,8 +156,6 @@
 		0F42E124187CABED0004090E /* Savr_Logo_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Savr_Logo_1024.png; sourceTree = "<group>"; };
 		0F42E138187CAE210004090E /* Savr_LogoW_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Savr_LogoW_16.png; sourceTree = "<group>"; };
 		0F42E139187CAE210004090E /* Savr_LogoW_16@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Savr_LogoW_16@2x.png"; sourceTree = "<group>"; };
-		0F54E49C18D06EEB00083E46 /* SAVR_OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAVR_OnboardingViewController.h; sourceTree = "<group>"; };
-		0F54E49D18D06EEB00083E46 /* SAVR_OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_OnboardingViewController.m; sourceTree = "<group>"; };
 		0F5872BC18C4EC9400A367F0 /* SAVR_PreferenceWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAVR_PreferenceWindowController.h; sourceTree = "<group>"; };
 		0F5872BD18C4EC9400A367F0 /* SAVR_PreferenceWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVR_PreferenceWindowController.m; sourceTree = "<group>"; };
 		0F9DD3971817BE5A00A2CD06 /* UNIBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNIBaseRequest.h; sourceTree = "<group>"; };
@@ -377,8 +374,6 @@
 		0F5872BF18C4EC9D00A367F0 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				0F54E49C18D06EEB00083E46 /* SAVR_OnboardingViewController.h */,
-				0F54E49D18D06EEB00083E46 /* SAVR_OnboardingViewController.m */,
 				0FDE464F18C4C72C005FC1E5 /* SAVR_StatusBarIconController.h */,
 				0FDE465018C4C72C005FC1E5 /* SAVR_StatusBarIconController.m */,
 				0F5872BC18C4EC9400A367F0 /* SAVR_PreferenceWindowController.h */,
@@ -583,7 +578,6 @@
 				0F9DD3C11817BE5A00A2CD06 /* UNIHTTPBinaryResponse.m in Sources */,
 				0F9DD3BD1817BE5A00A2CD06 /* UNIMultipartRequest.m in Sources */,
 				0F9DD3C31817BE5A00A2CD06 /* UNIHTTPJsonResponse.m in Sources */,
-				0F54E49E18D06EEB00083E46 /* SAVR_OnboardingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
